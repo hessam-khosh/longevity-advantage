@@ -9,6 +9,7 @@
             --bg-dark: #0f1115;
             --card-bg: #181b22;
             --accent: #2563eb;
+            --accent-hover: #1d4ed8;
             --text-light: #f3f4f6;
             --text-muted: #9ca3af;
             --border: #2d3748;
@@ -18,9 +19,13 @@
         body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid var(--border); }
-        .logo { font-weight: 700; font-size: 1.25rem; letter-spacing: 1px; color: var(--text-light); }
-        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: opacity 0.2s; }
-        .btn-primary:hover { opacity: 0.9; }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-light); }
+        .nav-buttons { display: flex; gap: 1rem; }
+        
+        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; border: none; cursor: pointer; }
+        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-secondary { background-color: transparent; color: var(--text-light); padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); transition: border-color 0.2s; cursor: pointer; }
+        .btn-secondary:hover { border-color: var(--accent); }
 
         .hero { text-align: center; padding: 5rem 5% 3rem 5%; max-width: 900px; margin: 0 auto; }
         .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.2; }
@@ -29,20 +34,25 @@
         .section { padding: 4rem 5%; max-width: 1100px; margin: 0 auto; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .card { background-color: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
         .card h3 { margin-bottom: 0.75rem; color: var(--accent); }
         .card p { font-size: 0.95rem; color: var(--text-muted); }
 
-        .tracker-section { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem 2rem; margin: 4rem auto; max-width: 800px; border: 1px solid var(--border); }
-        .tracker-container { position: relative; width: 100%; text-align: center; }
-        iframe { width: 100%; height: 750px; border: none; border-radius: 8px; background: #fff; }
+        .tracker-section { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem 2rem; margin: 2rem auto; max-width: 800px; border: 1px solid var(--border); }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 400px; width: 90%; text-align: center; position: relative; }
+        .close-btn { position: absolute; right: 1rem; top: 0.8rem; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+        .modal-input { width: 100%; padding: 0.8rem; margin: 1.2rem 0; background: var(--bg-dark); border: 1px solid var(--border); color: white; border-radius: 4px; font-size: 1rem; text-align: center; }
+        .error-msg { color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem; }
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            iframe { height: 850px; }
+            .nav-buttons { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -50,13 +60,19 @@
 
     <header>
         <div class="logo">THE LONGEVITY ADVANTAGE</div>
-        <a href="#tracker" class="btn-primary">Client Portal</a>
+        <div class="nav-buttons">
+            <button onclick="openModal()" class="btn-secondary">Client Portal</button>
+            <a href="#apply" class="btn-primary">Apply Now</a>
+        </div>
     </header>
 
     <section class="hero">
         <h1>In an Accelerating World, Vitality is Your Ultimate Edge.</h1>
-        <p>A fully managed, data-driven longevity protocol. We eliminate decision fatigue, optimize metabolic energy, strip body fat, and align mind and movement.</p>
-        <a href="#protocol" class="btn-primary">Explore The Protocol</a>
+        <p>A fully managed, private longevity protocol. We eliminate decision fatigue, optimize metabolic energy, strip body fat, and align mind and movement.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#apply" class="btn-primary" style="padding: 0.8rem 1.8rem; font-size: 1rem;">Apply for 1-on-1 Advisory</a>
+            <button onclick="openModal()" class="btn-secondary" style="padding: 0.8rem 1.8rem; font-size: 1rem;">Client Access</button>
+        </div>
     </section>
 
     <section id="protocol" class="section">
@@ -72,7 +88,7 @@
             </div>
             <div class="card">
                 <h3>3. Neural Priming</h3>
-                <p>Daily structured auto-suggestion and subconscious self-talk protocols designed to rewire habits and eliminate cravings at the root.</p>
+                <p>Structured daily auto-suggestion and subconscious self-talk protocols designed to rewire habits and eliminate cravings at the root.</p>
             </div>
             <div class="card">
                 <h3>4. Functional Reconditioning</h3>
@@ -81,22 +97,97 @@
         </div>
     </section>
 
-    <section id="tracker" class="section">
-        <div class="tracker-section">
-            <h2 style="text-align: center; margin-bottom: 0.5rem;">Client Daily Entry Portal</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">Complete your daily 90-second physiological and neural check-in below.</p>
-            
-            <div style="text-align: center; padding: 2rem 0;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 0.8rem 2rem; display: inline-block;">
-                    Open Daily Check-In Form &rarr;
-                </a>
+    <section id="testimonials" class="section">
+        <h2 class="section-title">What Our Clients Experience</h2>
+        <div class="grid">
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
+                    "In a high-pressure corporate environment, I didn’t need more health information—I needed decision-free execution. The daily neural priming eliminated my stress-eating, and the alpha-state visualization re-anchored my energy. In 30 days, my vitality score jumped from a 4 to an 8, and my DEXA scan confirmed pure fat loss with zero muscle loss."
+                </p>
+                <p style="font-weight: 700; color: var(--text-light);">— Sarah M.</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Senior Director | Executive Protocol</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
+                    "I wanted to drop 8–10 kg, but feared another joint-pounding routine. The Primal & Precise method was entirely different. Combining DEXA tracking with morning mobility and custom audio scripts made fat loss feel natural. I lost 3.5 kg in month one, joint pain is gone, and I wake up feeling light, clear, and energized."
+                </p>
+                <p style="font-weight: 700; color: var(--text-light);">— Claire T.</p>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Business Consultant | Vitality & Reconditioning</p>
             </div>
         </div>
     </section>
 
+    <section id="apply" class="section">
+        <div class="tracker-section">
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Apply for Private Advisory</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                We work with a strictly limited number of private clients to ensure high-touch focus. Complete the preliminary screening below to request an initial consultation.
+            </p>
+            
+            <div style="text-align: center; padding: 1rem 0;">
+                <!-- REPLACE LINK BELOW WITH YOUR APPLICATION FORM LINK -->
+                <a href="PASTE_YOUR_RESPONDER_LINK_HERE" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.2rem; display: inline-block;">
+                    Submit Application & Enquiry &rarr;
+                </a>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
+                *Applications are reviewed within 24 hours. Accepted applicants are invited for a private 30-minute strategic consultation.
+            </p>
+        </div>
+    </section>
+
+    <!-- PASSWORD MODAL FOR CLIENT PORTAL -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Private Client Portal</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Enter your Client Access Key to proceed to your daily tracker.</p>
+            
+            <input type="password" id="clientPasscode" class="modal-input" placeholder="Enter Access Key">
+            <p id="errorMsg" class="error-msg">Invalid Access Key. Please try again.</p>
+            
+            <button onclick="verifyPasscode()" class="btn-primary" style="width: 100%;">Access Portal</button>
+        </div>
+    </div>
+
     <footer>
         &copy; 2026 The Longevity Advantage. All rights reserved.
     </footer>
+
+    <script>
+        // CLIENT PASSCODE CONFIGURATION
+        const CORRECT_KEY = "TLA2026"; // Set your desired client password here
+        const CLIENT_FORM_URL = "PASTE_YOUR_RESPONDER_LINK_HERE"; // Replace with your Google Form URL
+
+        function openModal() {
+            document.getElementById('clientModal').style.display = 'flex';
+            document.getElementById('errorMsg').style.display = 'none';
+            document.getElementById('clientPasscode').value = '';
+        }
+
+        function closeModal() {
+            document.getElementById('clientModal').style.display = 'none';
+        }
+
+        function verifyPasscode() {
+            const inputKey = document.getElementById('clientPasscode').value.trim();
+            if (inputKey === CORRECT_KEY) {
+                window.open(CLIENT_FORM_URL, '_blank');
+                closeModal();
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        // Close modal if user clicks outside box
+        window.onclick = function(event) {
+            const modal = document.getElementById('clientModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
