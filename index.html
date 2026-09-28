@@ -258,7 +258,7 @@
         </section>
     </div>
 
-    <!-- CLIENT DASHBOARD VIEW (HIDDEN UNTIL CLIENT LOGIN) -->
+    <!-- CLIENT DASHBOARD VIEW -->
     <div id="dashboardView" class="section" style="display: none; padding-top: 2rem;">
         <div class="tracker-section" style="max-width: 900px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
@@ -269,6 +269,19 @@
                 <button onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
 
+            <!-- FEATURED SAMPLE REPORT BUTTON -->
+            <div style="margin-bottom: 2.5rem; text-align: center;">
+                <button onclick="openModal('sampleDexaModal')" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                    📄 Sample of Atlas' DEXA Scan Analysis &rarr;
+                </button>
+            </div>
+
+            <!-- SECTION HEADING -->
+            <h3 style="color: var(--text-light); font-size: 1.3rem; margin-bottom: 1rem; border-left: 3px solid var(--accent); padding-left: 0.75rem;">
+                Resources for your Daily Use
+            </h3>
+
+            <!-- 8 DAILY PROTOCOL BUTTONS -->
             <div class="dashboard-grid">
                 <div class="dash-btn" onclick="openProtocolPage('Morning Routine')">🌅 Morning Routine</div>
                 <div class="dash-btn" onclick="openProtocolPage('Nutrition Guide')">🥗 Nutrition Guide</div>
@@ -278,6 +291,87 @@
                 <div class="dash-btn" onclick="openProtocolPage('Evening Routine')">🌙 Evening Routine</div>
                 <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️ Trust The Process</div>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: SAMPLE DEXA ANALYSIS OVERLAY -->
+    <div id="sampleDexaModal" class="modal">
+        <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
+            <span class="close-btn" onclick="closeModal('sampleDexaModal')">&times;</span>
+            
+            <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.5rem; text-align: center;">
+                Example of Atlas's Analysis of DEXA Scan taken as shown above
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 2rem;">
+                Assessment Tool: Technogym Bioelectrical Impedance Analysis (BIA) System
+            </p>
+
+            <!-- SCAN METRICS DISPLAY GRID -->
+            <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                <h4 style="color: var(--accent); margin-bottom: 1rem; text-align: center;">Technogym Scan Baseline Metrics (Sep 26, 2026)</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                    <div>• <strong>Phase Angle:</strong> 7° (EXCELLENT)</div>
+                    <div>• <strong>Skeletal Muscle Mass:</strong> 31.4 kg / 44.5%</div>
+                    <div>• <strong>Soft Lean Mass:</strong> 52.6 kg / 74.5%</div>
+                    <div>• <strong>Fat Free Mass:</strong> 55.8 kg / 79%</div>
+                    <div>• <strong>Body Fat Mass:</strong> 14.8 kg / 21%</div>
+                    <div>• <strong>Total Weight:</strong> 70.6 kg</div>
+                    <div>• <strong>BMI:</strong> 25.3</div>
+                    <div>• <strong>Basal Metabolic Rate:</strong> 1,566 kcal</div>
+                    <div>• <strong>Bone Mineral Content:</strong> 3.2 kg / 4.53%</div>
+                    <div>• <strong>Intracellular Water:</strong> 25.6 kg (62.75%)</div>
+                    <div>• <strong>Extracellular Water:</strong> 15.2 kg (37.2%)</div>
+                </div>
+            </div>
+
+            <!-- EXECUTIVE ANALYSIS TEXT -->
+            <div style="color: var(--text-light); line-height: 1.6;">
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">1. Executive Summary: Looking Beyond Scale Weight</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Standard bathroom scales treat every kilogram identically. Your Technogym Body Scan separates <strong>tissue quality</strong> from <strong>gross weight</strong>, providing an anatomical breakdown of cellular vitality, muscle density, and metabolic health.
+                </p>
+
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">2. Key Metric Breakdown & Strategic Guidance</h3>
+                
+                <div style="margin-bottom: 1.25rem;">
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Cellular Vitality & Integrity (Phase Angle: 7° — EXCELLENT)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        Phase angle measures electrical resistance across cell membranes. A score of 7° reflects exceptional cellular integrity, efficient mitochondrial energy transfer, and strong intracellular hydration. Strategic Focus: Preserve this high cellular quality while optimizing fat oxidation.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 1.25rem;">
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Body Composition & Muscle Quality (SMM: 31.4 kg / BMC: 3.2 kg)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        You possess a dense, metabolically active structural frame. The "HIGH" flag on total body weight (70.6 kg) is driven by muscle and bone density, not excess fat. Strategic Focus: Protecting muscle tissue while stripping body fat to lower total joint workload.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 1.25rem;">
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Fat Mass & Metabolic Efficiency (BFM: 14.8 kg / 21% | BMR: 1,566 kcal)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        Your current body fat percentage (21%) provides a clear, high-yield opportunity for targeted fat loss without risking lean tissue. The BMR reading (1,566 kcal) indicates an opportunity to up-regulate metabolic output through daily movement and non-stimulant vitality protocols.
+                    </p>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Cellular Hydration Ratio (ICW: 62.75% vs. ECW: 37.2%)</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        Over 62% of your body water is held inside your cells where energy is produced. This confirms strong hydration status and low systemic fluid retention outside the cell walls.
+                    </p>
+                </div>
+
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">3. The 30-Day Directive Focus</h3>
+                <ul style="font-size: 0.9rem; color: var(--text-muted); padding-left: 1.2rem; margin-bottom: 2rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Ignore Scale Weight:</strong> Success is measured by shifting body fat (21% → 17%) while preserving 31.4 kg of skeletal muscle mass.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Metabolic Priming:</strong> Activate non-exercise activity and low-glycemic fueling to shift your 1,566 kcal basal engine into a higher daily burn rate.</li>
+                    <li><strong>Mitochondrial Protection:</strong> Maintain your 7° Phase Angle through daily breathwork, hydration, and cellular recovery protocols.</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button onclick="closeModal('sampleDexaModal')" class="btn-secondary" style="padding: 0.6rem 2rem;">Close Report</button>
             </div>
         </div>
     </div>
