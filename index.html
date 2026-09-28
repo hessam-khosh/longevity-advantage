@@ -91,61 +91,67 @@
             </p>
 
 
-        <!-- TRIAD SUPPORT SECTION -->
-        <div style="margin-top: 3.5rem; margin-bottom: 2rem;">
-            <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 2.5rem; text-align: center;">
+      <!-- TRIAD SUPPORT SECTION -->
+        <div style="margin-top: 4rem; margin-bottom: 3rem; text-align: center;">
+            <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 3rem;">
                 You Don't Have to Navigate Your Journey Alone
             </h2>
 
-            <div style="display: flex; flex-direction: column; align-items: center; max-width: 900px; margin: 0 auto; gap: 1.5rem;">
+            <div style="position: relative; max-width: 950px; margin: 0 auto; padding: 1rem;">
                 
-                <!-- TOP CIRCLE / NODE: YOUR JOURNEY -->
-                <div style="background: var(--card-bg); border: 2px solid var(--accent); border-radius: 16px; padding: 2rem; max-width: 520px; width: 100%; text-align: center; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.25);">
-                    <div style="display: inline-block; background: var(--accent); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 0.75rem;">
-                        YOUR JOURNEY
+                <!-- SVG CURVED ARROWS FOR DESKTOP -->
+                <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;" viewBox="0 0 950 450" fill="none">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+                        </marker>
+                    </defs>
+                    <!-- Left Curved Arrow (Advisor to You) -->
+                    <path d="M 230 280 Q 260 140 400 120" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="6,6" />
+                    <!-- Right Curved Arrow (Atlas to You) -->
+                    <path d="M 720 280 Q 690 140 550 120" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="6,6" />
+                </svg>
+
+                <!-- TOP CIRCLE: YOU & YOUR JOURNEY -->
+                <div style="position: relative; z-index: 2; display: flex; justify-content: center; margin-bottom: 4rem;">
+                    <div style="background: var(--card-bg); border: 3px solid var(--accent); border-radius: 50%; width: 280px; height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem; text-align: center; box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);">
+                        <h3 style="font-size: 1.25rem; color: var(--text-light); font-weight: 700; margin-bottom: 0.5rem;">
+                            You & Your Journey
+                        </h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                            Personalized to your unique starting point, goals, and lifestyle across <strong>Energy, Fitness, Resilience, Mindset, Performance & Purpose.</strong>
+                        </p>
                     </div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.75rem; font-weight: 600; line-height: 1.4;">
-                        Each plan is personalized to your unique starting point, goals, and lifestyle.
-                    </h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                        The journey to improve the key dimensions of your long-term vitality and success: 
-                        <strong style="color: var(--text-light);">Energy, Fitness, Resilience, Mindset, Performance & Purpose.</strong>
-                    </p>
                 </div>
 
-                <!-- CONNECTOR ARROWS -->
-                <div style="font-size: 1.8rem; color: var(--accent); font-weight: 700; letter-spacing: 1rem; margin: -0.5rem 0;">
-                    ▲ ▲
-                </div>
-
-                <!-- BOTTOM ROW: ADVISOR & ATLAS -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%;">
+                <!-- BOTTOM ROW: CIRCLE A & CIRCLE B -->
+                <div style="position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap;">
                     
-                    <!-- LEFT NODE: HUMAN ADVISOR -->
-                    <div style="background: var(--card-bg); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 12px; padding: 1.8rem; text-align: left;">
-                        <h4 style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                            🛡️ Your Advantage Advisor
-                        </h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                            A dedicated human advisor personally assigned to your journey—helping you stay accountable, celebrate progress, and navigate obstacles when life inevitably gets in the way.
+                    <!-- CIRCLE A: HUMAN ADVISOR -->
+                    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: var(--card-bg); border: 2px solid var(--border); border-radius: 50%; width: 180px; height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; text-align: center; margin-bottom: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4);">
+                            <span style="font-size: 2rem; margin-bottom: 0.3rem;">🛡️</span>
+                            <h4 style="font-size: 1.05rem; color: var(--text-light); font-weight: 700;">Your Advantage Advisor</h4>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; max-width: 300px; text-align: center;">
+                            A dedicated human advisor personally assigned to your journey—helping you stay accountable, celebrate progress, and navigate obstacles when life gets in the way.
                         </p>
                     </div>
 
-                    <!-- RIGHT NODE: ATLAS AI -->
-                    <div style="background: var(--card-bg); border: 1px solid var(--border); border-top: 3px solid #3b82f6; border-radius: 12px; padding: 1.8rem; text-align: left;">
-                        <h4 style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                            ⚡ Atlas — AI Longevity Partner
-                        </h4>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                            Available 24/7 whenever you need support, insight, or encouragement. Atlas helps you track progress, answer questions, provide guidance, and keep your longevity journey moving forward between advisor sessions.
+                    <!-- CIRCLE B: ATLAS AI -->
+                    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: var(--card-bg); border: 2px solid var(--border); border-radius: 50%; width: 180px; height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; text-align: center; margin-bottom: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4);">
+                            <span style="font-size: 2rem; margin-bottom: 0.3rem;">⚡</span>
+                            <h4 style="font-size: 1.05rem; color: var(--text-light); font-weight: 700;">Atlas — AI Partner</h4>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; max-width: 300px; text-align: center;">
+                            Your 24/7 AI Longevity Partner. Available whenever you need support, insight, or encouragement—tracking progress, answering questions, and keeping momentum moving forward.
                         </p>
                     </div>
 
                 </div>
             </div>
         </div>
-        </section>
-
         <section id="protocol" class="section">
             <h2 class="section-title">The 4 Pillars of Precision</h2>
             <div class="grid">
