@@ -20,16 +20,15 @@
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid var(--border); }
         .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-light); }
-        .nav-buttons { display: flex; gap: 0.75rem; }
+        .nav-buttons { display: flex; gap: 1rem; }
         
-        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; border: none; cursor: pointer; }
+        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; border: none; cursor: pointer; display: inline-block; }
         .btn-primary:hover { background-color: var(--accent-hover); }
         .btn-secondary { background-color: transparent; color: var(--text-light); padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); transition: border-color 0.2s; cursor: pointer; }
         .btn-secondary:hover { border-color: var(--accent); }
 
-        .hero { text-align: center; padding: 5rem 5% 3rem 5%; max-width: 950px; margin: 0 auto; }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.2; }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .hero { text-align: center; padding: 5rem 5% 3rem 5%; max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-size: 2.6rem; margin-bottom: 2rem; line-height: 1.25; }
 
         .section { padding: 4rem 5%; max-width: 1100px; margin: 0 auto; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; }
@@ -41,24 +40,23 @@
 
         .tracker-section { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem 2rem; margin: 2rem auto; max-width: 800px; border: 1px solid var(--border); }
 
-        /* Vault Banner Styling */
-        .vault-card { background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, rgba(24,27,34,1) 100%); border: 1px solid var(--accent); border-radius: 12px; padding: 2.5rem 2rem; text-align: center; margin-top: 1rem; }
-        .vault-features { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
-        .vault-tag { background: rgba(37,99,235,0.2); border: 1px solid var(--accent); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--text-light); }
-
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
-        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 420px; width: 90%; text-align: center; position: relative; }
+        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 450px; width: 90%; text-align: center; position: relative; }
         .close-btn { position: absolute; right: 1rem; top: 0.8rem; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
-        .modal-input { width: 100%; padding: 0.8rem; margin: 1.2rem 0; background: var(--bg-dark); border: 1px solid var(--border); color: white; border-radius: 4px; font-size: 1rem; text-align: center; }
+        .modal-input { width: 100%; padding: 0.8rem; margin: 0.6rem 0; background: var(--bg-dark); border: 1px solid var(--border); color: white; border-radius: 4px; font-size: 1rem; text-align: center; }
         .error-msg { color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem; }
+
+        /* Client Dashboard View */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .dash-btn { background-color: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem 1rem; border-radius: 8px; color: var(--text-light); font-weight: 600; font-size: 1rem; text-decoration: none; text-align: center; transition: all 0.2s; cursor: pointer; }
+        .dash-btn:hover { border-color: var(--accent); background-color: rgba(37, 99, 235, 0.1); transform: translateY(-2px); }
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            header { flex-direction: column; gap: 1rem; text-align: center; }
-            .nav-buttons { flex-wrap: wrap; justify-content: center; }
+            .nav-buttons { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -67,169 +65,190 @@
     <header>
         <div class="logo">THE LONGEVITY ADVANTAGE</div>
         <div class="nav-buttons">
-            <button onclick="openVaultModal()" class="btn-secondary">Client Vault</button>
-            <button onclick="openPortalModal()" class="btn-secondary">Client Portal</button>
-            <a href="#apply" class="btn-primary">Apply Now</a>
+            <button onclick="openModal('vaultModal')" class="btn-secondary">Client Vault</button>
+            <button onclick="openModal('loginModal')" class="btn-primary">Client Access</button>
         </div>
     </header>
 
-    <section class="hero">
-        <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25;">
-            In an Accelerating World, We Help You Extend Not Just Your Years, But Your Vitality, Purpose, and Impact.
-        </h1>
+    <!-- MAIN LANDING VIEW -->
+    <div id="mainView">
+        <section class="hero">
+            <h1>In an Accelerating World, We Help You Extend Not Just Your Years, But Your Vitality, Purpose, and Impact.</h1>
 
-        <!-- BRAND NARRATIVE PARADOX BOX -->
-        <div style="background: rgba(37, 99, 235, 0.08); border-left: 3px solid var(--accent); padding: 1.5rem; border-radius: 6px; margin: 0 auto 2rem auto; text-align: left; max-width: 800px;">
-            <p style="font-size: 1.15rem; color: #f3f4f6; font-style: italic; margin-bottom: 0.75rem; line-height: 1.5;">
-                "Most people spend their health building their success and then spend their success trying to regain their health. The Longevity Advantage exists to help you build both at the same time."
-            </p>
-            <p style="font-size: 1rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
-                By combining timeless principles of vitality, mindset, and human performance with the emerging power of AI, we help you create a longer, healthier, and more fulfilling life.
-            </p>
-        </div>
-
-        <!-- DIRECTIVE SUBTEXT -->
-        <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-            A fully managed, private advisory protocol. We eliminate decision fatigue, optimize metabolic and cellular energy, strip body fat, and align mind, body, and spiritual potential into non-negotiable daily execution.
-        </p>
-
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="#apply" class="btn-primary" style="padding: 0.85rem 2rem; font-size: 1rem;">Apply for Private Advisory</a>
-            <button onclick="openModal('clientModal')" class="btn-secondary" style="padding: 0.85rem 2rem; font-size: 1rem;">Client Access</button>
-        </div>
-    </section>
-
-    <section id="protocol" class="section">
-        <h2 class="section-title">The 4 Pillars of Precision</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>1. AI-Driven Data Precision</h3>
-                <p>Analysis by Atlas (AI Super Partner) of bio-data, DEXA scans, recovery markers, longevity predictability tests, and regularly updated client feedback in order to eliminate cognitive bias or guesswork.</p>
-            </div>
-            <div class="card">
-                <h3>2. Subconscious & Neural Priming</h3>
-                <p>Alpha-state goal anchoring and daily neural scripts to rewire any undesirable triggers at the root.</p>
-            </div>
-            <div class="card">
-                <h3>3. Mitochondrial & Cellular Energy</h3>
-                <p>Optimizing non-stimulant vitality through functional movement, deliberate breathwork, and metabolic efficiency.</p>
-            </div>
-            <div class="card">
-                <h3>4. Decision-Free Directives</h3>
-                <p>Non-negotiable 2-to-8 minute daily execution protocols for leaders or any biohacking-minded individual, replacing manuals, or endless scrolling and time spending on social media and other platforms in search of a holistic scientifically-backed approach capable of taking continuous feedback from the participant.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <h2 class="section-title">Founders & Advisory Partnership</h2>
-        <div class="grid">
-            <div class="card" style="border-top: 3px solid var(--accent);">
-                <h3>The Founder</h3>
-                <p style="margin-top: 0.5rem; color: #e5e7eb;">
-                    Former C-Suite Technology & Business Executive with over 25 years of leadership across tier-one City of London financial institutions. Having managed high-stakes environments and built top-tier performance teams, he experienced firsthand the intense physical and cognitive demands placed on modern leaders and team members.
+            <!-- BRAND NARRATIVE PARADOX BOX -->
+            <div style="background: rgba(37, 99, 235, 0.08); border-left: 3px solid var(--accent); padding: 1.5rem; border-radius: 6px; margin: 0 auto 2rem auto; text-align: left; max-width: 800px;">
+                <p style="font-size: 1.15rem; color: #f3f4f6; font-style: italic; margin-bottom: 0.75rem; line-height: 1.5;">
+                    "Most people spend their health building their success and then spend their success trying to regain their health. The Longevity Advantage exists to help you build both at the same time."
                 </p>
-                <p style="margin-top: 0.8rem; color: var(--text-muted); font-size: 0.9rem;">
-                    Driven by a lifelong passion for human potential, bioenergetics, technological innovation, and spirituality, he founded The Longevity Advantage to deliver high-performing executives and growth-oriented individuals the exact protocol required for lifelong growth and vitality.
+                <p style="font-size: 1rem; color: var(--text-muted); margin: 0; line-height: 1.5;">
+                    By combining timeless principles of vitality, mindset, and human performance with the emerging power of AI, we help you create a longer, healthier, and more fulfilling life.
                 </p>
             </div>
 
-            <div class="card" style="border-top: 3px solid var(--accent);">
-                <h3>Atlas — AI Super Partner & Bio-Analytic System</h3>
-                <p style="margin-top: 0.5rem; color: #e5e7eb;">
-                    Integrated into TLA’s core methodology is Atlas, an advanced AI super partner dedicated to synthesis, protocol customization, and data analysis.
-                </p>
-                <p style="margin-top: 0.8rem; color: var(--text-muted); font-size: 0.9rem;">
-                    Atlas works alongside the advisory process to transform physiological inputs—from test results and DEXA composition scans to daily neural metrics—into hyper-personalized, directive daily routines. This unique synthesis of human C-suite experience and AI analytical precision ensures every client protocol is deeply personalized, empathetic, and ruthlessly precise.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="vault" class="section">
-        <h2 class="section-title">Client Resource Vault</h2>
-        <div class="vault-card">
-            <h3 style="color: var(--text-light); margin-bottom: 0.5rem;">Private Protocol Media Ecosystem</h3>
-            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">
-                An exclusive pool of audio, video, and directive guide materials curated specifically to anchor your daily progress.
+            <!-- DIRECTIVE SUBTEXT -->
+            <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                A fully managed, private advisory protocol. We eliminate decision fatigue, optimize metabolic and cellular energy, strip body fat, and align mind, body, and spiritual potential into non-negotiable daily execution.
             </p>
-            <div class="vault-features">
-                <span class="vault-tag">🎧 Custom 10Hz Alpha Neural Audio</span>
-                <span class="vault-tag">🧘‍♂️ Functional Movement Video Flows</span>
-                <span class="vault-tag">🌙 Parasympathetic Wind-Down Guides</span>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                *Contact your coach or representative to gain access to your personalized subset of the resources.
-            </p>
-            <button onclick="openVaultModal()" class="btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1.5rem;">Enter Vault Key &rarr;</button>
-        </div>
-    </section>
 
-    <section id="testimonials" class="section">
-        <h2 class="section-title">What Our Clients Experience</h2>
-        <div class="grid">
-            <div class="card" style="border-left: 4px solid var(--accent);">
-                <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
-                    "The Longevity Advantage (TLA) is far beyond standard wellness coaching—it is a high-touch, transformative experience. In my high-pressure corporate environment, I didn’t need more health information—I needed decision-free execution. Atlas and TLA gave me a complete, directive protocol. The daily neural priming completely eliminated my afternoon stress-eating, and the alpha-state visualization and related work helped me re-anchor my daily energy. Within 30 days, my morning vitality score jumped from a 4 to an 8, my waistband loosened, and my follow-up DEXA scan confirmed pure fat loss with muscle preservation. It's an essential executive edge."
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#apply" class="btn-primary" style="padding: 0.85rem 2rem; font-size: 1rem;">Apply for Private Advisory</a>
+                <button onclick="openModal('loginModal')" class="btn-secondary" style="padding: 0.85rem 2rem; font-size: 1rem;">Client Access</button>
+            </div>
+        </section>
+
+        <section id="protocol" class="section">
+            <h2 class="section-title">The 4 Pillars of Precision</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. AI-Driven Data Precision</h3>
+                    <p>Continuous bio-data synthesis by Atlas (AI Super Partner), evaluating DEXA scans, recovery markers, longevity predictability tests, and participant feedback to eliminate bias and guesswork.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Subconscious & Neural Priming</h3>
+                    <p>Alpha-state goal anchoring and daily neural scripts to rewire undesirable triggers at the root, establishing permanent identity shifts.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Mitochondrial & Cellular Energy</h3>
+                    <p>Optimizing non-stimulant daily vitality through functional movement, deliberate breathwork, and metabolic efficiency.</p>
+                </div>
+                <div class="card">
+                    <h3>4. Decision-Free Directives</h3>
+                    <p>Non-negotiable 2-to-8 minute daily execution protocols for leaders and biohacking-minded individuals—replacing static manuals and endless social media searching.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT FOUNDER & ATLAS SECTION -->
+        <section id="about" class="section">
+            <h2 class="section-title">About the Advisory</h2>
+            <div class="grid">
+                <div class="card" style="border-top: 3px solid var(--accent);">
+                    <h3>The Founder</h3>
+                    <p style="margin-bottom: 1rem;">
+                        A former C-Suite Technology & Business Executive with over 25 years of leadership across tier-one City of London financial institutions. Having managed high-stakes environments, he experienced firsthand the intense physical and cognitive demands placed on modern leaders and team members.
+                    </p>
+                    <p>
+                        Driven by a lifelong passion for human potential, bioenergetics, technological innovation, and spirituality, he founded The Longevity Advantage to offer high-performing executives and growth-oriented individuals a path to lifelong growth and vitality.
+                    </p>
+                </div>
+                <div class="card" style="border-top: 3px solid var(--accent);">
+                    <h3>Atlas — AI Super Partner</h3>
+                    <p style="margin-bottom: 1rem;">
+                        Integrated into TLA’s methodology is <strong>Atlas</strong>, an advanced AI super partner dedicated to synthesis, protocol customization, and data analysis.
+                    </p>
+                    <p>
+                        Atlas works alongside the advisory process to transform physiological inputs—from test results and DEXA scans to daily neural metrics—into hyper-personalized daily routines. This synthesis of human executive experience and AI analytical precision ensures every client protocol is deeply personalized, empathetic, and precise.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENT RESOURCE VAULT PREVIEW -->
+        <section id="vault-teaser" class="section">
+            <div class="tracker-section" style="text-align: center;">
+                <h2 style="margin-bottom: 0.5rem;">Client Resource Vault</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                    An exclusive repository of custom 10Hz Alpha Neural Audio, Functional Movement Video Flows, and Vagus Nerve Wind-Down Guides.
                 </p>
-                <p style="font-weight: 700; color: var(--text-light);">— Sarah M.</p>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Senior Manager | Executive Protocol</p>
+                <button onclick="openModal('vaultModal')" class="btn-secondary">Access Private Vault &rarr;</button>
             </div>
+        </section>
 
-            <div class="card" style="border-left: 4px solid var(--accent);">
-                <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
-                    "I wanted to drop 8–10 kg, but feared another joint-pounding routine. The Primal & Precise method was entirely different. Combining DEXA tracking with morning mobility and custom audio scripts made fat loss feel natural. I lost 3.5 kg in month one, joint pain is gone, and I wake up feeling light, clear, and energized."
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="section">
+            <h2 class="section-title">What Our Clients Experience</h2>
+            <div class="grid">
+                <div class="card" style="border-left: 4px solid var(--accent);">
+                    <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
+                        "The Longevity Advantage (TLA) is far beyond standard wellness coaching—it is a high-touch, transformative experience. In my high-pressure corporate environment, I didn’t need more health information—I needed decision-free execution. Atlas and TLA gave me a complete, directive protocol. The daily neural priming completely eliminated my afternoon stress-eating, and the alpha-state visualization helped me re-anchor my daily energy. Within 30 days, my morning vitality score jumped from a 4 to an 8, my waistband loosened, and my DEXA scan confirmed pure fat loss with muscle preservation."
+                    </p>
+                    <p style="font-weight: 700; color: var(--text-light);">— Sarah M.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Senior Manager | Executive Protocol</p>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--accent);">
+                    <p style="font-style: italic; margin-bottom: 1.5rem; color: #e5e7eb;">
+                        "I wanted to drop 8–10 kg, but feared another joint-pounding routine. The Primal & Precise method was entirely different. Combining DEXA tracking with morning mobility and custom audio scripts made fat loss feel natural. I lost 3.5 kg in month one, joint pain is gone, and I wake up feeling light, clear, and energized."
+                    </p>
+                    <p style="font-weight: 700; color: var(--text-light);">— Claire T.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Business Consultant | Vitality & Reconditioning</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPLICATION & ENQUIRY SECTION -->
+        <section id="apply" class="section">
+            <div class="tracker-section">
+                <h2 style="text-align: center; margin-bottom: 0.5rem;">Apply for Private Advisory</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                    We work with a strictly limited number of private clients to ensure high-touch focus. Complete the preliminary screening below to request an initial consultation.
                 </p>
-                <p style="font-weight: 700; color: var(--text-light);">— Claire T.</p>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Business Consultant | Vitality & Reconditioning</p>
+                
+                <div style="text-align: center; padding: 1rem 0;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.2rem; display: inline-block;">
+                        Submit Application & Enquiry &rarr;
+                    </a>
+                </div>
+                <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
+                    *Applications are reviewed within 24 hours. Accepted applicants are invited for a private 30-minute strategic consultation.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section id="apply" class="section">
-        <div class="tracker-section">
-            <h2 style="text-align: center; margin-bottom: 0.5rem;">Apply for Private Advisory</h2>
-            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
-                We work with a strictly limited number of private clients to ensure high-touch focus. Complete the preliminary screening below to request an initial consultation.
-            </p>
-            
-            <div style="text-align: center; padding: 1rem 0;">
-                <!-- REPLACE LINK BELOW WITH YOUR APPLICATION FORM LINK -->
-                <a href="PASTE_YOUR_RESPONDER_LINK_HERE" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.2rem; display: inline-block;">
-                    Submit Application & Enquiry &rarr;
-                </a>
+    <!-- CLIENT DASHBOARD VIEW (HIDDEN UNTIL CLIENT LOGIN) -->
+    <div id="dashboardView" class="section" style="display: none; padding-top: 2rem;">
+        <div class="tracker-section" style="max-width: 900px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                <div>
+                    <h2 id="clientGreeting" style="color: var(--text-light);">Welcome, Client</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">Private Advisory Protocol Hub</p>
+                </div>
+                <button onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
-            <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
-                *Applications are reviewed within 24 hours. Accepted applicants are invited for a private 30-minute strategic consultation.
-            </p>
-        </div>
-    </section>
 
-    <!-- PASSWORD MODAL FOR CLIENT PORTAL -->
-    <div id="portalModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closePortalModal()">&times;</span>
-            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Private Client Portal</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Enter your Client Access Key to proceed to your daily tracker.</p>
-            
-            <input type="password" id="portalPasscode" class="modal-input" placeholder="Enter Access Key">
-            <p id="portalErrorMsg" class="error-msg">Invalid Access Key. Please try again.</p>
-            
-            <button onclick="verifyPortalPasscode()" class="btn-primary" style="width: 100%;">Access Portal</button>
+            <div class="dashboard-grid">
+                <div class="dash-btn" onclick="openProtocolPage('Morning Routine')">🌅 Morning Routine</div>
+                <div class="dash-btn" onclick="openProtocolPage('Nutrition Guide')">🥗 Nutrition Guide</div>
+                <div class="dash-btn" onclick="openProtocolPage('Breathing')">🫁 Breathing</div>
+                <div class="dash-btn" onclick="openProtocolPage('Meditation')">🧘 Meditation</div>
+                <div class="dash-btn" onclick="openProtocolPage('Physical Exercises')">🏋️ Physical Exercises</div>
+                <div class="dash-btn" onclick="openProtocolPage('Evening Routine')">🌙 Evening Routine</div>
+                <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️ Trust The Process</div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</a>
+            </div>
         </div>
     </div>
 
-    <!-- PASSWORD MODAL FOR CLIENT VAULT -->
+    <!-- MODAL 1: CLIENT LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Access Portal</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter your assigned Client Name and Access Key.</p>
+            
+            <input type="text" id="clientNameInput" class="modal-input" placeholder="Client Name">
+            <input type="password" id="clientKeyInput" class="modal-input" placeholder="Access Key">
+            <p id="loginError" class="error-msg">Invalid Client Name or Access Key.</p>
+            
+            <button onclick="authenticateClient()" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Access Dashboard</button>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                Looking for the general vault? <a href="#" onclick="closeModal('loginModal'); openModal('vaultModal');" style="color: var(--accent);">Click here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL 2: VAULT ACCESS MODAL -->
     <div id="vaultModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeVaultModal()">&times;</span>
+            <span class="close-btn" onclick="closeModal('vaultModal')">&times;</span>
             <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Resource Vault</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">Enter your Vault Key to access your personalized audio, video, and protocol guides.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter the Vault Key to preview resources.</p>
             
-            <input type="password" id="vaultPasscode" class="modal-input" placeholder="Enter Vault Key">
-            <p id="vaultErrorMsg" class="error-msg">Invalid Vault Key. Contact your representative for access.</p>
+            <input type="password" id="vaultKeyInput" class="modal-input" placeholder="Enter Vault Key">
+            <p id="vaultError" class="error-msg">Invalid Vault Key. Contact your advisor.</p>
             
-            <button onclick="verifyVaultPasscode()" class="btn-primary" style="width: 100%;">Enter Vault</button>
+            <button onclick="verifyVaultKey()" class="btn-primary" style="width: 100%;">Access Vault</button>
         </div>
     </div>
 
@@ -238,38 +257,67 @@
     </footer>
 
     <script>
-        // CLIENT PASSCODE CONFIGURATION
-        const CORRECT_KEY = "TLA2026"; // Client password
-        const CLIENT_FORM_URL = "PASTE_YOUR_RESPONDER_LINK_HERE"; // Replace with your Google Form URL
+        // REGISTERED CLIENT CREDENTIALS
+        const CLIENT_DATABASE = {
+            "fafar": { name: "Fafar", key: "faf26" },
+            "benk": { name: "BenK", key: "ben26" }
+        };
 
-        // PORTAL MODAL FUNCTIONS
-        function openPortalModal() {
-            document.getElementById('portalModal').style.display = 'flex';
-            document.getElementById('portalErrorMsg').style.display = 'none';
-            document.getElementById('portalPasscode').value = '';
+        const VAULT_KEY = "TLA2026";
+        const CLIENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542"; // Replace with Google Form Link
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            if (document.getElementById('loginError')) document.getElementById('loginError').style.display = 'none';
+            if (document.getElementById('vaultError')) document.getElementById('vaultError').style.display = 'none';
         }
 
-        function closePortalModal() {
-            document.getElementById('portalModal').style.display = 'none';
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
 
-        function verifyPortalPasscode() {
-            const inputKey = document.getElementById('portalPasscode').value.trim();
-            if (inputKey === CORRECT_KEY) {
-                window.open(CLIENT_FORM_URL, '_blank');
-                closePortalModal();
+        function authenticateClient() {
+            const nameInput = document.getElementById('clientNameInput').value.trim().toLowerCase();
+            const keyInput = document.getElementById('clientKeyInput').value.trim();
+
+            if (CLIENT_DATABASE[nameInput] && CLIENT_DATABASE[nameInput].key === keyInput) {
+                closeModal('loginModal');
+                document.getElementById('mainView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                document.getElementById('clientGreeting').innerText = `Welcome, ${CLIENT_DATABASE[nameInput].name}`;
+                window.scrollTo(0, 0);
             } else {
-                document.getElementById('portalErrorMsg').style.display = 'block';
+                document.getElementById('loginError').style.display = 'block';
             }
         }
 
-        // VAULT MODAL FUNCTIONS
-        function openVaultModal() {
-            document.getElementById('vaultModal').style.display = 'flex';
-            document.getElementById('vaultErrorMsg').style.display = 'none';
-            document.getElementById('vaultPasscode').value = '';
+        function verifyVaultKey() {
+            const inputKey = document.getElementById('vaultKeyInput').value.trim();
+            if (inputKey === VAULT_KEY) {
+                window.open(CLIENT_FORM_URL, '_blank');
+                closeModal('vaultModal');
+            } else {
+                document.getElementById('vaultError').style.display = 'block';
+            }
         }
 
-        function closeVaultModal() {
-            document.getElementById('vaultModal').style.display = 'none';
+        function logoutClient() {
+            document.getElementById('dashboardView').style.display = 'none';
+            document.getElementById('mainView').style.display = 'block';
+            window.scrollTo(0, 0);
         }
+
+        function openProtocolPage(title) {
+            alert(`Accessing ${title} module. Detailed content coming soon!`);
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
