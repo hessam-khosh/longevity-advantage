@@ -42,9 +42,10 @@
 
         /* Modal Styles */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
-        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 450px; width: 90%; text-align: center; position: relative; }
+        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--border); max-width: 500px; width: 90%; text-align: center; position: relative; }
         .close-btn { position: absolute; right: 1rem; top: 0.8rem; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
-        .modal-input { width: 100%; padding: 0.8rem; margin: 0.6rem 0; background: var(--bg-dark); border: 1px solid var(--border); color: white; border-radius: 4px; font-size: 1rem; text-align: center; }
+        .modal-input { width: 100%; padding: 0.8rem; margin: 0.6rem 0; background: var(--bg-dark); border: 1px solid var(--border); color: white; border-radius: 4px; font-size: 0.95rem; text-align: left; }
+        textarea.modal-input { resize: vertical; min-height: 90px; }
         .error-msg { color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem; }
 
         /* Client Dashboard View */
@@ -70,7 +71,7 @@
         </div>
     </header>
 
-    <!-- MAIN LANDING VIEW (ENCAPSULATES ALL LANDING SECTIONS) -->
+    <!-- MAIN LANDING VIEW -->
     <div id="mainView">
         <section class="hero">
             <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25;">
@@ -148,14 +149,9 @@
             </div>
 
             <!-- DIRECTIVE SUBTEXT -->
-            <p style="font-size: 1.05rem; color: var(--text-muted); margin-top: 3.5rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: center;">
+            <p style="font-size: 1.05rem; color: var(--text-muted); margin-top: 3.5rem; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; text-align: center;">
                 A fully managed, private advisory protocol. We eliminate decision fatigue, optimize metabolic and cellular energy, strip body fat, and align mind, body, and spiritual potential into non-negotiable daily execution.
             </p>
-
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#apply" class="btn-primary" style="padding: 0.85rem 2rem; font-size: 1rem;">Apply for Private Advisory</a>
-                <button onclick="openModal('loginModal')" class="btn-secondary" style="padding: 0.85rem 2rem; font-size: 1rem;">Client Access</button>
-            </div>
         </section>
 
         <section id="protocol" class="section">
@@ -238,27 +234,28 @@
             </div>
         </section>
 
-        <!-- APPLICATION & ENQUIRY SECTION -->
+        <!-- REVISED FINAL CALL TO ACTION SECTION -->
         <section id="apply" class="section">
-            <div class="tracker-section">
-                <h2 style="text-align: center; margin-bottom: 0.5rem;">Apply for Private Advisory</h2>
-                <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
-                    We work with a strictly limited number of private clients to ensure high-touch focus. Complete the preliminary screening below to request an initial consultation.
+            <div class="tracker-section" style="text-align: center; max-width: 850px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-light);">
+                    Unlock Your Longevity Advantage
+                </h2>
+                <p style="color: #e5e7eb; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
+                    Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, identify your biggest opportunities, and determine whether The Longevity Advantage is the right fit for your journey.
                 </p>
                 
-                <div style="text-align: center; padding: 1rem 0;">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.2rem; display: inline-block;">
-                        Submit Application & Enquiry &rarr;
-                    </a>
-                </div>
-                <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
-                    *Applications are reviewed within 24 hours. Accepted applicants are invited for a private 30-minute strategic consultation.
+                <button onclick="openModal('discoveryModal')" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                    Book Your Discovery Call &rarr;
+                </button>
+                
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.25rem;">
+                    *Confidential. Complimentary. No obligation.
                 </p>
             </div>
         </section>
     </div>
 
-    <!-- CLIENT DASHBOARD VIEW -->
+    <!-- CLIENT DASHBOARD VIEW (HIDDEN UNTIL CLIENT LOGIN) -->
     <div id="dashboardView" class="section" style="display: none; padding-top: 2rem;">
         <div class="tracker-section" style="max-width: 900px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
@@ -295,6 +292,38 @@
         </div>
     </div>
 
+    <!-- MODAL 1: CLIENT LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Access Portal</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter your assigned Client Name and Access Key.</p>
+            
+            <input type="text" id="clientNameInput" class="modal-input" placeholder="Client Name">
+            <input type="password" id="clientKeyInput" class="modal-input" placeholder="Access Key">
+            <p id="loginError" class="error-msg">Invalid Client Name or Access Key.</p>
+            
+            <button onclick="authenticateClient()" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Access Dashboard</button>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                Looking for the general vault? <a href="#" onclick="closeModal('loginModal'); openModal('vaultModal');" style="color: var(--accent);">Click here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL 2: VAULT ACCESS MODAL -->
+    <div id="vaultModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('vaultModal')">&times;</span>
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Resource Vault</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter the Vault Key to preview resources.</p>
+            
+            <input type="password" id="vaultKeyInput" class="modal-input" placeholder="Enter Vault Key">
+            <p id="vaultError" class="error-msg">Invalid Vault Key. Contact your advisor.</p>
+            
+            <button onclick="verifyVaultKey()" class="btn-primary" style="width: 100%;">Access Vault</button>
+        </div>
+    </div>
+
     <!-- MODAL 3: SAMPLE DEXA ANALYSIS OVERLAY -->
     <div id="sampleDexaModal" class="modal">
         <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
@@ -307,7 +336,6 @@
                 Assessment Tool: Technogym Bioelectrical Impedance Analysis (BIA) System
             </p>
 
-            <!-- SCAN METRICS DISPLAY GRID -->
             <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
                 <h4 style="color: var(--accent); margin-bottom: 1rem; text-align: center;">Technogym Scan Baseline Metrics (Sep 26, 2026)</h4>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; font-size: 0.9rem; color: var(--text-light);">
@@ -325,7 +353,6 @@
                 </div>
             </div>
 
-            <!-- EXECUTIVE ANALYSIS TEXT -->
             <div style="color: var(--text-light); line-height: 1.6;">
                 <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">1. Executive Summary: Looking Beyond Scale Weight</h3>
                 <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">
@@ -376,35 +403,36 @@
         </div>
     </div>
 
-    <!-- MODAL 1: CLIENT LOGIN MODAL -->
-    <div id="loginModal" class="modal">
+    <!-- MODAL 4: DISCOVERY CALL BOOKING FORM -->
+    <div id="discoveryModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Access Portal</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter your assigned Client Name and Access Key.</p>
-            
-            <input type="text" id="clientNameInput" class="modal-input" placeholder="Client Name">
-            <input type="password" id="clientKeyInput" class="modal-input" placeholder="Access Key">
-            <p id="loginError" class="error-msg">Invalid Client Name or Access Key.</p>
-            
-            <button onclick="authenticateClient()" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Access Dashboard</button>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
-                Looking for the general vault? <a href="#" onclick="closeModal('loginModal'); openModal('vaultModal');" style="color: var(--accent);">Click here</a>
+            <span class="close-btn" onclick="closeModal('discoveryModal')">&times;</span>
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Book Your Discovery Call</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+                Request a complimentary 30-minute strategic consultation.
             </p>
-        </div>
-    </div>
+            
+            <form id="discoveryForm" onsubmit="handleDiscoverySubmit(event)">
+                <input type="text" id="discName" class="modal-input" placeholder="Full Name" required>
+                <input type="email" id="discEmail" class="modal-input" placeholder="Email Address" required>
+                <input type="tel" id="discPhone" class="modal-input" placeholder="Contact Telephone Number" required>
+                <textarea id="discMessage" class="modal-input" placeholder="Tell us about your goals, current challenges, or anything you'd like us to know..."></textarea>
+                
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.75rem; padding: 0.8rem;">
+                    Request Discovery Call &rarr;
+                </button>
+            </form>
 
-    <!-- MODAL 2: VAULT ACCESS MODAL -->
-    <div id="vaultModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('vaultModal')">&times;</span>
-            <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Resource Vault</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter the Vault Key to preview resources.</p>
-            
-            <input type="password" id="vaultKeyInput" class="modal-input" placeholder="Enter Vault Key">
-            <p id="vaultError" class="error-msg">Invalid Vault Key. Contact your advisor.</p>
-            
-            <button onclick="verifyVaultKey()" class="btn-primary" style="width: 100%;">Access Vault</button>
+            <div id="discoverySuccess" style="display: none; padding: 1.5rem 0;">
+                <p style="color: #10b981; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">✓ Request Received</p>
+                <p style="font-size: 0.9rem; color: var(--text-light);">
+                    Thank you! We have logged your details and will contact you by email shortly to schedule your Discovery Call.
+                </p>
+            </div>
+
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: 0.8rem;">
+                We will contact you by email to arrange the Discovery Call.
+            </p>
         </div>
     </div>
 
@@ -413,7 +441,6 @@
     </footer>
 
     <script>
-        // REGISTERED CLIENT CREDENTIALS
         const CLIENT_DATABASE = {
             "fafar": { name: "Fafar", key: "faf26" },
             "benk": { name: "BenK", key: "ben26" }
@@ -430,6 +457,11 @@
 
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
+            if (modalId === 'discoveryModal') {
+                document.getElementById('discoveryForm').style.display = 'block';
+                document.getElementById('discoverySuccess').style.display = 'none';
+                document.getElementById('discoveryForm').reset();
+            }
         }
 
         function authenticateClient() {
@@ -457,6 +489,12 @@
             }
         }
 
+        function handleDiscoverySubmit(event) {
+            event.preventDefault();
+            document.getElementById('discoveryForm').style.display = 'none';
+            document.getElementById('discoverySuccess').style.display = 'block';
+        }
+
         function logoutClient() {
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
@@ -467,7 +505,6 @@
             alert(`Accessing ${title} module. Detailed content coming soon!`);
         }
 
-        // Close modal on outside click
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
