@@ -487,11 +487,11 @@
         <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
             <span class="close-btn" onclick="closeModal('faqVideoModal')">&times;</span>
             
-            <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.5rem; text-align: center;">
+            <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.75rem; text-align: center;">
                 The Longevity Advantage Protocol
             </h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 2rem;">
-                Watch our short introduction video below, explore frequently asked questions, and request your strategic discovery session.
+            <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 2rem; line-height: 1.6; max-width: 750px; margin-left: auto; margin-right: auto;">
+                Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, identify your biggest opportunities, and determine whether The Longevity Advantage is the right fit for your journey.
             </p>
 
             <!-- WELCOMING VIDEO CONTAINER -->
@@ -512,12 +512,23 @@
                 </div>
             </div>
 
-            <!-- FREQUENTLY ASKED QUESTIONS SECTION -->
+            <!-- DISCOVERY CALL BOOKING TRIGGER (PLACED DIRECTLY UNDER VIDEO) -->
+            <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 2rem; margin-bottom: 3rem;">
+                <h3 style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 0.5rem;">Ready to take the next step?</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Schedule a complimentary 30-minute Discovery Call to discuss your baseline goals and determine if TLA is the right fit.
+                </p>
+                <button onclick="closeModal('faqVideoModal'); openModal('discoveryModal');" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                    Book Your Discovery Call &rarr;
+                </button>
+            </div>
+
+            <!-- FREQUENTLY ASKED QUESTIONS SECTION (MOVED TO BOTTOM) -->
             <h3 style="color: var(--text-light); font-size: 1.3rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 0.75rem;">
                 Frequently Asked Questions
             </h3>
 
-            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem;">
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1rem; margin-bottom: 0.4rem;">Who is The Longevity Advantage designed for?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
@@ -538,17 +549,6 @@
                         Your dedicated human advisor provides strategic direction, empathy, and real-world accountability. Atlas, your 24/7 AI partner, synthesizes biometrics, DEXA scans, and daily progress to keep momentum moving continuously between advisor calls.
                     </p>
                 </div>
-            </div>
-
-            <!-- DISCOVERY CALL BOOKING TRIGGER -->
-            <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 2rem;">
-                <h3 style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 0.5rem;">Ready to take the next step?</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                    Schedule a complimentary 30-minute Discovery Call to discuss your baseline goals and determine if TLA is the right fit.
-                </p>
-                <button onclick="closeModal('faqVideoModal'); openModal('discoveryModal');" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
-                    Book Your Discovery Call &rarr;
-                </button>
             </div>
         </div>
     </div>
