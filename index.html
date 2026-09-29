@@ -496,20 +496,13 @@
 
             <!-- WELCOMING VIDEO CONTAINER -->
             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: #000; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2.5rem;">
-                <!-- TLA LOGO WATERMARK OVERLAY (TOP-LEFT) -->
-                <div style="position: absolute; top: 15px; left: 15px; z-index: 10; opacity: 0.85; pointer-events: none;">
-                    <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="100,15 170,55 170,135 100,175 30,135 30,55" fill="#0F1115" stroke="#2563EB" stroke-width="8" />
-                        <text x="100" y="112" font-family="-apple-system, sans-serif" font-size="46" font-weight="900" fill="#FFFFFF" text-anchor="middle">TLA</text>
-                    </svg>
-                </div>
-                
-                <!-- PLACEHOLDER VIDEO PLAYER / EMBED -->
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-muted); padding: 1rem; text-align: center;">
-                    <span style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">▶</span>
-                    <p style="font-size: 1rem; color: var(--text-light); font-weight: 600;">Welcoming Presentation Video</p>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Replace with your hosted video embed link (e.g. Vimeo, YouTube, Wistia)</p>
-                </div>
+                <iframe 
+                    src="https://www.youtube.com/embed/u0qKJlWDRz8?rel=0&modestbranding=1" 
+                    title="The Longevity Advantage Welcome Video" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </div>
 
             <!-- DISCOVERY CALL BOOKING TRIGGER (PLACED DIRECTLY UNDER VIDEO) -->
