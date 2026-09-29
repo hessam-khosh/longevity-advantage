@@ -281,22 +281,19 @@
         </section>
 
         <!-- REVISED FINAL CALL TO ACTION SECTION -->
+        <!-- REVISED RESONANCE & FAQ GATEWAY SECTION -->
         <section id="apply" class="section">
-            <div class="tracker-section" style="text-align: center; max-width: 850px;">
-                <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--text-light);">
-                    Unlock Your Longevity Advantage
+            <div class="tracker-section" style="text-align: center; max-width: 800px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: var(--text-light);">
+                    Does this resonate with you?
                 </h2>
-                <p style="color: #e5e7eb; font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-                    Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, identify your biggest opportunities, and determine whether The Longevity Advantage is the right fit for your journey.
+                <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
+                    If so, why not explore how our private advisory works, watch a brief overview, and view answers to frequently asked questions.
                 </p>
                 
-                <button onclick="openModal('discoveryModal')" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
-                    Book Your Discovery Call &rarr;
+                <button onclick="openModal('faqVideoModal')" class="btn-primary" style="font-size: 1.1rem; padding: 0.9rem 2.2rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                    Find Out More & FAQs &rarr;
                 </button>
-                
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.25rem;">
-                    *Confidential. Complimentary. No obligation.
-                </p>
             </div>
         </section>
     </div>
@@ -485,6 +482,77 @@
         </div>
     </div>
 
+<!-- MODAL 5: VIDEO & FAQ EXPANDED VIEW -->
+    <div id="faqVideoModal" class="modal">
+        <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
+            <span class="close-btn" onclick="closeModal('faqVideoModal')">&times;</span>
+            
+            <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.5rem; text-align: center;">
+                The Longevity Advantage Protocol
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 2rem;">
+                Watch our short introduction video below, explore frequently asked questions, and request your strategic discovery session.
+            </p>
+
+            <!-- WELCOMING VIDEO CONTAINER -->
+            <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: #000; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2.5rem;">
+                <!-- TLA LOGO WATERMARK OVERLAY (TOP-LEFT) -->
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 10; opacity: 0.85; pointer-events: none;">
+                    <svg width="32" height="32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="100,15 170,55 170,135 100,175 30,135 30,55" fill="#0F1115" stroke="#2563EB" stroke-width="8" />
+                        <text x="100" y="112" font-family="-apple-system, sans-serif" font-size="46" font-weight="900" fill="#FFFFFF" text-anchor="middle">TLA</text>
+                    </svg>
+                </div>
+                
+                <!-- PLACEHOLDER VIDEO PLAYER / EMBED -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-muted); padding: 1rem; text-align: center;">
+                    <span style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--accent);">▶</span>
+                    <p style="font-size: 1rem; color: var(--text-light); font-weight: 600;">Welcoming Presentation Video</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Replace with your hosted video embed link (e.g. Vimeo, YouTube, Wistia)</p>
+                </div>
+            </div>
+
+            <!-- FREQUENTLY ASKED QUESTIONS SECTION -->
+            <h3 style="color: var(--text-light); font-size: 1.3rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 0.75rem;">
+                Frequently Asked Questions
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem;">
+                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
+                    <h4 style="color: var(--accent); font-size: 1rem; margin-bottom: 0.4rem;">Who is The Longevity Advantage designed for?</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                        It is specifically tailored for high-performing executives, business leaders, and individuals who want decision-free execution to optimize their cellular energy, body composition, mindset, and long-term healthspan.
+                    </p>
+                </div>
+
+                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
+                    <h4 style="color: var(--accent); font-size: 1rem; margin-bottom: 0.4rem;">How much time is required daily?</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                        The protocol is built around non-negotiable 2-to-8 minute directives. We eliminate decision fatigue by providing clear, micro-habits that integrate into demanding executive schedules.
+                    </p>
+                </div>
+
+                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
+                    <h4 style="color: var(--accent); font-size: 1rem; margin-bottom: 0.4rem;">How do the Human Advisor and Atlas AI work together?</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                        Your dedicated human advisor provides strategic direction, empathy, and real-world accountability. Atlas, your 24/7 AI partner, synthesizes biometrics, DEXA scans, and daily progress to keep momentum moving continuously between advisor calls.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DISCOVERY CALL BOOKING TRIGGER -->
+            <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 2rem;">
+                <h3 style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 0.5rem;">Ready to take the next step?</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Schedule a complimentary 30-minute Discovery Call to discuss your baseline goals and determine if TLA is the right fit.
+                </p>
+                <button onclick="closeModal('faqVideoModal'); openModal('discoveryModal');" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                    Book Your Discovery Call &rarr;
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         &copy; 2026 The Longevity Advantage. All rights reserved.
     </footer>
