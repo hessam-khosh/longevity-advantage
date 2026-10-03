@@ -573,7 +573,7 @@
                 <div class="dash-btn" onclick="openProtocolPage('Physical Exercises')">🏋️ Physical Exercises</div>
                 <div class="dash-btn" onclick="openProtocolPage('Evening Routine')">🌙 Evening Routine</div>
                 <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️ Trust The Process</div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</a>
+                <a id="dailyLogBtn" href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</a>
             </div>
         </div>
     </div>
@@ -1143,7 +1143,7 @@
                 document.getElementById('dashboardView').style.display = 'block';
                 document.getElementById('clientGreeting').innerText = `Welcome, ${CLIENT_DATABASE[nameInput].name}`;
 
-                // Dynamic routing & title customized for Fafar
+                // Dynamic report button setup
                 const dexaBtn = document.getElementById('dexaReportBtn');
                 if (dexaBtn) {
                     if (nameInput === "fafar") {
@@ -1152,6 +1152,23 @@
                     } else {
                         dexaBtn.innerHTML = "📄 Sample of Atlas' DEXA Scan Analysis &rarr;";
                         dexaBtn.onclick = function() { openModal('sampleDexaModal'); };
+                    }
+                }
+
+                // Dynamic Daily Log behavior for Fafar
+                const dailyLogBtn = document.getElementById('dailyLogBtn');
+                if (dailyLogBtn) {
+                    if (nameInput === "fafar") {
+                        dailyLogBtn.removeAttribute("href");
+                        dailyLogBtn.removeAttribute("target");
+                        dailyLogBtn.onclick = function(e) {
+                            e.preventDefault();
+                            openProtocolPage("Daily Log");
+                        };
+                    } else {
+                        dailyLogBtn.setAttribute("href", CLIENT_FORM_URL);
+                        dailyLogBtn.setAttribute("target", "_blank");
+                        dailyLogBtn.onclick = null;
                     }
                 }
 
