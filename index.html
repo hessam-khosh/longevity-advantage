@@ -572,8 +572,8 @@
                 <div class="dash-btn" onclick="openProtocolPage('Meditation')">🧘 Meditation</div>
                 <div class="dash-btn" onclick="openProtocolPage('Physical Exercises')">🏋️ Physical Exercises</div>
                 <div class="dash-btn" onclick="openProtocolPage('Evening Routine')">🌙 Evening Routine</div>
-                <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️ Trust The Process</div>
-                <a id="dailyLogBtn" href="https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542" target="_blank" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</a>
+                <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️️ Trust The Process</div>
+                <div id="dailyLogBtn" onclick="handleDailyLogClick()" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</div>
             </div>
         </div>
     </div>
@@ -689,7 +689,7 @@
         </div>
     </div>
 
-<!-- MODAL 6: DEDICATED COMPLETE REPORT FOR FAFAR -->
+    <!-- MODAL 6: DEDICATED COMPLETE REPORT FOR FAFAR -->
     <div id="fafarReportModal" class="modal">
         <div class="modal-content" style="max-width: 900px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
             <span class="close-btn" onclick="closeModal('fafarReportModal')">&times;</span>
@@ -1110,6 +1110,8 @@
     </footer>
 
     <script>
+        let currentLoggedInUser = "";
+
         const CLIENT_DATABASE = {
             "fafar": { name: "Fafar", key: "faf26" },
             "benk": { name: "BenK", key: "ben26" }
@@ -1138,6 +1140,7 @@
             const keyInput = document.getElementById('clientKeyInput').value.trim();
 
             if (CLIENT_DATABASE[nameInput] && CLIENT_DATABASE[nameInput].key === keyInput) {
+                currentLoggedInUser = nameInput;
                 closeModal('loginModal');
                 document.getElementById('mainView').style.display = 'none';
                 document.getElementById('dashboardView').style.display = 'block';
@@ -1152,23 +1155,6 @@
                     } else {
                         dexaBtn.innerHTML = "📄 Sample of Atlas' DEXA Scan Analysis &rarr;";
                         dexaBtn.onclick = function() { openModal('sampleDexaModal'); };
-                    }
-                }
-
-                // Dynamic Daily Log behavior for Fafar
-                const dailyLogBtn = document.getElementById('dailyLogBtn');
-                if (dailyLogBtn) {
-                    if (nameInput === "fafar") {
-                        dailyLogBtn.removeAttribute("href");
-                        dailyLogBtn.removeAttribute("target");
-                        dailyLogBtn.onclick = function(e) {
-                            e.preventDefault();
-                            openProtocolPage("Daily Log");
-                        };
-                    } else {
-                        dailyLogBtn.setAttribute("href", CLIENT_FORM_URL);
-                        dailyLogBtn.setAttribute("target", "_blank");
-                        dailyLogBtn.onclick = null;
                     }
                 }
 
@@ -1191,7 +1177,6 @@
         async function handleDiscoverySubmit(event) {
             event.preventDefault();
 
-            // REPLACE 'YOUR_FORM_ID_HERE' WITH YOUR ACTUAL FORMSPREE ENDPOINT KEY
             const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
 
             const submitBtn = document.getElementById('discSubmitBtn');
@@ -1231,6 +1216,7 @@
         }
 
         function logoutClient() {
+            currentLoggedInUser = "";
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
             window.scrollTo(0, 0);
@@ -1243,6 +1229,14 @@
                 `Following completion, your TLA Advantage Advisor and Atlas will create a highly personalised roadmap of guidance, ` +
                 `resources, and practical actions that will appear here to support your continued progress.`
             );
+        }
+
+        function handleDailyLogClick() {
+            if (currentLoggedInUser === "fafar") {
+                openProtocolPage("Daily Log");
+            } else {
+                window.open(CLIENT_FORM_URL, '_blank');
+            }
         }
 
         window.onclick = function(event) {
