@@ -554,7 +554,7 @@
 
             <!-- FEATURED SAMPLE REPORT BUTTON -->
             <div style="margin-bottom: 2.5rem; text-align: center;">
-                <button onclick="openModal('sampleDexaModal')" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                <button id="dexaReportBtn" onclick="openModal('sampleDexaModal')" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
                     📄 Sample of Atlas' DEXA Scan Analysis &rarr;
                 </button>
             </div>
@@ -689,6 +689,204 @@
         </div>
     </div>
 
+<!-- MODAL 6: DEDICATED REPORT FOR FAFAR -->
+    <div id="fafarReportModal" class="modal">
+        <div class="modal-content" style="max-width: 880px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
+            <span class="close-btn" onclick="closeModal('fafarReportModal')">&times;</span>
+            
+            <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.25rem; text-align: center;">
+                Body Composition, Lifestyle &amp; Vitality Assessment Report
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 2rem; font-style: italic;">
+                "Understanding where you are today, identifying what matters most, and creating a personalised pathway towards greater health, vitality and longevity."
+            </p>
+
+            <!-- CLIENT HEADER BADGE -->
+            <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <div><strong style="color: var(--text-light);">Client:</strong> Fati Kashani</div>
+                <div><strong style="color: var(--text-light);">Assessment Date:</strong> 1 October 2026</div>
+                <div><strong style="color: var(--accent);">Status:</strong> Discovery Report</div>
+            </div>
+
+            <div style="color: var(--text-light); line-height: 1.6;">
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    Thank you for investing your time in our Discovery Meeting and for openly sharing information about your lifestyle, goals, and aspirations. 
+                </p>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem;">
+                    This report represents the first step in understanding your unique Longevity Advantage. Drawing on your body composition data, fitness assessment results and Discovery Questionnaire responses, it provides an integrated view of your current health, vitality and lifestyle profile. Within these pages you will find an overview of your key strengths, areas of opportunity, and a high-level 90-day action framework designed to help you build momentum towards your goals.
+                </p>
+
+                <!-- EXECUTIVE SUMMARY -->
+                <div style="background: var(--bg-dark); border-left: 4px solid var(--accent); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem;">Executive Summary</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.5rem;">
+                        Your assessment results reveal a strong foundation for healthy ageing and long-term vitality.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+                        You already possess many of the foundations associated with long-term vitality. The opportunity ahead is not one of major correction, but of strategic refinement. Your muscle mass, activity levels, nutrition awareness and support network provide a strong platform for future success. Small improvements in daily movement, recovery, body composition and accountability could create a meaningful increase in energy, confidence and wellbeing over the coming months.
+                    </p>
+                </div>
+
+                <!-- BODY COMPOSITION SNAPSHOT TABLE -->
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">Body Composition Snapshot</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Assessment Tool Used: Technogym Bioelectrical Impedance Analysis (BIA)
+                </p>
+
+                <div style="overflow-x: auto; margin-bottom: 2.5rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: var(--text-light); text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border); background: rgba(255,255,255,0.03);">
+                                <th style="padding: 0.75rem 1rem;">Metric</th>
+                                <th style="padding: 0.75rem 1rem;">Result</th>
+                                <th style="padding: 0.75rem 1rem;">Classification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Weight</td>
+                                <td style="padding: 0.6rem 1rem;">72.8 kg</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">BMI</td>
+                                <td style="padding: 0.6rem 1rem;">24.9</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: rgba(37, 99, 235, 0.05);">
+                                <td style="padding: 0.6rem 1rem;"><strong>Skeletal Muscle Mass</strong></td>
+                                <td style="padding: 0.6rem 1rem;"><strong>29.1 kg (39.9%)</strong></td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981; font-weight: 600;">Excellent</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Body Fat Mass</td>
+                                <td style="padding: 0.6rem 1rem;">20.1 kg (27.7%)</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Soft Lean Mass</td>
+                                <td style="padding: 0.6rem 1rem;">49.5 kg (68%)</td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981;">Good</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Fat Free Mass</td>
+                                <td style="padding: 0.6rem 1rem;">52.7 kg (72.4%)</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Total Body Water</td>
+                                <td style="padding: 0.6rem 1rem;">38.6 kg (53.1%)</td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981;">Good</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Intracellular Water</td>
+                                <td style="padding: 0.6rem 1rem;">24.0 kg (62.2%)</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Extracellular Water</td>
+                                <td style="padding: 0.6rem 1rem;">14.6 kg (37.8%)</td>
+                                <td style="padding: 0.6rem 1rem; color: var(--text-muted);">Average</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Phase Angle</td>
+                                <td style="padding: 0.6rem 1rem;">6.1°</td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981;">Good</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Bone Mineral Content</td>
+                                <td style="padding: 0.6rem 1rem;">3.1 kg (4.3%)</td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981;">Good</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.6rem 1rem;">Basal Metabolic Rate</td>
+                                <td style="padding: 0.6rem 1rem;">1,505 kcal/day</td>
+                                <td style="padding: 0.6rem 1rem; color: #10b981;">Good</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- FITNESS SNAPSHOT & VO2 MAX ANALYSIS -->
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">Your Fitness Snapshot</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    You took part in a Rockport 1-Mile Walking Test (Time: 15 mins 32 secs | Final Heart Rate: 132 bpm). Formula calculator estimated score: <strong>29.86 mL/kg/min</strong>.
+                </p>
+
+                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; margin-bottom: 2rem;">
+                    <h4 style="color: var(--text-light); font-size: 1rem; margin-bottom: 0.5rem;">Cardiovascular VO2 Max Classification (Women Aged 50–59)</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        Your score of 29.86 is classified as <strong>"Fair"</strong> (just a hair below the 30.1 Fair bracket cut-off). The encouraging news is that VO₂ max is highly trainable in your 50s and beyond with structured aerobic and interval work.
+                    </p>
+                </div>
+
+                <!-- KEY STRENGTHS & OPPORTUNITIES -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+                    
+                    <!-- STRENGTHS -->
+                    <div style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 1.25rem;">
+                        <h4 style="color: #10b981; font-size: 1.1rem; margin-bottom: 1rem; font-weight: 700;">Your Key Strengths</h4>
+                        <ul style="font-size: 0.88rem; color: var(--text-light); padding-left: 1.2rem; line-height: 1.6;">
+                            <li style="margin-bottom: 0.5rem;"><strong>Excellent Skeletal Muscle Mass (29.1 kg):</strong> Your strongest metric, creating a powerful platform for metabolic health.</li>
+                            <li style="margin-bottom: 0.5rem;"><strong>Healthy Cellular Integrity:</strong> Phase Angle of 6.1° reflects solid cellular health and recovery capacity.</li>
+                            <li style="margin-bottom: 0.5rem;">Exercising 4–5 days per week with recent PT &amp; strength training addition.</li>
+                            <li style="margin-bottom: 0.5rem;">Positive health awareness, strong social support network, and zero major injury limitations.</li>
+                        </ul>
+                    </div>
+
+                    <!-- OPPORTUNITIES -->
+                    <div style="background: rgba(37, 99, 235, 0.04); border: 1px solid var(--accent); border-radius: 8px; padding: 1.25rem;">
+                        <h4 style="color: var(--accent); font-size: 1.1rem; margin-bottom: 1rem; font-weight: 700;">90-Day Opportunities</h4>
+                        <ul style="font-size: 0.88rem; color: var(--text-light); padding-left: 1.2rem; line-height: 1.6;">
+                            <li style="margin-bottom: 0.5rem;">🎯 Increase daily walking &amp; non-gym movement.</li>
+                            <li style="margin-bottom: 0.5rem;">🎯 Improve morning energy consistency &amp; address evening cravings.</li>
+                            <li style="margin-bottom: 0.5rem;">🎯 Build an achievable daily meditation/breathwork routine.</li>
+                            <li style="margin-bottom: 0.5rem;">🎯 Optimise body composition (reduce fat while preserving muscle mass).</li>
+                            <li style="margin-bottom: 0.5rem;">🎯 Elevate VO2 max score progressively through guided cardiovascular conditioning.</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- BASELINE METRICS TABLE -->
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">Future Reassessment Baseline Summary</h3>
+                <div style="overflow-x: auto; margin-bottom: 2.5rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: var(--text-light); text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border); background: rgba(255,255,255,0.03);">
+                                <th style="padding: 0.6rem 1rem;">Measure</th>
+                                <th style="padding: 0.6rem 1rem;">Current Baseline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Weight</td><td style="padding: 0.5rem 1rem;">72.8 kg</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Body Fat %</td><td style="padding: 0.5rem 1rem;">27.7%</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Fat Mass</td><td style="padding: 0.5rem 1rem;">20.1 kg</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Skeletal Muscle Mass</td><td style="padding: 0.5rem 1rem;">29.1 kg</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Phase Angle</td><td style="padding: 0.5rem 1rem;">6.1°</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">BMR</td><td style="padding: 0.5rem 1rem;">1,505 kcal</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Bone Mineral Content</td><td style="padding: 0.5rem 1rem;">3.1 kg</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">VO2 Max Score</td><td style="padding: 0.5rem 1rem;">29.86</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- CONCLUSION -->
+                <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h4 style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 0.5rem;">In Conclusion</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0; line-height: 1.6;">
+                        You are beginning this journey from a position of strength. Your assessment reflects a healthy, capable individual with excellent muscle reserves and cellular vitality. We look forward to guiding you through intelligent optimisation to unlock your full Longevity Advantage.
+                    </p>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button onclick="closeModal('fafarReportModal')" class="btn-secondary" style="padding: 0.6rem 2rem;">Close Report</button>
+            </div>
+        </div>
+    </div>
+    
    <!-- MODAL 4: DISCOVERY CALL BOOKING FORM -->
     <div id="discoveryModal" class="modal">
         <div class="modal-content">
@@ -898,6 +1096,19 @@
                 document.getElementById('mainView').style.display = 'none';
                 document.getElementById('dashboardView').style.display = 'block';
                 document.getElementById('clientGreeting').innerText = `Welcome, ${CLIENT_DATABASE[nameInput].name}`;
+
+                // Dynamic routing & title customized for Fafar
+                const dexaBtn = document.getElementById('dexaReportBtn');
+                if (dexaBtn) {
+                    if (nameInput === "fafar") {
+                        dexaBtn.innerHTML = "📄 Your Discovery & Vitality Assessment Report &rarr;";
+                        dexaBtn.onclick = function() { openModal('fafarReportModal'); };
+                    } else {
+                        dexaBtn.innerHTML = "📄 Sample of Atlas' DEXA Scan Analysis &rarr;";
+                        dexaBtn.onclick = function() { openModal('sampleDexaModal'); };
+                    }
+                }
+
                 window.scrollTo(0, 0);
             } else {
                 document.getElementById('loginError').style.display = 'block';
