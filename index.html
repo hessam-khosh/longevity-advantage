@@ -954,6 +954,11 @@
             
             <form id="discoveryForm" onsubmit="handleDiscoverySubmit(event)">
                 <input type="text" id="discName" class="modal-input" placeholder="Full Name" required>
+                
+                <!-- DATE OF BIRTH FIELD WITH FORMAT MASKING -->
+                <input type="text" id="discDob" class="modal-input" placeholder="Date of Birth (DD/MM/YYYY)" maxlength="10" required oninput="formatDobInput(this)">
+                <span id="dobError" style="color: #ef4444; font-size: 0.8rem; display: none; text-align: left; margin-bottom: 0.5rem;">Please enter a valid date in DD/MM/YYYY format.</span>
+
                 <input type="email" id="discEmail" class="modal-input" placeholder="Email Address" required>
                 <input type="tel" id="discPhone" class="modal-input" placeholder="Contact Telephone Number" required>
                 <textarea id="discMessage" class="modal-input" placeholder="Tell us about your goals, current challenges, or anything you'd like us to know..."></textarea>
@@ -1184,46 +1189,7 @@
             }
         }
 
-        async function handleDiscoverySubmit(event) {
-            event.preventDefault();
-
-            const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
-
-            const submitBtn = document.getElementById('discSubmitBtn');
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Sending Request...";
-
-            const payload = {
-                name: document.getElementById('discName').value,
-                email: document.getElementById('discEmail').value,
-                phone: document.getElementById('discPhone').value,
-                message: document.getElementById('discMessage').value || "No additional message provided."
-            };
-
-            try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    document.getElementById('discoveryForm').style.display = 'none';
-                    document.getElementById('discoverySuccess').style.display = 'block';
-                } else {
-                    alert("Submission error. Please check your Formspree Endpoint setting.");
-                }
-            } catch (err) {
-                alert("Network connection error. Please try again.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = originalBtnText;
-            }
-        }
+       
 
         function logoutClient() {
             currentLoggedInUser = "";
@@ -1254,6 +1220,92 @@
                 event.target.style.display = 'none';
             }
         }
+
+// Auto-formats slash separators as the user types DDMMYYYY
+        function formatDobInput(input) {
+            let v = input.value.replace(/\D/g, ''); // Strip non-digits
+            if (v.length >= 5) {
+                input.value = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
+            } else if (v.length >= 3) {
+                input.value = v.slice(0,2) + '/' + v.slice(2);
+            } else {
+                input.value = v;
+            }
+            document.getElementById('dobError').style.display = 'none';
+        }
+
+        // Validates DD/MM/YYYY for real days, months, leap years, and past dates
+        function isValidDob(dobStr) {
+            const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+            if (!regex.test(dobStr)) return false;
+
+            const parts = dobStr.split('/');
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1;
+            const year = parseInt(parts[2], 10);
+
+            const date = new Date(year, month, day);
+            const today = new Date();
+
+            return date.getFullYear() === year && 
+                   date.getMonth() === month && 
+                   date.getDate() === day && 
+                   date <= today;
+        }
+
+        // REPLACE YOUR EXISTING handleDiscoverySubmit WITH THIS VERSION:
+        async function handleDiscoverySubmit(event) {
+            event.preventDefault();
+
+            const dobInput = document.getElementById('discDob').value.trim();
+            const dobError = document.getElementById('dobError');
+
+            if (!isValidDob(dobInput)) {
+                dobError.style.display = 'block';
+                return;
+            } else {
+                dobError.style.display = 'none';
+            }
+
+            const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
+
+            const submitBtn = document.getElementById('discSubmitBtn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending Request...";
+
+            const payload = {
+                name: document.getElementById('discName').value,
+                dob: dobInput,
+                email: document.getElementById('discEmail').value,
+                phone: document.getElementById('discPhone').value,
+                message: document.getElementById('discMessage').value || "No additional message provided."
+            };
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    document.getElementById('discoveryForm').style.display = 'none';
+                    document.getElementById('discoverySuccess').style.display = 'block';
+                } else {
+                    alert("Submission error. Please check your Formspree Endpoint setting.");
+                }
+            } catch (err) {
+                alert("Network connection error. Please try again.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            }
+        }
+        
     </script>
 
 </body>
