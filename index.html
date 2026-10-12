@@ -6,13 +6,47 @@
     <title>The Longevity Advantage | Precision Vitality Protocol</title>
     <style>
         :root {
-            --bg-dark: #0f1115;
-            --card-bg: #181b22;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --text-light: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border: #2d3748;
+            --bg-dark: #040d1a;
+            --card-bg: rgba(8, 26, 48, 0.65);
+            --card-border: rgba(45, 212, 191, 0.25);
+            --accent-cyan: #38bdf8;
+            --accent-teal: #2dd4bf;
+            --accent-green: #4ade80;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        
+        /* ENERGETIC RADIAL GRADIENT BACKGROUND */
+        body { 
+            background: radial-gradient(circle at 50% 0%, #032b45 0%, #040d1a 60%, #02060d 100%);
+            background-attachment: fixed;
+            color: var(--text-light); 
+            line-height: 1.6; 
+        }
+
+        /* GLASSMORPHIC CARD OVERLAY */
+        .card, .tracker-section { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--card-border); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* GRADIENT TEXT HIGHLIGHT CLASS */
+        .highlight-cyan { color: var(--accent-cyan); }
+        .highlight-teal { color: var(--accent-teal); }
+        .highlight-green { color: var(--accent-green); }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -99,19 +133,23 @@
     <div id="mainView">
         <!-- HERO SECTION -->
         <section class="hero">
-            <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25;">
-                In an Accelerating World, We Help You Extend Not Just Your Years, But Your Vitality, Purpose, and Impact.
+            <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25; font-weight: 800; color: var(--text-light);">
+                In an Accelerating World, We Help You Extend Not Just Your Years, But Your 
+                <span class="highlight-cyan">Vitality</span>, 
+                <span class="highlight-green">Purpose</span>, and 
+                <span class="highlight-teal">Impact</span>.
             </h1>
 
-            <!-- BRAND NARRATIVE BOX -->
-            <div style="background: rgba(37, 99, 235, 0.08); border-left: 3px solid var(--accent); padding: 1.5rem; border-radius: 6px; margin: 0 auto 3rem auto; text-align: left; max-width: 800px;">
-                <p style="font-size: 1.05rem; color: #f3f4f6; margin-bottom: 0.75rem; line-height: 1.55;">
+            <!-- GLASSMORPHIC BRAND NARRATIVE BOX -->
+            <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(45, 212, 191, 0.35); padding: 1.75rem; border-radius: 14px; margin: 0 auto 3rem auto; text-align: left; max-width: 800px; box-shadow: 0 10px 30px rgba(0, 201, 255, 0.15);">
+                <p style="font-size: 1.05rem; color: #f1f5f9; margin-bottom: 0.85rem; line-height: 1.6;">
                     By combining timeless principles of vitality, mindset, and human performance with the emerging power of AI, we help you create a longer, healthier, and more fulfilling life.
                 </p>
                 <p style="font-size: 1rem; color: var(--text-muted); font-style: italic; margin: 0; line-height: 1.5;">
                     "A personalised longevity and vitality system designed for ambitious individuals who want more energy, sharper thinking, greater resilience and a longer, healthier future."
                 </p>
             </div>
+        </section>
 
             <!-- TRIAD SUPPORT SECTION -->
             <div style="margin-top: 2rem; margin-bottom: 3rem; text-align: center;">
