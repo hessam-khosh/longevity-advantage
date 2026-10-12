@@ -93,6 +93,9 @@
             .hero h1 { font-size: 2rem; }
             .nav-buttons { flex-direction: column; gap: 0.5rem; }
         }
+
+    
+    
     </style>
 </head>
 <body>
@@ -332,60 +335,273 @@
                     line-height: 1.35;
                 }
             }
+
+            /* JOURNEY SECTION GLOWING STYLES */
+.journey-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.journey-card-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    position: relative;
+    width: 100%;
+}
+
+.journey-card-wrapper.even {
+    flex-direction: row-reverse;
+}
+
+.journey-step-node {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(4, 13, 26, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* BLUE GLOW NODE (STEPS 1 & 3 & 5) */
+.node-cyan {
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6), inset 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+/* TEAL/GREEN GLOW NODE (STEPS 2 & 4) */
+.node-teal {
+    border: 2px solid #2dd4bf;
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.6), inset 0 0 10px rgba(45, 212, 191, 0.4);
+}
+
+.journey-card {
+    flex: 1;
+    background: rgba(8, 30, 55, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-2px);
+}
+
+/* BLUE CARD GLOW */
+.card-cyan {
+    border: 1.5px solid rgba(56, 189, 248, 0.6);
+    box-shadow: 0 8px 32px rgba(3, 43, 69, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+/* TEAL/GREEN CARD GLOW */
+.card-teal {
+    border: 1.5px solid rgba(45, 212, 191, 0.6);
+    box-shadow: 0 8px 32px rgba(3, 43, 69, 0.5), 0 0 20px rgba(45, 212, 191, 0.2);
+}
+
+.journey-icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(4, 13, 26, 0.6);
+}
+
+.icon-cyan-bg {
+    border: 1.5px solid #38bdf8;
+    box-shadow: inset 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+.icon-teal-bg {
+    border: 1.5px solid #2dd4bf;
+    box-shadow: inset 0 0 8px rgba(45, 212, 191, 0.3);
+}
+
+.journey-step-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.journey-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.35rem;
+}
+
+.journey-card-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* RESPONSIVE MOBILE TWEAKS */
+@media (max-width: 640px) {
+    .journey-container {
+        gap: 1.1rem;
+    }
+    
+    .journey-card-wrapper {
+        gap: 0.75rem;
+    }
+    
+    .journey-step-node {
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+    }
+    
+    .journey-card {
+        padding: 1.1rem;
+        gap: 0.85rem;
+    }
+    
+    .journey-icon-circle {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .journey-card-title {
+        font-size: 1.05rem;
+    }
+    
+    .journey-card-desc {
+        font-size: 0.82rem;
+    }
+}
         </style>
 
-        <!-- YOUR JOURNEY: 5-STEP ADVISORY PROCESS -->
+        <!-- YOUR JOURNEY: 5-STEP ADVISORY PROCESS (GLOWING REDESIGN) -->
         <section id="journey" class="section">
-            <h2 class="section-title" style="margin-bottom: 0.75rem;">Your Journey</h2>
-            <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 800px; margin: 0 auto 3rem auto; line-height: 1.6;">
+            <h2 class="section-title" style="margin-bottom: 0.5rem; color: #ffffff;">
+                Your <span class="gradient-text">Journey</span>
+            </h2>
+            <p style="text-align: center; color: #94a3b8; font-size: 1.05rem; max-width: 750px; margin: 0 auto 3rem auto; line-height: 1.6;">
                 A structured, high-touch advisory framework designed to move you from baseline assessment to continuous, lifelong vitality.
             </p>
 
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;">
+            <div class="journey-container">
                 
-                <!-- STEP 1 -->
-                <div class="card" style="position: relative; padding: 1.75rem 1.25rem; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.03) 100%);">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 0.5rem; text-transform: uppercase;">Step 01</div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.6rem;">1. Discovery</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                        Understand your goals, challenges and aspirations.
-                    </p>
+                <!-- STEP 01: DISCOVERY -->
+                <div class="journey-card-wrapper odd">
+                    <div class="journey-step-node node-cyan">01</div>
+                    <div class="journey-card card-cyan">
+                        <div class="journey-icon-circle icon-cyan-bg">
+                            <!-- TARGET ICON -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="12" r="6"></circle>
+                                <circle cx="12" cy="12" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="journey-step-tag" style="color: #38bdf8;">STEP 01</div>
+                            <h3 class="journey-card-title">1. Discovery</h3>
+                            <p class="journey-card-desc">Understand your goals, challenges and aspirations.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- STEP 2 -->
-                <div class="card" style="position: relative; padding: 1.75rem 1.25rem; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.03) 100%);">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 0.5rem; text-transform: uppercase;">Step 02</div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.6rem;">2. Assessment</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                        Build a clear picture of your current position through conversation, measurements and insights.
-                    </p>
+                <!-- STEP 02: ASSESSMENT -->
+                <div class="journey-card-wrapper even">
+                    <div class="journey-step-node node-teal">02</div>
+                    <div class="journey-card card-teal">
+                        <div class="journey-icon-circle icon-teal-bg">
+                            <!-- BARS ICON -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="journey-step-tag" style="color: #2dd4bf;">STEP 02</div>
+                            <h3 class="journey-card-title">2. Assessment</h3>
+                            <p class="journey-card-desc">Build a clear picture of your current position through conversation, measurements and insights.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- STEP 3 -->
-                <div class="card" style="position: relative; padding: 1.75rem 1.25rem; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.03) 100%);">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 0.5rem; text-transform: uppercase;">Step 03</div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.6rem;">3. Personal Advantage Plan</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                        Create a personalised roadmap aligned to your circumstances.
-                    </p>
+                <!-- STEP 03: PERSONAL ADVANTAGE PLAN -->
+                <div class="journey-card-wrapper odd">
+                    <div class="journey-step-node node-cyan">03</div>
+                    <div class="journey-card card-cyan">
+                        <div class="journey-icon-circle icon-cyan-bg">
+                            <!-- DOCUMENT ICON -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="journey-step-tag" style="color: #38bdf8;">STEP 03</div>
+                            <h3 class="journey-card-title">3. Personal Advantage Plan</h3>
+                            <p class="journey-card-desc">Create a personalised roadmap aligned to your circumstances.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- STEP 4 -->
-                <div class="card" style="position: relative; padding: 1.75rem 1.25rem; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.03) 100%);">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 0.5rem; text-transform: uppercase;">Step 04</div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.6rem;">4. Guided Progress</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                        Regular support from your Advantage Advisor and Atlas.
-                    </p>
+                <!-- STEP 04: GUIDED PROGRESS -->
+                <div class="journey-card-wrapper even">
+                    <div class="journey-step-node node-teal">04</div>
+                    <div class="journey-card card-teal">
+                        <div class="journey-icon-circle icon-teal-bg">
+                            <!-- TRENDING UP ICON -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="journey-step-tag" style="color: #2dd4bf;">STEP 04</div>
+                            <h3 class="journey-card-title">4. Guided Progress</h3>
+                            <p class="journey-card-desc">Regular support from your Advantage Advisor and Atlas.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- STEP 5 -->
-                <div class="card" style="position: relative; padding: 1.75rem 1.25rem; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.03) 100%);">
-                    <div style="font-size: 0.8rem; font-weight: 800; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 0.5rem; text-transform: uppercase;">Step 05</div>
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 0.6rem;">5. Long-Term Advantage</h3>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                        Track progress and continuously refine your plan as your life evolves.
-                    </p>
+                <!-- STEP 05: LONG-TERM ADVANTAGE -->
+                <div class="journey-card-wrapper odd">
+                    <div class="journey-step-node node-cyan">05</div>
+                    <div class="journey-card card-cyan">
+                        <div class="journey-icon-circle icon-cyan-bg">
+                            <!-- SHIELD STAR ICON -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="journey-step-tag" style="color: #38bdf8;">STEP 05</div>
+                            <h3 class="journey-card-title">5. Long-Term Advantage</h3>
+                            <p class="journey-card-desc">Track progress and continuously refine your plan as your life evolves.</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
