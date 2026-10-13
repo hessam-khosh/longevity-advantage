@@ -15,6 +15,8 @@
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.12);
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -49,9 +51,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
-
         header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid var(--border); }
         .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-light); }
         .nav-buttons { display: flex; gap: 1rem; }
@@ -69,7 +68,7 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .card { background-color: var(--card-bg); padding: 2rem; border-radius: 8px; border: 1px solid var(--border); }
-        .card h3 { margin-bottom: 0.75rem; color: var(--accent); }
+        .card h3 { margin-bottom: 0.75rem; color: var(--accent-teal); }
         .card p { font-size: 0.95rem; color: var(--text-muted); }
 
         .tracker-section { background-color: var(--card-bg); border-radius: 12px; padding: 2.5rem 2rem; margin: 2rem auto; max-width: 800px; border: 1px solid var(--border); }
@@ -89,18 +88,161 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
 
+        /* COMPACT CSS FOR PILLARS GRID */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 720px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .pillar-card {
+            border-radius: 10px;
+            padding: 1.15rem 1.25rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .pillar-icon { font-size: 1.35rem; margin-bottom: 0.4rem; }
+        .pillar-title { font-size: 1.1rem; margin-bottom: 0.35rem; font-weight: 700; line-height: 1.2; }
+        .pillar-desc { font-size: 0.88rem; line-height: 1.4; font-weight: 500; margin: 0; }
+
+        /* JOURNEY SECTION ENHANCED FLUORESCENT STYLES */
+        .journey-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .journey-card-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            position: relative;
+            width: 100%;
+        }
+
+        .journey-card-wrapper.even { flex-direction: row-reverse; }
+
+        .arc-connector {
+            position: absolute;
+            top: 50%;
+            width: 130px;
+            height: 110px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .journey-card-wrapper.odd .arc-connector { left: -20px; transform: translateY(-50%); }
+        .journey-card-wrapper.even .arc-connector { right: -20px; transform: translateY(-50%) scaleX(-1); }
+
+        .journey-step-node {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #040d1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #ffffff;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 3;
+        }
+
+        .node-cyan {
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 12px #38bdf8, 0 0 25px rgba(56, 189, 248, 0.8), inset 0 0 10px #38bdf8;
+        }
+
+        .node-teal {
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 0 12px #2dd4bf, 0 0 25px rgba(45, 212, 191, 0.8), inset 0 0 10px #2dd4bf;
+        }
+
+        .journey-card {
+            flex: 1;
+            background: rgba(8, 30, 55, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .journey-card:hover { transform: translateY(-2px); }
+
+        .card-cyan {
+            border: 1.5px solid rgba(56, 189, 248, 0.7);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-teal {
+            border: 1.5px solid rgba(45, 212, 191, 0.7);
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.35), inset 0 0 15px rgba(45, 212, 191, 0.15);
+        }
+
+        .journey-icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(4, 13, 26, 0.8);
+        }
+
+        .icon-cyan-bg { border: 1.5px solid #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 8px rgba(56, 189, 248, 0.3); }
+        .icon-teal-bg { border: 1.5px solid #2dd4bf; box-shadow: 0 0 10px rgba(45, 212, 191, 0.4), inset 0 0 8px rgba(45, 212, 191, 0.3); }
+
+        .journey-step-tag { font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.2rem; }
+        .journey-card-title { font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem; }
+        .journey-card-desc { font-size: 0.92rem; color: #94a3b8; line-height: 1.45; margin: 0; }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .nav-buttons { flex-direction: column; gap: 0.5rem; }
         }
 
-    
-    
+        @media (max-width: 640px) {
+            .journey-container { gap: 1.25rem; }
+            .journey-card-wrapper { gap: 0.75rem; }
+            .journey-step-node { width: 44px; height: 44px; font-size: 0.95rem; }
+            .journey-card { padding: 1.1rem; gap: 0.85rem; }
+            .journey-icon-circle { width: 44px; height: 44px; }
+            .journey-card-title { font-size: 1.1rem; }
+            .journey-card-desc { font-size: 0.82rem; }
+            .arc-connector { width: 90px; height: 80px; }
+        }
+
+        @media (max-width: 480px) {
+            .pillars-grid { gap: 0.65rem; }
+            .pillar-card { padding: 0.85rem 0.75rem; }
+            .pillar-icon { font-size: 1.15rem; margin-bottom: 0.25rem; }
+            .pillar-title { font-size: 0.95rem; margin-bottom: 0.25rem; }
+            .pillar-desc { font-size: 0.78rem; line-height: 1.3; }
+        }
     </style>
 </head>
 <body>
 
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 5%; border-bottom: 1px solid var(--border);">
+    <header>
         <!-- BRAND LOGO WITH HEX EMBLEM -->
         <div class="logo" style="display: flex; align-items: center; gap: 0.85rem;">
             <svg width="34" height="34" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +294,8 @@
                     Combining personalised expert human guidance, Atlas AI insights and ongoing practical accountability to help you thrive.
                 </p>
             </div>
-        <!-- TRIAD SUPPORT SECTION -->
+
+            <!-- TRIAD SUPPORT SECTION -->
             <div style="margin-top: 2rem; margin-bottom: 3rem; text-align: center;">
                 <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 3rem;">
                     Your Advantage Team
@@ -274,264 +417,6 @@
             </div>
         </section>
 
-        <!-- COMPACT CSS FOR PILLARS GRID -->
-        <style>
-            .pillars-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                max-width: 720px;
-                margin: 0 auto 2rem auto;
-            }
-
-            .pillar-card {
-                border-radius: 10px;
-                padding: 1.15rem 1.25rem;
-                text-align: left;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            }
-
-            .pillar-icon {
-                font-size: 1.35rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .pillar-title {
-                font-size: 1.1rem;
-                margin-bottom: 0.35rem;
-                font-weight: 700;
-                line-height: 1.2;
-            }
-
-            .pillar-desc {
-                font-size: 0.88rem;
-                line-height: 1.4;
-                font-weight: 500;
-                margin: 0;
-            }
-
-            @media (max-width: 480px) {
-                .pillars-grid {
-                    gap: 0.65rem;
-                }
-                .pillar-card {
-                    padding: 0.85rem 0.75rem;
-                }
-                .pillar-icon {
-                    font-size: 1.15rem;
-                    margin-bottom: 0.25rem;
-                }
-                .pillar-title {
-                    font-size: 0.95rem;
-                    margin-bottom: 0.25rem;
-                }
-                .pillar-desc {
-                    font-size: 0.78rem;
-                    line-height: 1.3;
-                }
-            }
-        </style>
-
-  /* JOURNEY SECTION ENHANCED FLUORESCENT STYLES */
-.journey-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    max-width: 850px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.journey-card-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    position: relative;
-    width: 100%;
-}
-
-.journey-card-wrapper.even {
-    flex-direction: row-reverse;
-}
-
-/* FLUORESCENT TAPERED ARC OVERLAYS */
-.arc-connector {
-    position: absolute;
-    top: 50%;
-    width: 130px;
-    height: 110px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.journey-card-wrapper.odd .arc-connector {
-    left: -20px;
-    transform: translateY(-50%);
-}
-
-.journey-card-wrapper.even .arc-connector {
-    right: -20px;
-    transform: translateY(-50%) scaleX(-1);
-}
-
-.journey-step-node {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #040d1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: #ffffff;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 3;
-}
-
-/* HIGH-INTENSITY CYAN NODE */
-.node-cyan {
-    border: 2px solid #38bdf8;
-    box-shadow: 0 0 12px #38bdf8, 0 0 25px rgba(56, 189, 248, 0.8), inset 0 0 10px #38bdf8;
-}
-
-/* HIGH-INTENSITY TEAL/GREEN NODE */
-.node-teal {
-    border: 2px solid #2dd4bf;
-    box-shadow: 0 0 12px #2dd4bf, 0 0 25px rgba(45, 212, 191, 0.8), inset 0 0 10px #2dd4bf;
-}
-
-.journey-card {
-    flex: 1;
-    background: rgba(8, 30, 55, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 20px;
-    padding: 1.5rem 1.75rem;
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.journey-card:hover {
-    transform: translateY(-2px);
-}
-
-/* CYAN CARD WITH INTENSE CORNER GLOWS */
-.card-cyan {
-    border: 1.5px solid rgba(56, 189, 248, 0.7);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 0 15px rgba(56, 189, 248, 0.15);
-}
-
-/* TEAL CARD WITH INTENSE CORNER GLOWS */
-.card-teal {
-    border: 1.5px solid rgba(45, 212, 191, 0.7);
-    box-shadow: 0 0 20px rgba(45, 212, 191, 0.35), inset 0 0 15px rgba(45, 212, 191, 0.15);
-}
-
-.journey-icon-circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    background: rgba(4, 13, 26, 0.8);
-}
-
-.icon-cyan-bg {
-    border: 1.5px solid #38bdf8;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 8px rgba(56, 189, 248, 0.3);
-}
-
-.icon-teal-bg {
-    border: 1.5px solid #2dd4bf;
-    box-shadow: 0 0 10px rgba(45, 212, 191, 0.4), inset 0 0 8px rgba(45, 212, 191, 0.3);
-}
-
-.journey-step-tag {
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 0.2rem;
-}
-
-.journey-card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.35rem;
-}
-
-.journey-card-desc {
-    font-size: 0.92rem;
-    color: #94a3b8;
-    line-height: 1.45;
-    margin: 0;
-}
-
-@media (max-width: 640px) {
-    .journey-container { gap: 1.25rem; }
-    .journey-card-wrapper { gap: 0.75rem; }
-    .journey-step-node { width: 44px; height: 44px; font-size: 0.95rem; }
-    .journey-card { padding: 1.1rem; gap: 0.85rem; }
-    .journey-icon-circle { width: 44px; height: 44px; }
-    .journey-card-title { font-size: 1.1rem; }
-    .journey-card-desc { font-size: 0.82rem; }
-    .arc-connector { width: 90px; height: 80px; }
-}
-
-/* RESPONSIVE MOBILE TWEAKS */
-@media (max-width: 640px) {
-    .journey-container {
-        gap: 1.25rem;
-    }
-    
-    .journey-card-wrapper {
-        gap: 0.75rem;
-    }
-    
-    .journey-step-node {
-        width: 44px;
-        height: 44px;
-        font-size: 0.95rem;
-    }
-    
-    .journey-card {
-        padding: 1.1rem;
-        gap: 0.85rem;
-    }
-    
-    .journey-icon-circle {
-        width: 42px;
-        height: 42px;
-    }
-    
-    .journey-card-title {
-        font-size: 1.05rem;
-    }
-    
-    .journey-card-desc {
-        font-size: 0.82rem;
-    }
-
-    .arc-connector {
-        width: 80px;
-        height: 70px;
-    }
-}
-        </style>
-
         <!-- YOUR JOURNEY: 5-STEP ADVISORY PROCESS (REFRACTED FLUORESCENT REDESIGN) -->
         <section id="journey" class="section">
             <h2 class="section-title" style="margin-bottom: 0.5rem; color: #ffffff;">
@@ -545,15 +430,14 @@
                 
                 <!-- STEP 01: DISCOVERY -->
                 <div class="journey-card-wrapper odd">
-                    <!-- TAPERED FLUORESCENT CYAN ARC -->
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="cyanArcGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                            <linearGradient id="cyanArcGrad1" x1="0%" y1="50%" x2="100%" y2="50%">
                                 <stop offset="0%" stop-color="#38bdf8" stop-opacity="1" />
                                 <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.4" />
                                 <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05" />
                             </linearGradient>
-                            <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <filter id="cyanGlow1" x="-20%" y="-20%" width="140%" height="140%">
                                 <feGaussianBlur stdDeviation="3.5" result="blur" />
                                 <feMerge>
                                     <feMergeNode in="blur" />
@@ -562,7 +446,7 @@
                             </filter>
                         </defs>
                         <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow)"/>
+                              stroke="url(#cyanArcGrad1)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow1)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">01</div>
@@ -584,15 +468,14 @@
 
                 <!-- STEP 02: ASSESSMENT -->
                 <div class="journey-card-wrapper even">
-                    <!-- TAPERED FLUORESCENT TEAL ARC -->
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="tealArcGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                            <linearGradient id="tealArcGrad2" x1="0%" y1="50%" x2="100%" y2="50%">
                                 <stop offset="0%" stop-color="#2dd4bf" stop-opacity="1" />
                                 <stop offset="70%" stop-color="#2dd4bf" stop-opacity="0.4" />
                                 <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.05" />
                             </linearGradient>
-                            <filter id="tealGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <filter id="tealGlow2" x="-20%" y="-20%" width="140%" height="140%">
                                 <feGaussianBlur stdDeviation="3.5" result="blur" />
                                 <feMerge>
                                     <feMergeNode in="blur" />
@@ -601,7 +484,7 @@
                             </filter>
                         </defs>
                         <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#tealArcGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow)"/>
+                              stroke="url(#tealArcGrad2)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow2)"/>
                     </svg>
 
                     <div class="journey-step-node node-teal">02</div>
@@ -623,10 +506,23 @@
 
                 <!-- STEP 03: PERSONAL ADVANTAGE PLAN -->
                 <div class="journey-card-wrapper odd">
-                    <!-- TAPERED FLUORESCENT CYAN ARC -->
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cyanArcGrad3" x1="0%" y1="50%" x2="100%" y2="50%">
+                                <stop offset="0%" stop-color="#38bdf8" stop-opacity="1" />
+                                <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.4" />
+                                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05" />
+                            </linearGradient>
+                            <filter id="cyanGlow3" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
                         <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow)"/>
+                              stroke="url(#cyanArcGrad3)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow3)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">03</div>
@@ -649,10 +545,23 @@
 
                 <!-- STEP 04: GUIDED PROGRESS -->
                 <div class="journey-card-wrapper even">
-                    <!-- TAPERED FLUORESCENT TEAL ARC -->
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="tealArcGrad4" x1="0%" y1="50%" x2="100%" y2="50%">
+                                <stop offset="0%" stop-color="#2dd4bf" stop-opacity="1" />
+                                <stop offset="70%" stop-color="#2dd4bf" stop-opacity="0.4" />
+                                <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0.05" />
+                            </linearGradient>
+                            <filter id="tealGlow4" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
                         <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#tealArcGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow)"/>
+                              stroke="url(#tealArcGrad4)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow4)"/>
                     </svg>
 
                     <div class="journey-step-node node-teal">04</div>
@@ -673,10 +582,23 @@
 
                 <!-- STEP 05: LONG-TERM ADVANTAGE -->
                 <div class="journey-card-wrapper odd">
-                    <!-- TAPERED FLUORESCENT CYAN ARC -->
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cyanArcGrad5" x1="0%" y1="50%" x2="100%" y2="50%">
+                                <stop offset="0%" stop-color="#38bdf8" stop-opacity="1" />
+                                <stop offset="70%" stop-color="#38bdf8" stop-opacity="0.4" />
+                                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05" />
+                            </linearGradient>
+                            <filter id="cyanGlow5" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
                         <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow)"/>
+                              stroke="url(#cyanArcGrad5)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow5)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">05</div>
@@ -707,49 +629,34 @@
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; max-width: 950px; margin: 0 auto;">
-                
-                <!-- OUTCOME 1 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">⚡</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">More consistent energy</span>
                 </div>
-
-                <!-- OUTCOME 2 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">🛡️</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">Greater confidence</span>
                 </div>
-
-                <!-- OUTCOME 3 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">🏋️</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">Better physical capability</span>
                 </div>
-
-                <!-- OUTCOME 4 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">🧠</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">Improved resilience to stress</span>
                 </div>
-
-                <!-- OUTCOME 5 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">🌙</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">Better recovery</span>
                 </div>
-
-                <!-- OUTCOME 6 -->
                 <div style="background: var(--card-bg); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">📊</span>
                     <span style="font-size: 1.05rem; font-weight: 600; color: var(--text-light);">Improved health markers</span>
                 </div>
-
-                <!-- OUTCOME 7 (FULL-WIDTH CENTRED HIGHLIGHT) -->
                 <div style="background: linear-gradient(135deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.1) 100%); border: 1px solid var(--accent); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: center; gap: 1rem; grid-column: 1 / -1; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);">
                     <span style="font-size: 1.25rem; color: #10b981;">✨</span>
                     <span style="font-size: 1.1rem; font-weight: 700; color: var(--text-light);">Greater confidence in the future</span>
                 </div>
-
             </div>
         </section>
 
@@ -760,7 +667,6 @@
                 Designed for ambitious individuals who want more from life and are ready to make a deliberate, data-driven investment in their future vitality.
             </p>
 
-            <!-- FEATURED LEAD CARD: DEEPLY PERSONALIZED / STRATEGIC BACKING -->
             <div style="background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.08) 100%); border: 1px solid var(--accent); border-radius: 8px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; max-width: 1000px; margin-left: auto; margin-right: auto; text-align: center; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);">
                 <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎯</div>
                 <h3 style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 0.6rem; font-weight: 700;">
@@ -771,10 +677,7 @@
                 </p>
             </div>
 
-            <!-- 5 CATEGORY GRID -->
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; max-width: 1000px; margin: 0 auto;">
-                
-                <!-- CATEGORY 1 -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">👔</div>
                     <h3 style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">
@@ -784,8 +687,6 @@
                         Individuals in high-stakes careers who need consistent mental clarity, energy, and cognitive endurance to operate at their peak day after day.
                     </p>
                 </div>
-
-                <!-- CATEGORY 2 -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">💼</div>
                     <h3 style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">
@@ -795,8 +696,6 @@
                         Executives, founders, and leaders who require decision-free execution protocols that integrate smoothly into intense, time-constrained routines.
                     </p>
                 </div>
-
-                <!-- CATEGORY 3 -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">📈</div>
                     <h3 style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">
@@ -806,8 +705,6 @@
                         Those entering or navigating mid-life who want to proactively optimize body composition, metabolism, mobility, and cellular energy for long-term health.
                     </p>
                 </div>
-
-                <!-- CATEGORY 4 -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">🤝</div>
                     <h3 style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">
@@ -817,8 +714,6 @@
                         Growth-oriented individuals who value expert human mentorship, empathetic accountability, and clear direction when navigating obstacles.
                     </p>
                 </div>
-
-                <!-- CATEGORY 5 (FULL WIDTH HIGHLIGHT) -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem; grid-column: 1 / -1; text-align: center;">
                     <div style="font-size: 1.4rem; margin-bottom: 0.5rem;">🌟</div>
                     <h3 style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">
@@ -828,11 +723,10 @@
                         Anyone committed to not just adding years to their life, but ensuring those years remain energetic, vibrant, capable, and fulfilling.
                     </p>
                 </div>
-
             </div>
         </section>
 
-      <!-- FOUNDER PHILOSOPHY SECTION -->
+        <!-- FOUNDER PHILOSOPHY SECTION -->
         <section id="about" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">Founder Philosophy</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 850px; margin: 0 auto 3rem auto; line-height: 1.6;">
@@ -840,8 +734,6 @@
             </p>
 
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;">
-                
-                <!-- FOUNDER BOX -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.75rem;">
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
                         <img src="Hess-BLTC-prize-CloseUp.jpg" alt="Dr Hessam Khoshnevisan" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
@@ -861,7 +753,6 @@
                     </p>
                 </div>
 
-                <!-- ATLAS AI BOX -->
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.75rem;">
                     <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
                         <img src="Atlas Logo emblem.png" alt="Atlas Emblem" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
@@ -880,15 +771,12 @@
                         Available 24/7, Atlas provides a continuously evolving layer of intelligence that turns information into informed action.
                     </p>
                 </div>
-
             </div>
         </section>
 
         <!-- DUAL FEATURE SECTION: VAULT PREVIEW & CLIENT PORTAL -->
         <section id="vault-teaser" class="section">
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
-                
-                <!-- CARD 1: RESOURCE VAULT -->
                 <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--accent);">
                     <div>
                         <h3 style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.75rem;">Client Resource Vault</h3>
@@ -901,7 +789,6 @@
                     </div>
                 </div>
 
-                <!-- CARD 2: PRIVATE CLIENT PORTAL -->
                 <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--accent); background: linear-gradient(180deg, var(--card-bg) 0%, rgba(37, 99, 235, 0.05) 100%);">
                     <div>
                         <h3 style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.75rem;">Private Client Portal</h3>
@@ -913,7 +800,6 @@
                         <button onclick="openModal('loginModal')" class="btn-primary" style="width: 100%; padding: 0.8rem;">Client Login &rarr;</button>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -957,7 +843,6 @@
                 </button>
             </div>
         </section>
-    
     </div>
 
     <!-- CLIENT DASHBOARD VIEW (HIDDEN UNTIL CLIENT LOGIN) -->
@@ -974,19 +859,16 @@
                 <button onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
 
-            <!-- FEATURED SAMPLE REPORT BUTTON -->
             <div style="margin-bottom: 2.5rem; text-align: center;">
                 <button id="dexaReportBtn" onclick="openModal('sampleDexaModal')" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: 1px solid #3b82f6; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
                     📄 Sample of Atlas' DEXA Scan Analysis &rarr;
                 </button>
             </div>
 
-            <!-- SECTION HEADING -->
             <h3 style="color: var(--text-light); font-size: 1.3rem; margin-bottom: 1rem; border-left: 3px solid var(--accent); padding-left: 0.75rem;">
                 Resources for your Daily Use
             </h3>
 
-            <!-- 8 DAILY PROTOCOL BUTTONS -->
             <div class="dashboard-grid">
                 <div class="dash-btn" onclick="openProtocolPage('Morning Routine')">🌅 Morning Routine</div>
                 <div class="dash-btn" onclick="openProtocolPage('Nutrition Guide')">🥗 Nutrition Guide</div>
@@ -994,7 +876,7 @@
                 <div class="dash-btn" onclick="openProtocolPage('Meditation')">🧘 Meditation</div>
                 <div class="dash-btn" onclick="openProtocolPage('Physical Exercises')">🏋️ Physical Exercises</div>
                 <div class="dash-btn" onclick="openProtocolPage('Evening Routine')">🌙 Evening Routine</div>
-                <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡️️ Trust The Process</div>
+                <div class="dash-btn" onclick="openProtocolPage('Trust The Process')">🛡 Trust The Process</div>
                 <div id="dailyLogBtn" onclick="handleDailyLogClick()" class="dash-btn" style="border-color: var(--accent);">📊 Daily Log &rarr;</div>
             </div>
         </div>
@@ -1123,7 +1005,6 @@
                 "Understanding where you are today, identifying what matters most, and creating a personalised pathway towards greater health, vitality and longevity."
             </p>
 
-            <!-- CLIENT HEADER BADGE -->
             <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
                 <div><strong style="color: var(--text-light);">Client:</strong> Fati Kashani</div>
                 <div><strong style="color: var(--text-light);">Assessment Date:</strong> 1 October 2026</div>
@@ -1141,7 +1022,6 @@
                     For clients who wish to continue beyond this initial assessment, we recommend a deeper Discovery Consultation. During this session we explore the psychological, physical and lifestyle factors that make your situation unique, allowing us to design a personalised daily blueprint that fits naturally into your life and creates a clear pathway towards lasting improvements in health, vitality and longevity.
                 </p>
 
-                <!-- EXECUTIVE SUMMARY -->
                 <div style="background: var(--bg-dark); border-left: 4px solid var(--accent); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2.25rem;">
                     <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.5rem;">Executive Summary</h3>
                     <p style="font-size: 1rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.75rem;">
@@ -1155,7 +1035,6 @@
                     </p>
                 </div>
 
-                <!-- BODY COMPOSITION SNAPSHOT -->
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.5rem;">Body Composition Snapshot</h3>
                 <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
                     Assessment Tool Used: Technogym Bioelectrical Impedance Analysis (BIA)
@@ -1187,7 +1066,6 @@
                     </table>
                 </div>
 
-                <!-- YOUR FITNESS SNAPSHOT -->
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.5rem;">Your Fitness Snapshot</h3>
                 <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.75rem;">
                     You took part in a Rockport 1-Mile Walking Test. It estimates how efficiently your body uses oxygen during exercise (VO₂ max) without requiring high-intensity running.
@@ -1199,7 +1077,6 @@
                     A simple indicator of good cardio health is completion time. For adults in their 30s to 50s:
                 </p>
 
-                <!-- ROCKPORT BENCHMARKS TABLE -->
                 <div style="overflow-x: auto; margin-bottom: 1.5rem;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-light); text-align: left;">
                         <thead>
@@ -1225,7 +1102,6 @@
                     However, the key score is the estimated VO₂ Max. Inputting your gender, age, weight, time, and finishing heart rate into a Rockport Test Calculator (uses a validated medical formula) we get a score of <strong>29.86</strong>.
                 </p>
 
-                <!-- VO2 MAX CLASSIFICATION TABLE -->
                 <p style="font-size: 0.88rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.75rem;">
                     For Women in the age bracket of 50 to 59:
                 </p>
@@ -1254,7 +1130,6 @@
                     The encouraging news is that VO₂ max is very trainable, even in your 50s and beyond. Research and clinical guidance show that consistent aerobic training, particularly when combined with some higher-intensity work, can significantly improve VO₂ max over several months.
                 </p>
 
-                <!-- YOUR KEY STRENGTHS -->
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 1rem;">Your Key Strengths</h3>
                 <div style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 1.5rem; margin-bottom: 2.25rem;">
                     <ul style="list-style: none; font-size: 0.9rem; color: var(--text-light); line-height: 1.65; padding: 0;">
@@ -1270,7 +1145,6 @@
                     </ul>
                 </div>
 
-                <!-- YOUR KEY OPPORTUNITIES OVER THE NEXT 90 DAYS -->
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.75rem;">Your Key Opportunities over the next 90 Days</h3>
                 <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
                     The primary opportunity is not significant weight loss, but rather creating:
@@ -1307,7 +1181,6 @@
                     </ul>
                 </div>
 
-                <!-- FUTURE REASSESSMENT BASELINE TABLE -->
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.75rem;">Future Reassessment Baseline</h3>
                 <div style="overflow-x: auto; margin-bottom: 2.25rem;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: var(--text-light); text-align: left;">
@@ -1330,7 +1203,6 @@
                     </table>
                 </div>
 
-                <!-- IN CONCLUSION -->
                 <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; margin-bottom: 2rem;">
                     <h4 style="color: var(--text-light); font-size: 1.15rem; margin-bottom: 0.75rem;">In conclusion</h4>
                     <p style="font-size: 0.95rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.75rem;">
@@ -1346,7 +1218,6 @@
                         We wish you every success as you continue your journey towards greater vitality, energy, and longevity. Thank you for entrusting us with your Discovery Session. We hope to have the opportunity to work alongside you as your trusted partner, helping you build the habits, capabilities, and fitness reserve that support a longer, healthier, and more fulfilling life.
                     </p>
                 </div>
-
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem;">
@@ -1355,7 +1226,7 @@
         </div>
     </div>
     
-   <!-- MODAL 4: DISCOVERY CALL BOOKING FORM -->
+    <!-- MODAL 4: DISCOVERY CALL BOOKING FORM -->
     <div id="discoveryModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('discoveryModal')">&times;</span>
@@ -1389,7 +1260,7 @@
         </div>
     </div>
 
-   <!-- MODAL 5: VIDEO & FAQ EXPANDED VIEW -->
+    <!-- MODAL 5: VIDEO & FAQ EXPANDED VIEW -->
     <div id="faqVideoModal" class="modal">
         <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
             <span class="close-btn" onclick="closeModal('faqVideoModal')">&times;</span>
@@ -1401,7 +1272,6 @@
                 Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, identify your biggest opportunities, and determine whether The Longevity Advantage is the right fit for your journey.
             </p>
 
-            <!-- WELCOMING VIDEO CONTAINER (DIRECT NATIVE HOSTING) -->
             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: #0f1115; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2.5rem;">
                 <video 
                     controls 
@@ -1414,7 +1284,6 @@
                 </video>
             </div>
 
-            <!-- DISCOVERY CALL BOOKING TRIGGER (PLACED DIRECTLY UNDER VIDEO) -->
             <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 2rem; margin-bottom: 3rem;">
                 <h3 style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 0.5rem;">Ready to take the next step?</h3>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
@@ -1425,14 +1294,11 @@
                 </button>
             </div>
 
-            <!-- FREQUENTLY ASKED QUESTIONS SECTION -->
             <h3 style="color: var(--text-light); font-size: 1.4rem; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 0.75rem;">
                 Frequently Asked Questions
             </h3>
 
             <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem;">
-                
-                <!-- Q1 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What is the Longevity Advantage?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1440,7 +1306,6 @@
                     </p>
                 </div>
 
-                <!-- Q2 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What exactly does TLA offer?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1448,7 +1313,6 @@
                     </p>
                 </div>
 
-                <!-- Q3 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Who is TLA designed for?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1456,7 +1320,6 @@
                     </p>
                 </div>
 
-                <!-- Q4 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How personalised is the programme?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1464,7 +1327,6 @@
                     </p>
                 </div>
 
-                <!-- Q5 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Do I need to be fit or healthy before I start?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1472,7 +1334,6 @@
                     </p>
                 </div>
 
-                <!-- Q6 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Will I need to make major lifestyle changes?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1480,7 +1341,6 @@
                     </p>
                 </div>
 
-                <!-- Q7 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What makes TLA different from traditional coaching?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1488,7 +1348,6 @@
                     </p>
                 </div>
 
-                <!-- Q8 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How quickly will I notice results?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1496,7 +1355,6 @@
                     </p>
                 </div>
 
-                <!-- Q9 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Is this focused solely on physical health?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1504,7 +1362,6 @@
                     </p>
                 </div>
 
-                <!-- Q10 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What support will I receive?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1512,7 +1369,6 @@
                     </p>
                 </div>
 
-                <!-- Q11 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How is progress measured?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
@@ -1520,14 +1376,12 @@
                     </p>
                 </div>
 
-                <!-- Q12 -->
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Is TLA suitable for long-term support?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
                         Yes. While some clients join to address a specific objective, many choose ongoing support as a trusted advisor for maintaining momentum, adapting priorities, and continuing to optimise their health and vitality over time.
                     </p>
                 </div>
-
             </div>
         </div>
     </div>
@@ -1573,7 +1427,6 @@
                 document.getElementById('dashboardView').style.display = 'block';
                 document.getElementById('clientGreeting').innerText = `Welcome, ${CLIENT_DATABASE[nameInput].name}`;
 
-                // Dynamic report button setup
                 const dexaBtn = document.getElementById('dexaReportBtn');
                 if (dexaBtn) {
                     if (nameInput === "fafar") {
@@ -1600,8 +1453,6 @@
                 document.getElementById('vaultError').style.display = 'block';
             }
         }
-
-       
 
         function logoutClient() {
             currentLoggedInUser = "";
@@ -1633,9 +1484,8 @@
             }
         }
 
-// Auto-formats slash separators as the user types DDMMYYYY
         function formatDobInput(input) {
-            let v = input.value.replace(/\D/g, ''); // Strip non-digits
+            let v = input.value.replace(/\D/g, '');
             if (v.length >= 5) {
                 input.value = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
             } else if (v.length >= 3) {
@@ -1646,7 +1496,6 @@
             document.getElementById('dobError').style.display = 'none';
         }
 
-        // Validates DD/MM/YYYY for real days, months, leap years, and past dates
         function isValidDob(dobStr) {
             const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
             if (!regex.test(dobStr)) return false;
@@ -1665,7 +1514,6 @@
                    date <= today;
         }
 
-        // REPLACE YOUR EXISTING handleDiscoverySubmit WITH THIS VERSION:
         async function handleDiscoverySubmit(event) {
             event.preventDefault();
 
@@ -1717,8 +1565,6 @@
                 submitBtn.innerText = originalBtnText;
             }
         }
-        
     </script>
-
 </body>
 </html>
