@@ -337,7 +337,7 @@
                 </p>
             </div>
 
-           <!-- TRIAD SUPPORT SECTION (HERO-COLOR FILLED GLOWING HEXAGONS) -->
+    <!-- TRIAD SUPPORT SECTION (HERO-COLOR FILLED GLOWING HEXAGONS) -->
 <style>
     .advantage-team-container {
         position: relative;
@@ -380,13 +380,15 @@
         transform: translateY(-4px);
     }
 
-    /* 1. "YOU" CARD - CYAN VITALITY FILL */
+    /* 1. "YOU" CARD - CYAN VITALITY FILL (SHIFTED CONTENT UPWARDS) */
     .hex-card-you {
         width: 320px;
         min-height: 155px;
         background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
         color: #040d1a;
         filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.65));
+        justify-content: flex-start;
+        padding-top: 1.25rem;
     }
 
     /* 2. "ADVISOR" CARD - GREEN PURPOSE FILL */
@@ -412,7 +414,7 @@
     .hex-title {
         font-weight: 900;
         color: #040d1a;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.2rem;
         letter-spacing: 0.5px;
     }
 
@@ -420,8 +422,8 @@
         font-size: 0.92rem;
         color: #0f172a;
         font-weight: 800;
-        margin-bottom: 0.25rem;
-        line-height: 1.3;
+        margin-bottom: 0.2rem;
+        line-height: 1.25;
     }
 
     .hex-subtext-secondary {
@@ -443,6 +445,9 @@
             width: 100%;
             max-width: 300px;
             padding: 1.25rem 1rem;
+        }
+        .hex-card-you {
+            padding-top: 1.1rem;
         }
     }
 </style>
@@ -472,7 +477,7 @@
 
         <div class="hex-triad-grid">
             
-            <!-- TOP HEXAGON: YOU (VITALITY CYAN FILL) -->
+            <!-- TOP HEXAGON: YOU (VITALITY CYAN FILL - SHIFTED UPWARDS) -->
             <div class="hex-card hex-card-you">
                 <h3 class="hex-title" style="font-size: 1.4rem;">You</h3>
                 <p class="hex-subtext-primary">
@@ -486,12 +491,12 @@
             <!-- BOTTOM ROW: ADVISOR & ATLAS -->
             <div class="hex-bottom-row">
                 
-                <!-- LEFT HEXAGON: YOUR ADVANTAGE ADVISOR (PURPOSE GREEN FILL) -->
+                <!-- LEFT HEXAGON: YOUR TLA ADVISOR (PURPOSE GREEN FILL) -->
                 <div class="hex-card hex-card-advisor">
                     <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">🛡️</span>
-                    <h4 class="hex-title" style="font-size: 1.05rem;">Your Advantage Advisor</h4>
+                    <h4 class="hex-title" style="font-size: 1.05rem;">Your TLA Advisor</h4>
                     <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">
-                        Personal guidance, accountability and support
+                        Personal guidance, accountability and continuous support
                     </p>
                 </div>
 
