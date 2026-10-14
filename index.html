@@ -59,33 +59,34 @@
         .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-light); }
         .nav-buttons { display: flex; gap: 1rem; }
         
-        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; border: none; cursor: pointer; display: inline-block; }
-        .btn-primary:hover { background-color: var(--accent-hover); }
+        .btn-primary { background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s, transform 0.2s; border: none; cursor: pointer; display: inline-block; text-align: center; }
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
         .btn-secondary { background-color: transparent; color: var(--text-light); padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); transition: border-color 0.2s; cursor: pointer; }
         .btn-secondary:hover { border-color: var(--accent); }
 
-        /* GOLD CTA BUTTON FOR FINAL SECTION */
+        /* GOLD CTA BUTTON */
         .btn-gold { 
             background-color: var(--accent-gold); 
             color: #040d1a; 
-            padding: 1rem 2.2rem; 
-            border-radius: 6px; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 4px; 
             text-decoration: none; 
             font-weight: 700; 
-            font-size: 1.05rem; 
+            font-size: 0.9rem; 
             transition: all 0.25s ease; 
             border: none; 
             cursor: pointer; 
             display: inline-block;
-            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.35);
         }
         .btn-gold:hover { 
             background-color: var(--accent-gold-hover); 
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(201, 162, 39, 0.6);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.55);
         }
 
-        /* CUSTOM DEEP NAVY GRADIENT + REFINED TLA HEXAGON PATTERN (25% REDUCED OPACITY) */
+        /* CUSTOM DEEP NAVY GRADIENT + REFINED TLA HEXAGON PATTERN */
         .navy-hex-section {
             background-color: #040d1a;
             background-image: 
@@ -123,26 +124,30 @@
         textarea.modal-input { resize: vertical; min-height: 90px; }
         .error-msg { color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem; }
 
-        /* Custom Notification Toast replacing alert() */
+        /* Toast Notification Styles */
         .toast-notification {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #081a30;
-            color: #f8fafc;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(8, 30, 55, 0.95);
             border: 1px solid var(--accent-teal);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-radius: 8px;
             padding: 1rem 1.5rem;
+            color: var(--text-light);
+            font-size: 0.92rem;
             max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             z-index: 2000;
-            display: none;
-            animation: fadeIn 0.3s ease-in-out;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            transform: translateY(120%);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         /* Client Dashboard View */
@@ -175,7 +180,7 @@
         .pillar-title { font-size: 1.1rem; margin-bottom: 0.35rem; font-weight: 700; line-height: 1.2; }
         .pillar-desc { font-size: 0.88rem; line-height: 1.4; font-weight: 500; margin: 0; }
 
-        /* JOURNEY SECTION ENHANCED FLUORESCENT STYLES */
+        /* JOURNEY SECTION ENHANCED STYLES */
         .journey-container {
             display: flex;
             flex-direction: column;
@@ -309,7 +314,7 @@
     <header>
         <!-- BRAND LOGO WITH HEX EMBLEM -->
         <div class="logo" style="display: flex; align-items: center; gap: 0.85rem;">
-            <svg width="34" height="34" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <svg width="34" height="34" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="The Longevity Advantage Emblem">
                 <defs>
                     <filter id="hdrGlow" x="-20%" y="-20%" width="140%" height="140%">
                         <feGaussianBlur stdDeviation="6" result="blur" />
@@ -333,8 +338,8 @@
         </div>
 
         <div class="nav-buttons">
-            <button onclick="openModal('vaultModal')" class="btn-secondary">Client Vault</button>
-            <button onclick="openModal('loginModal')" class="btn-primary">Client Access</button>
+            <button onclick="openModal('vaultModal')" class="btn-primary">Client Vault</button>
+            <button onclick="openModal('loginModal')" class="btn-gold">Client Access</button>
         </div>
     </header>
 
@@ -491,6 +496,7 @@
                     </svg>
 
                     <div class="hex-triad-grid">
+                        <!-- TOP HEXAGON: YOU -->
                         <div class="hex-card hex-card-you">
                             <h3 class="hex-title" style="font-size: 1.4rem;">You</h3>
                             <p class="hex-subtext-primary">Your goals, challenges &amp; future</p>
@@ -498,12 +504,14 @@
                         </div>
 
                         <div class="hex-bottom-row">
+                            <!-- BOTTOM LEFT: YOUR TLA ADVISOR -->
                             <div class="hex-card hex-card-advisor">
                                 <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">🛡️</span>
                                 <h4 class="hex-title" style="font-size: 1.05rem;">Your TLA Advisor</h4>
                                 <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">Personal guidance, accountability and continuous support</p>
                             </div>
 
+                            <!-- BOTTOM RIGHT: ATLAS AI PARTNER -->
                             <div class="hex-card hex-card-atlas">
                                 <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">⚡</span>
                                 <h4 class="hex-title" style="font-size: 1.05rem;">Atlas — AI Partner</h4>
@@ -559,7 +567,7 @@
             </div>
         </section>
 
-        <!-- YOUR JOURNEY SECTION -->
+        <!-- YOUR JOURNEY: 5-STEP ADVISORY PROCESS -->
         <section id="journey" class="section">
             <h2 class="section-title" style="margin-bottom: 0.5rem; color: #ffffff;">
                 Your <span class="gradient-text">Journey</span>
@@ -754,7 +762,7 @@
             </div>
         </section>
 
-        <!-- TRANSFORMATIONAL OUTCOMES -->
+        <!-- TRANSFORMATIONAL OUTCOMES SECTION -->
         <section id="outcomes" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">
                 What Changes When You Gain Your Advantage?
@@ -791,7 +799,7 @@
             </div>
         </section>
 
-        <!-- TARGET AUDIENCE -->
+        <!-- TARGET AUDIENCE SECTION -->
         <section id="audience" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">Who This Is For</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 850px; margin: 0 auto 3rem auto; line-height: 1.6;">
@@ -829,7 +837,7 @@
             </div>
         </section>
 
-        <!-- PHILOSOPHY SECTION -->
+        <!-- OUR PHILOSOPHY SECTION -->
         <section id="about" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">Our Philosophy</h2>
             
@@ -841,9 +849,10 @@
                 <p style="margin: 0; font-weight: 600; color: var(--text-light);">Because lasting change rarely comes from information alone. It comes from clarity, accountability, support and a plan built specifically around you.</p>
             </div>
 
+            <!-- TWO HEADINGS CARDS -->
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;">
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
-                    <img src="https://placehold.co/100x100/081a30/38bdf8?text=HK" alt="Dr Hessam Khoshnevisan" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
+                    <img src="Hess-BLTC-prize-CloseUp.jpg" alt="Dr Hessam Khoshnevisan" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
                     <div>
                         <h3 style="font-size: 1.2rem; color: var(--text-light); margin: 0; font-weight: 700;">Dr Hessam Khoshnevisan</h3>
                         <p style="font-size: 0.85rem; color: var(--accent); margin: 0; font-weight: 600;">Founder, The Longevity Advantage</p>
@@ -851,7 +860,7 @@
                 </div>
 
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
-                    <img src="https://placehold.co/100x100/081a30/2dd4bf?text=Atlas" alt="Atlas Emblem" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
+                    <img src="Atlas Logo emblem.png" alt="Atlas Emblem" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
                     <div>
                         <h3 style="font-size: 1.2rem; color: var(--text-light); margin: 0; font-weight: 700;">Atlas</h3>
                         <p style="font-size: 0.85rem; color: var(--accent); margin: 0; font-weight: 600;">The TLA Longevity Intelligence System</p>
@@ -859,30 +868,34 @@
                 </div>
             </div>
 
-            <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; max-width: 850px; margin: 0 auto; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+            <!-- MERGED & REPOSITIONED PHILOSOPHY STATEMENT -->
+            <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; max-width: 850px; margin: 0 auto 2.5rem auto; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+                <p style="font-size: 1rem; color: var(--text-light); line-height: 1.65; margin: 0;">
                     Your dedicated TLA Advisor brings experience, perspective, encouragement and accountability. Atlas complements that relationship by analysing health data, identifying patterns and helping generate personalised recommendations. Together they create a practical, personalised and evolving roadmap designed around your goals, lifestyle and changing needs.
                 </p>
+            </div>
 
+            <!-- CONCLUDING PHILOSOPHY SUMMARY LINES -->
+            <div style="text-align: center; max-width: 850px; margin: 0 auto;">
                 <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Most programmes offer information</p>
                 <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Some offer technology</p>
                 <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Others provide coaching</p>
-                <p style="font-size: 1.2rem; color: var(--accent-teal); margin-bottom: 0; font-weight: 800;">TLA combines all three</p>
+                <p style="font-size: 1.25rem; color: var(--accent-teal); font-weight: 800; margin-top: 0.75rem;">TLA combines all three</p>
             </div>
         </section>
 
-        <!-- VAULT & PORTAL SECTION -->
+        <!-- DUAL FEATURE SECTION: VAULT PREVIEW & CLIENT PORTAL -->
         <section id="vault-teaser" class="section">
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
                 <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--accent);">
                     <div>
                         <h3 style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.75rem;">Client Resource Vault</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">
-                            An exclusive, gated repository featuring custom 10Hz Alpha Neural Audio tracks, Functional Movement Video Flows, and Vagus Nerve Wind-Down Guides available for protocol integration.
+                            An exclusive repository of curated guidance, neural audio tools, functional movement routines, and restoration protocols designed to support your daily vitality.
                         </p>
                     </div>
                     <div>
-                        <button onclick="openModal('vaultModal')" class="btn-secondary" style="width: 100%; padding: 0.8rem;">Access Private Vault &rarr;</button>
+                        <button onclick="openModal('vaultModal')" class="btn-primary" style="width: 100%; padding: 0.8rem;">Access Private Vault &rarr;</button>
                     </div>
                 </div>
 
@@ -890,11 +903,11 @@
                     <div>
                         <h3 style="font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.75rem;">Private Client Portal</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem;">
-                            A secure command center reserved exclusively for active private clients. Contains your bespoke daily routines, neural audio scripts, targeted mobility flows, nutrition guidelines, and real-time biometric logs—continuously refined alongside your advisor and Atlas.
+                            A secure command center reserved for active clients. Access your bespoke daily roadmap, nutrition strategy, and biometric insights—continuously refined alongside your advisor and Atlas.
                         </p>
                     </div>
                     <div>
-                        <button onclick="openModal('loginModal')" class="btn-primary" style="width: 100%; padding: 0.8rem;">Client Login &rarr;</button>
+                        <button onclick="openModal('loginModal')" class="btn-gold" style="width: 100%; padding: 0.8rem;">Client Login &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -941,7 +954,7 @@
                     "Your health deserves the same level of strategic guidance as every other important area of your life."
                 </p>
                 
-                <button onclick="openModal('faqVideoModal')" class="btn-gold">
+                <button onclick="openModal('faqVideoModal')" class="btn-gold" style="padding: 1rem 2.2rem; font-size: 1.05rem;">
                     Begin Your Discovery &rarr;
                 </button>
             </div>
@@ -953,7 +966,7 @@
         <div class="tracker-section" style="max-width: 900px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                    <svg width="28" height="28" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="28" height="28" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="TLA Emblem Small">
                         <polygon points="100,15 170,55 170,135 100,175 30,135 30,55" fill="#0F1115" stroke="#2563EB" stroke-width="8" />
                         <text x="100" y="112" font-family="-apple-system, sans-serif" font-size="46" font-weight="900" fill="#FFFFFF" text-anchor="middle">TLA</text>
                     </svg>
@@ -988,12 +1001,12 @@
     <!-- MODAL 1: CLIENT LOGIN MODAL -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('loginModal')" aria-label="Close modal">&times;</span>
             <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Access Portal</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter your assigned Client Name and Access Key.</p>
             
-            <input type="text" id="clientNameInput" class="modal-input" placeholder="Client Name">
-            <input type="password" id="clientKeyInput" class="modal-input" placeholder="Access Key">
+            <input type="text" id="clientNameInput" class="modal-input" placeholder="Client Name" aria-label="Client Name">
+            <input type="password" id="clientKeyInput" class="modal-input" placeholder="Access Key" aria-label="Access Key">
             <p id="loginError" class="error-msg">Invalid Client Name or Access Key.</p>
             
             <button onclick="authenticateClient()" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Access Dashboard</button>
@@ -1006,11 +1019,11 @@
     <!-- MODAL 2: VAULT ACCESS MODAL -->
     <div id="vaultModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('vaultModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('vaultModal')" aria-label="Close modal">&times;</span>
             <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Client Resource Vault</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter the Vault Key to preview resources.</p>
             
-            <input type="password" id="vaultKeyInput" class="modal-input" placeholder="Enter Vault Key">
+            <input type="password" id="vaultKeyInput" class="modal-input" placeholder="Enter Vault Key" aria-label="Vault Key">
             <p id="vaultError" class="error-msg">Invalid Vault Key. Contact your advisor.</p>
             
             <button onclick="verifyVaultKey()" class="btn-primary" style="width: 100%;">Access Vault</button>
@@ -1020,7 +1033,7 @@
     <!-- MODAL 3: SAMPLE DEXA ANALYSIS OVERLAY -->
     <div id="sampleDexaModal" class="modal">
         <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
-            <span class="close-btn" onclick="closeModal('sampleDexaModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('sampleDexaModal')" aria-label="Close modal">&times;</span>
             
             <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.5rem; text-align: center;">
                 Example of Atlas's Analysis of DEXA Scan taken as shown above
@@ -1052,24 +1065,24 @@
                     Standard bathroom scales treat every kilogram identically. Your Technogym Body Scan separates <strong>tissue quality</strong> from <strong>gross weight</strong>, providing an anatomical breakdown of cellular vitality, muscle density, and metabolic health.
                 </p>
 
-                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">2. Key Metric Breakdown & Strategic Guidance</h3>
+                <h3 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.75rem;">2. Key Metric Breakdown &amp; Strategic Guidance</h3>
                 
                 <div style="margin-bottom: 1.25rem;">
-                    <h4 style="color: var(--text-light); font-size: 1rem;">• Cellular Vitality & Integrity (Phase Angle: 7° — EXCELLENT)</h4>
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Cellular Vitality &amp; Integrity (Phase Angle: 7° — EXCELLENT)</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
                         Phase angle measures electrical resistance across cell membranes. A score of 7° reflects exceptional cellular integrity, efficient mitochondrial energy transfer, and strong intracellular hydration. Strategic Focus: Preserve this high cellular quality while optimizing fat oxidation.
                     </p>
                 </div>
 
                 <div style="margin-bottom: 1.25rem;">
-                    <h4 style="color: var(--text-light); font-size: 1rem;">• Body Composition & Muscle Quality (SMM: 31.4 kg / BMC: 3.2 kg)</h4>
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Body Composition &amp; Muscle Quality (SMM: 31.4 kg / BMC: 3.2 kg)</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
                         You possess a dense, metabolically active structural frame. The "HIGH" flag on total body weight (70.6 kg) is driven by muscle and bone density, not excess fat. Strategic Focus: Protecting muscle tissue while stripping body fat to lower total joint workload.
                     </p>
                 </div>
 
                 <div style="margin-bottom: 1.25rem;">
-                    <h4 style="color: var(--text-light); font-size: 1rem;">• Fat Mass & Metabolic Efficiency (BFM: 14.8 kg / 21% | BMR: 1,566 kcal)</h4>
+                    <h4 style="color: var(--text-light); font-size: 1rem;">• Fat Mass &amp; Metabolic Efficiency (BFM: 14.8 kg / 21% | BMR: 1,566 kcal)</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">
                         Your current body fat percentage (21%) provides a clear, high-yield opportunity for targeted fat loss without risking lean tissue. The BMR reading (1,566 kcal) indicates an opportunity to up-regulate metabolic output through daily movement and non-stimulant vitality protocols.
                     </p>
@@ -1096,10 +1109,10 @@
         </div>
     </div>
 
-    <!-- MODAL 6: COMPLETE REPORT FOR FAFAR -->
+    <!-- MODAL 4: DEDICATED COMPLETE REPORT FOR FAFAR -->
     <div id="fafarReportModal" class="modal">
         <div class="modal-content" style="max-width: 900px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
-            <span class="close-btn" onclick="closeModal('fafarReportModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('fafarReportModal')" aria-label="Close modal">&times;</span>
             
             <h2 style="color: var(--text-light); font-size: 1.65rem; margin-bottom: 0.3rem; text-align: center;">
                 Body Composition, Lifestyle &amp; Vitality Assessment
@@ -1176,9 +1189,6 @@
                 <p style="font-size: 0.92rem; color: var(--text-light); font-weight: 600; margin-bottom: 1rem;">
                     Your fast walk time was 15 mins &amp; 32 seconds with a final heart rate of 132 bpm.
                 </p>
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    A simple indicator of good cardio health is completion time. For adults in their 30s to 50s:
-                </p>
 
                 <div style="overflow-x: auto; margin-bottom: 1.5rem;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-light); text-align: left;">
@@ -1202,12 +1212,9 @@
                     Based on this simple indicator your cardio health is good.
                 </p>
                 <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    However, the key score is the estimated VO₂ Max. Inputting your gender, age, weight, time, and finishing heart rate into a Rockport Test Calculator (uses a validated medical formula) we get a score of <strong>29.86</strong>.
+                    However, the key score is the estimated VO₂ Max score of <strong>29.86</strong>.
                 </p>
 
-                <p style="font-size: 0.88rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.75rem;">
-                    For Women in the age bracket of 50 to 59:
-                </p>
                 <div style="overflow-x: auto; margin-bottom: 1.5rem;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-light); text-align: left;">
                         <thead>
@@ -1226,100 +1233,18 @@
                     </table>
                 </div>
 
-                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.75rem;">
-                    A VO₂ Max score of 29.86 mL/kg/min for a woman of your age is classified as "Fair" and sits very close to the 40th percentile.
-                </p>
                 <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 2.25rem;">
-                    The encouraging news is that VO₂ max is very trainable, even in your 50s and beyond. Research and clinical guidance show that consistent aerobic training, particularly when combined with some higher-intensity work, can significantly improve VO₂ max over several months.
+                    A VO₂ Max score of 29.86 mL/kg/min for a woman of your age is classified as "Fair". VO₂ max is very trainable, and consistent aerobic training will produce noticeable improvements over time.
                 </p>
 
                 <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 1rem;">Your Key Strengths</h3>
                 <div style="background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 1.5rem; margin-bottom: 2.25rem;">
                     <ul style="list-style: none; font-size: 0.9rem; color: var(--text-light); line-height: 1.65; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;">✅ <strong>Excellent skeletal muscle mass:</strong> Your skeletal muscle mass is the strongest metric within your assessment. Maintaining this asset will support healthy ageing, improve metabolic flexibility, and create a strong platform for future body-composition improvements.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ <strong>Healthy Cellular Function:</strong> Your phase angle score indicates favourable cellular integrity and recovery capacity, both important indicators of vitality.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ Already exercising 4–5 days per week.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ Recently started PT and strength training.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ <strong>Positive Lifestyle Foundations:</strong> Regular exercise, low stress levels and an active lifestyle suggest that the building blocks for successful change are already in place.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ Good awareness of nutrition.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ Strong support network.</li>
-                        <li style="margin-bottom: 0.75rem;">✅ Generally positive health, confidence and satisfaction scores.</li>
-                        <li style="margin-bottom: 0.5rem;">✅ No significant injury limitations.</li>
+                        <li style="margin-bottom: 0.75rem;">✅ <strong>Excellent skeletal muscle mass:</strong> Maintaining this asset will support healthy ageing, improve metabolic flexibility, and create a strong platform for future body-composition improvements.</li>
+                        <li style="margin-bottom: 0.75rem;">✅ <strong>Healthy Cellular Function:</strong> Favourable phase angle score indicating solid cellular integrity and recovery capacity.</li>
+                        <li style="margin-bottom: 0.75rem;">✅ Active 4–5 days per week with strength training routines in place.</li>
+                        <li style="margin-bottom: 0.5rem;">✅ Strong support network and positive lifestyle foundations.</li>
                     </ul>
-                </div>
-
-                <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.75rem;">Your Key Opportunities over the next 90 Days</h3>
-                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    The primary opportunity is not significant weight loss, but rather creating:
-                </p>
-                <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 6px; padding: 0.8rem 1rem; font-weight: 700; color: var(--text-light); font-size: 1.05rem; margin-bottom: 1.25rem;">
-                    Consistency + Accountability + Support
-                </div>
-                <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-                    These would in turn lead to body composition optimisation. For example, a modest reduction in body fat while preserving or enhancing muscle mass could lead to improvements in energy levels, confidence, metabolic health and greater physical capability. Over the next 90 days aim to:
-                </p>
-
-                <div style="background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 2.25rem;">
-                    <ul style="list-style: none; font-size: 0.9rem; color: var(--text-light); line-height: 1.65; padding: 0;">
-                        <li style="margin-bottom: 0.75rem;">🎯 Increase daily walking and movement outside the gym</li>
-                        <li style="margin-bottom: 0.75rem;">🎯 Improve consistency of energy on waking</li>
-                        <li style="margin-bottom: 0.75rem;">🎯 Address evening cravings</li>
-                        <li style="margin-bottom: 0.75rem;">🎯 Build an achievable meditation/recovery practice</li>
-                        <li style="margin-bottom: 0.75rem;">
-                            🎯 <strong>Make full use of the support your LTA Advisor is there to provide. Examples include:</strong>
-                            <div style="padding-left: 1.5rem; margin-top: 0.5rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
-                                • Progress review calls<br>
-                                • One-to-one coaching sessions<br>
-                                • Video consultations<br>
-                                • Goal-setting discussions<br>
-                                • Accountability check-ins<br>
-                                • Walking meetings or shared physical activity sessions<br>
-                                • Guided breathing, mindfulness or meditation practices<br>
-                                • Problem-solving and habit-building support
-                            </div>
-                        </li>
-                        <li style="margin-bottom: 0.75rem;">🎯 Reduce body fat while preserving muscle</li>
-                        <li style="margin-bottom: 0.75rem;">🎯 Work with your TLA Advantage Advisor to build simple daily habits that increase energy, resilience, and cardiovascular fitness, with progress tracked through improvements in VO₂ max</li>
-                        <li style="margin-bottom: 0.5rem;">🎯 Create resilience plans for periods of stress, when exercise, nutrition and social connection tend to decline</li>
-                    </ul>
-                </div>
-
-                <h3 style="color: var(--accent); font-size: 1.25rem; margin-bottom: 0.75rem;">Future Reassessment Baseline</h3>
-                <div style="overflow-x: auto; margin-bottom: 2.25rem;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; color: var(--text-light); text-align: left;">
-                        <thead>
-                            <tr style="border-bottom: 2px solid var(--border); background: rgba(255,255,255,0.03);">
-                                <th style="padding: 0.6rem 1rem;">Measure</th>
-                                <th style="padding: 0.6rem 1rem;">Current Baseline</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Weight</td><td style="padding: 0.5rem 1rem;">72.8 kg</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Body Fat %</td><td style="padding: 0.5rem 1rem;">27.7%</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Fat Mass</td><td style="padding: 0.5rem 1rem;">20.1 kg</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Skeletal Muscle Mass</td><td style="padding: 0.5rem 1rem;">29.1 kg</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Phase Angle</td><td style="padding: 0.5rem 1rem;">6.1°</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">BMR</td><td style="padding: 0.5rem 1rem;">1,505 kcal</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">Bone Mineral Content</td><td style="padding: 0.5rem 1rem;">3.1 kg</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 1rem;">VO₂ Max</td><td style="padding: 0.5rem 1rem;">29.86</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; margin-bottom: 2rem;">
-                    <h4 style="color: var(--text-light); font-size: 1.15rem; margin-bottom: 0.75rem;">In conclusion</h4>
-                    <p style="font-size: 0.95rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.75rem;">
-                        You are beginning this journey from a position of strength.
-                    </p>
-                    <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
-                        Your assessment reflects a healthy, capable individual with excellent muscle reserves, good cellular vitality and strong long-term potential. The focus over the coming months is not dramatic transformation but intelligent optimisation.
-                    </p>
-                    <p style="font-size: 0.95rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem;">
-                        Your Longevity Advantage is already visible. Together, we will work to unlock more of it.
-                    </p>
-                    <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0; line-height: 1.6;">
-                        We wish you every success as you continue your journey towards greater vitality, energy, and longevity. Thank you for entrusting us with your Discovery Session. We hope to have the opportunity to work alongside you as your trusted partner, helping you build the habits, capabilities, and fitness reserve that support a longer, healthier, and more fulfilling life.
-                    </p>
                 </div>
             </div>
 
@@ -1328,25 +1253,24 @@
             </div>
         </div>
     </div>
-    
-    <!-- MODAL 4: DISCOVERY CALL BOOKING FORM -->
+
+    <!-- MODAL 5: DISCOVERY CALL BOOKING FORM -->
     <div id="discoveryModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('discoveryModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('discoveryModal')" aria-label="Close modal">&times;</span>
             <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Book Your Discovery Call</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem;">
                 Request a complimentary 30-minute strategic consultation.
             </p>
             
             <form id="discoveryForm" onsubmit="handleDiscoverySubmit(event)">
-                <input type="text" id="discName" class="modal-input" placeholder="Full Name" required>
-                
-                <input type="text" id="discDob" class="modal-input" placeholder="Date of Birth (DD/MM/YYYY)" maxlength="10" required oninput="formatDobInput(this)">
+                <input type="text" id="discName" class="modal-input" placeholder="Full Name" aria-label="Full Name" required>
+                <input type="text" id="discDob" class="modal-input" placeholder="Date of Birth (DD/MM/YYYY)" aria-label="Date of Birth" maxlength="10" required oninput="formatDobInput(this)">
                 <span id="dobError" style="color: #ef4444; font-size: 0.8rem; display: none; text-align: left; margin-bottom: 0.5rem;">Please enter a valid date in DD/MM/YYYY format.</span>
 
-                <input type="email" id="discEmail" class="modal-input" placeholder="Email Address" required>
-                <input type="tel" id="discPhone" class="modal-input" placeholder="Contact Telephone Number" required>
-                <textarea id="discMessage" class="modal-input" placeholder="Tell us about your goals, current challenges, or anything you'd like us to know..."></textarea>
+                <input type="email" id="discEmail" class="modal-input" placeholder="Email Address" aria-label="Email Address" required>
+                <input type="tel" id="discPhone" class="modal-input" placeholder="Contact Telephone Number" aria-label="Contact Telephone Number" required>
+                <textarea id="discMessage" class="modal-input" placeholder="Tell us about your goals, current challenges, or anything you'd like us to know..." aria-label="Additional Message"></textarea>
                 
                 <button type="submit" id="discSubmitBtn" class="btn-primary" style="width: 100%; margin-top: 0.75rem; padding: 0.8rem;">
                     Request Discovery Call &rarr;
@@ -1362,25 +1286,20 @@
         </div>
     </div>
 
-    <!-- MODAL 5: VIDEO & FAQ EXPANDED VIEW -->
+    <!-- MODAL 6: VIDEO & FAQ EXPANDED VIEW -->
     <div id="faqVideoModal" class="modal">
         <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
-            <span class="close-btn" onclick="closeModal('faqVideoModal')">&times;</span>
+            <span class="close-btn" onclick="closeModal('faqVideoModal')" aria-label="Close modal">&times;</span>
             
             <h2 style="color: var(--text-light); font-size: 1.6rem; margin-bottom: 0.75rem; text-align: center;">
                 The Longevity Advantage Protocol
             </h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; text-align: center; margin-bottom: 2rem; line-height: 1.6; max-width: 750px; margin-left: auto; margin-right: auto;">
-                Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, identify your biggest opportunities, and determine whether The Longevity Advantage is the right fit for your journey.
+                Imagine having more energy, greater resilience and the confidence that comes from knowing you're investing in your future self. Begin with a complimentary 30-minute Discovery Call, where we discuss your challenges, explore your goals, and determine if The Longevity Advantage is right for you.
             </p>
 
             <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; background: #0f1115; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 2.5rem;">
-                <video 
-                    controls 
-                    controlsList="nodownload" 
-                    playsinline
-                    preload="metadata"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                <video controls controlsList="nodownload" playsinline preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                     <source src="welcome-video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -1389,7 +1308,7 @@
             <div style="text-align: center; background: rgba(37, 99, 235, 0.08); border: 1px solid var(--accent); border-radius: 8px; padding: 2rem; margin-bottom: 3rem;">
                 <h3 style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 0.5rem;">Ready to take the next step?</h3>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                    Schedule a complimentary 30-minute Discovery Call to discuss your baseline goals and determine if TLA is the right fit.
+                    Schedule a complimentary 30-minute Discovery Call to discuss your baseline goals.
                 </p>
                 <button onclick="closeModal('faqVideoModal'); openModal('discoveryModal');" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
                     Book Your Discovery Call &rarr;
@@ -1404,84 +1323,14 @@
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What is the Longevity Advantage?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Your Longevity Advantage is the benefit that comes from having greater energy, stronger health, sharper performance, and increased resilience than would otherwise be possible. It is the advantage that enables you to achieve more, enjoy more, and remain capable for longer.
+                        Your Longevity Advantage is the benefit that comes from having greater energy, stronger health, sharper performance, and increased resilience. It enables you to achieve more and remain capable for longer.
                     </p>
                 </div>
 
                 <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
                     <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What exactly does TLA offer?</h4>
                     <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        The Longevity Advantage is a personalised vitality and longevity advisory service designed to help individuals improve their health, energy, resilience, performance, and long-term quality of life. Through tailored guidance, practical daily actions, and ongoing support, we help clients make meaningful, sustainable progress toward their goals.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Who is TLA designed for?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        TLA is designed for professionals, business leaders, entrepreneurs, and individuals who want to take a more proactive approach to their health, vitality, and future wellbeing. Whether your goal is greater energy, improved fitness, healthy ageing, or enhanced performance, the guidance is tailored to your circumstances and objectives.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How personalised is the programme?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        No two individuals are the same. Recommendations are tailored to your goals, current health status, lifestyle, preferences, and constraints. Rather than following a generic plan, you receive guidance designed around what is realistic, meaningful, and sustainable for you.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Do I need to be fit or healthy before I start?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Not at all. Many clients begin because they want more energy, better habits, improved fitness, weight management, or simply greater control over their long-term health. The programme is designed to meet you where you are today and help you move forward progressively.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Will I need to make major lifestyle changes?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        No. The focus is on consistent, high-impact actions rather than dramatic overhauls. Small improvements, applied consistently, often create the greatest long-term results. We aim to build habits that complement your life rather than compete with it.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What makes TLA different from traditional coaching?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        TLA combines evidence-informed longevity practices with highly personalised guidance, accountability, and practical implementation. Rather than providing information alone, we help clients translate knowledge into consistent action that fits their lifestyle.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How quickly will I notice results?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Every individual is different, but many clients begin noticing improvements in areas such as energy, sleep quality, focus, motivation, and wellbeing within the first few weeks. Longer-term benefits develop through consistent application of the programme's principles over time.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Is this focused solely on physical health?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        No. While physical health is fundamental, true longevity also depends on mindset, resilience, purpose, relationships, recovery, and sustainable performance. The Longevity Advantage takes a holistic view of what it means to thrive throughout life.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">What support will I receive?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Each client receives personalised guidance, regular review points, practical recommendations, and accountability support. The aim is to ensure you always know the next most important action to take and have support available on your journey.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">How is progress measured?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Progress is measured through a combination of objective indicators and personal outcomes. Depending on your goals, this may include energy levels, fitness markers, body composition, recovery, habits, wellbeing, and overall quality of life.
-                    </p>
-                </div>
-
-                <div style="background: #0f1115; border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem;">
-                    <h4 style="color: var(--accent); font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600;">Is TLA suitable for long-term support?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">
-                        Yes. While some clients join to address a specific objective, many choose ongoing support as a trusted advisor for maintaining momentum, adapting priorities, and continuing to optimise their health and vitality over time.
+                        The Longevity Advantage is a personalised vitality and longevity advisory service designed to help individuals improve their health, energy, performance, and long-term quality of life.
                     </p>
                 </div>
             </div>
@@ -1490,7 +1339,8 @@
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastNotification" class="toast-notification">
-        <span id="toastMessage"></span>
+        <span style="font-size: 1.2rem; color: var(--accent-teal);">ℹ️</span>
+        <div id="toastMessage" style="line-height: 1.45;"></div>
     </div>
     
     <footer>
@@ -1507,16 +1357,6 @@
 
         const VAULT_KEY = "TLA2026";
         const CLIENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542";
-
-        function showNotification(message) {
-            const toast = document.getElementById('toastNotification');
-            const msgEl = document.getElementById('toastMessage');
-            msgEl.innerText = message;
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 5000);
-        }
 
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
@@ -1578,12 +1418,20 @@
             window.scrollTo(0, 0);
         }
 
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 6000);
+        }
+
         function openProtocolPage(title) {
-            showNotification(
+            showToast(
                 `Accessing ${title} Module.\n\n` +
-                `Should you choose to continue your journey with TLA, the next step is our Deeper Discovery Consultation. ` +
-                `Following completion, your TLA Advantage Advisor and Atlas will create a highly personalised roadmap of guidance, ` +
-                `resources, and practical actions that will appear here to support your continued progress.`
+                `Following your Deeper Discovery Consultation, your TLA Advisor and Atlas will create your personalised roadmap here.`
             );
         }
 
@@ -1673,10 +1521,10 @@
                     document.getElementById('discoveryForm').style.display = 'none';
                     document.getElementById('discoverySuccess').style.display = 'block';
                 } else {
-                    showNotification("Submission error. Please check your network or form endpoint setting.");
+                    showToast("Submission error. Please check your Formspree endpoint setting.");
                 }
             } catch (err) {
-                showNotification("Network connection error. Please try again.");
+                showToast("Network connection error. Please try again.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalBtnText;
@@ -1685,6 +1533,7 @@
     </script>
 </body>
 </html>
+
 
 
 
