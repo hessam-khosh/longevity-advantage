@@ -123,6 +123,28 @@
         textarea.modal-input { resize: vertical; min-height: 90px; }
         .error-msg { color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem; }
 
+        /* Custom Notification Toast replacing alert() */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #081a30;
+            color: #f8fafc;
+            border: 1px solid var(--accent-teal);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Client Dashboard View */
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
         .dash-btn { background-color: var(--card-bg); border: 1px solid var(--border); padding: 1.5rem 1rem; border-radius: 8px; color: var(--text-light); font-weight: 600; font-size: 1rem; text-decoration: none; text-align: center; transition: all 0.2s; cursor: pointer; }
@@ -320,12 +342,12 @@
     <div id="mainView">
         <!-- HERO SECTION -->
         <section class="hero">
-           <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25; font-weight: 800; color: var(--text-light);">
-    In an Accelerating World, We Help You Extend Not Just Your Years, But Your 
-    <span class="highlight-cyan">Vitality</span>, 
-    <span class="highlight-green">Purpose</span>, and 
-    <span class="highlight-teal">Impact</span>
-</h1>
+            <h1 style="margin-bottom: 2rem; font-size: 2.6rem; line-height: 1.25; font-weight: 800; color: var(--text-light);">
+                In an Accelerating World, We Help You Extend Not Just Your Years, But Your 
+                <span class="highlight-cyan">Vitality</span>, 
+                <span class="highlight-green">Purpose</span>, and 
+                <span class="highlight-teal">Impact</span>
+            </h1>
 
             <!-- GLASSMORPHIC BRAND NARRATIVE BOX -->
             <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(45, 212, 191, 0.35); padding: 1.75rem; border-radius: 14px; margin: 0 auto 3rem auto; text-align: center; max-width: 800px; box-shadow: 0 10px 30px rgba(0, 201, 255, 0.15);">
@@ -337,234 +359,199 @@
                 </p>
             </div>
 
-    <!-- TRIAD SUPPORT SECTION (HERO-COLOR FILLED GLOWING HEXAGONS) -->
-<style>
-    .advantage-team-container {
-        position: relative;
-        max-width: 900px;
-        margin: 1.5rem auto 1rem auto;
-        padding: 1rem 0;
-    }
+            <!-- TRIAD SUPPORT SECTION -->
+            <style>
+                .advantage-team-container {
+                    position: relative;
+                    max-width: 900px;
+                    margin: 1.5rem auto 1rem auto;
+                    padding: 1rem 0;
+                }
 
-    .hex-triad-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.25rem;
-        position: relative;
-        z-index: 2;
-    }
+                .hex-triad-grid {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1.25rem;
+                    position: relative;
+                    z-index: 2;
+                }
 
-    .hex-bottom-row {
-        display: flex;
-        justify-content: center;
-        gap: 1.75rem;
-        width: 100%;
-        max-width: 780px;
-    }
+                .hex-bottom-row {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1.75rem;
+                    width: 100%;
+                    max-width: 780px;
+                }
 
-    /* BASE GLOWING HEXAGON CARD STRUCTURE */
-    .hex-card {
-        position: relative;
-        clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 1.25rem 1.5rem;
-        transition: transform 0.3s ease, filter 0.3s ease;
-    }
+                .hex-card {
+                    position: relative;
+                    clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1.25rem 1.5rem;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                }
 
-    .hex-card:hover {
-        transform: translateY(-4px);
-    }
+                .hex-card:hover {
+                    transform: translateY(-4px);
+                }
 
-    /* 1. "YOU" CARD - CYAN VITALITY FILL (SHIFTED CONTENT UPWARDS) */
-    .hex-card-you {
-        width: 320px;
-        min-height: 155px;
-        background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-        color: #040d1a;
-        filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.65));
-        justify-content: flex-start;
-        padding-top: 1.25rem;
-    }
+                .hex-card-you {
+                    width: 320px;
+                    min-height: 155px;
+                    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+                    color: #040d1a;
+                    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.65));
+                    justify-content: flex-start;
+                    padding-top: 1.25rem;
+                }
 
-    /* 2. "ADVISOR" CARD - GREEN PURPOSE FILL */
-    .hex-card-advisor {
-        flex: 1;
-        max-width: 310px;
-        min-height: 145px;
-        background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%);
-        color: #040d1a;
-        filter: drop-shadow(0 0 18px rgba(74, 222, 128, 0.55));
-    }
+                .hex-card-advisor {
+                    flex: 1;
+                    max-width: 310px;
+                    min-height: 145px;
+                    background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%);
+                    color: #040d1a;
+                    filter: drop-shadow(0 0 18px rgba(74, 222, 128, 0.55));
+                }
 
-    /* 3. "ATLAS" CARD - TEAL IMPACT FILL */
-    .hex-card-atlas {
-        flex: 1;
-        max-width: 310px;
-        min-height: 145px;
-        background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
-        color: #040d1a;
-        filter: drop-shadow(0 0 18px rgba(45, 212, 191, 0.55));
-    }
+                .hex-card-atlas {
+                    flex: 1;
+                    max-width: 310px;
+                    min-height: 145px;
+                    background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+                    color: #040d1a;
+                    filter: drop-shadow(0 0 18px rgba(45, 212, 191, 0.55));
+                }
 
-    .hex-title {
-        font-weight: 900;
-        color: #040d1a;
-        margin-bottom: 0.2rem;
-        letter-spacing: 0.5px;
-    }
+                .hex-title {
+                    font-weight: 900;
+                    color: #040d1a;
+                    margin-bottom: 0.2rem;
+                    letter-spacing: 0.5px;
+                }
 
-    .hex-subtext-primary {
-        font-size: 0.92rem;
-        color: #0f172a;
-        font-weight: 800;
-        margin-bottom: 0.2rem;
-        line-height: 1.25;
-    }
+                .hex-subtext-primary {
+                    font-size: 0.92rem;
+                    color: #0f172a;
+                    font-weight: 800;
+                    margin-bottom: 0.2rem;
+                    line-height: 1.25;
+                }
 
-    .hex-subtext-secondary {
-        font-size: 0.82rem;
-        color: #1e293b;
-        font-weight: 600;
-        line-height: 1.35;
-        margin: 0;
-    }
+                .hex-subtext-secondary {
+                    font-size: 0.82rem;
+                    color: #1e293b;
+                    font-weight: 600;
+                    line-height: 1.35;
+                    margin: 0;
+                }
 
-    /* MOBILE RESPONSIVE TWEAKS */
-    @media (max-width: 680px) {
-        .hex-bottom-row {
-            flex-direction: column;
-            align-items: center;
-            gap: 1.25rem;
-        }
-        .hex-card-you, .hex-card-advisor, .hex-card-atlas {
-            width: 100%;
-            max-width: 300px;
-            padding: 1.25rem 1rem;
-        }
-        .hex-card-you {
-            padding-top: 1.1rem;
-        }
-    }
-</style>
+                @media (max-width: 680px) {
+                    .hex-bottom-row {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 1.25rem;
+                    }
+                    .hex-card-you, .hex-card-advisor, .hex-card-atlas {
+                        width: 100%;
+                        max-width: 300px;
+                        padding: 1.25rem 1rem;
+                    }
+                    .hex-card-you {
+                        padding-top: 1.1rem;
+                    }
+                }
+            </style>
 
-<div style="margin-top: 1.5rem; margin-bottom: 2rem; text-align: center;">
-    <h2 style="font-size: 1.75rem; font-weight: 800; color: var(--text-light); margin-bottom: 1.5rem;">
-        Your Advantage Team
-    </h2>
+            <div style="margin-top: 1.5rem; margin-bottom: 2rem; text-align: center;">
+                <h2 style="font-size: 1.75rem; font-weight: 800; color: var(--text-light); margin-bottom: 1.5rem;">
+                    Your Advantage Team
+                </h2>
 
-    <div class="advantage-team-container">
-        <!-- SVG CONNECTING CONNECTOR ARROWS -->
-        <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;" viewBox="0 0 900 320" fill="none">
-            <defs>
-                <marker id="hexArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
-                </marker>
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38bdf8" />
-                    <stop offset="50%" stop-color="#4ade80" />
-                    <stop offset="100%" stop-color="#2dd4bf" />
-                </linearGradient>
-            </defs>
-            <!-- CURVED DASHED CONNECTORS -->
-            <path d="M 240 200 Q 270 110 380 90" stroke="url(#lineGrad)" stroke-width="3" fill="none" marker-end="url(#hexArrow)" stroke-dasharray="6,6" />
-            <path d="M 660 200 Q 630 110 520 90" stroke="url(#lineGrad)" stroke-width="3" fill="none" marker-end="url(#hexArrow)" stroke-dasharray="6,6" />
-        </svg>
+                <div class="advantage-team-container">
+                    <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;" viewBox="0 0 900 320" fill="none">
+                        <defs>
+                            <marker id="hexArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
+                            </marker>
+                            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#38bdf8" />
+                                <stop offset="50%" stop-color="#4ade80" />
+                                <stop offset="100%" stop-color="#2dd4bf" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 240 200 Q 270 110 380 90" stroke="url(#lineGrad)" stroke-width="3" fill="none" marker-end="url(#hexArrow)" stroke-dasharray="6,6" />
+                        <path d="M 660 200 Q 630 110 520 90" stroke="url(#lineGrad)" stroke-width="3" fill="none" marker-end="url(#hexArrow)" stroke-dasharray="6,6" />
+                    </svg>
 
-        <div class="hex-triad-grid">
-            
-            <<!-- TOP HEXAGON: YOU -->
-<div class="hex-card hex-card-you">
-    <h3 class="hex-title" style="font-size: 1.4rem;">You</h3>
-    <p class="hex-subtext-primary">
-        Your goals, challenges &amp; future
-    </p>
-    <p class="hex-subtext-secondary">
-        You remain at the centre of everything we do
-    </p>
-</div>
+                    <div class="hex-triad-grid">
+                        <div class="hex-card hex-card-you">
+                            <h3 class="hex-title" style="font-size: 1.4rem;">You</h3>
+                            <p class="hex-subtext-primary">Your goals, challenges &amp; future</p>
+                            <p class="hex-subtext-secondary">You remain at the centre of everything we do</p>
+                        </div>
 
-<!-- BOTTOM LEFT: YOUR TLA ADVISOR -->
-<div class="hex-card hex-card-advisor">
-    <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">🛡️</span>
-    <h4 class="hex-title" style="font-size: 1.05rem;">Your TLA Advisor</h4>
-    <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">
-        Personal guidance, accountability and continuous support
-    </p>
-</div>
+                        <div class="hex-bottom-row">
+                            <div class="hex-card hex-card-advisor">
+                                <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">🛡️</span>
+                                <h4 class="hex-title" style="font-size: 1.05rem;">Your TLA Advisor</h4>
+                                <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">Personal guidance, accountability and continuous support</p>
+                            </div>
 
-<!-- BOTTOM RIGHT: ATLAS AI PARTNER -->
-<div class="hex-card hex-card-atlas">
-    <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">⚡</span>
-    <h4 class="hex-title" style="font-size: 1.05rem;">Atlas — AI Partner</h4>
-    <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">
-        Insights, tracking and intelligent recommendations
-    </p>
-</div>
+                            <div class="hex-card hex-card-atlas">
+                                <span style="font-size: 1.4rem; margin-bottom: 0.15rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">⚡</span>
+                                <h4 class="hex-title" style="font-size: 1.05rem;">Atlas — AI Partner</h4>
+                                <p class="hex-subtext-secondary" style="font-weight: 700; color: #0f172a;">Insights, tracking and intelligent recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-light); margin-top: 1.5rem; margin-bottom: 0.5rem; text-align: center;">
+                    Together, this partnership creates Your Advantage.
+                </p>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- DIRECTIVE SUBTEXT -->
-    <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-light); margin-top: 1.5rem; margin-bottom: 0.5rem; text-align: center;">
-        Together, this partnership creates Your Advantage.
-    </p>
-</div>
-
-        <!-- 4 PILLARS OF THE LONGEVITY ADVANTAGE SECTION (COMPACT 2x2 GRID) -->
+        <!-- 4 PILLARS SECTION -->
         <section id="protocol" class="section">
             <h2 class="section-title" style="margin-bottom: 0.5rem;">The 4 Pillars of The Longevity Advantage</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 800px; margin: 0 auto 2rem auto; line-height: 1.5;">
                 A connected approach to feeling better today and investing in your future.
             </p>
 
-            <!-- COMPACT 2x2 COLOR-CODED PILLAR GRID -->
             <div class="pillars-grid">
-                
-                <!-- PILLAR 1: PHYSICAL VITALITY -->
                 <div class="pillar-card" style="background: #e2e8f0; border-left: 4px solid #10b981;">
                     <div class="pillar-icon">📈</div>
                     <h3 class="pillar-title" style="color: #0f172a;">Physical vitality</h3>
-                    <p class="pillar-desc" style="color: #334155;">
-                        Build strength, fitness and physical resilience.
-                    </p>
+                    <p class="pillar-desc" style="color: #334155;">Build strength, fitness and physical resilience.</p>
                 </div>
 
-                <!-- PILLAR 2: ENERGY -->
                 <div class="pillar-card" style="background: #fef3c7; border-left: 4px solid #f59e0b;">
                     <div class="pillar-icon">☀️</div>
                     <h3 class="pillar-title" style="color: #78350f;">Energy</h3>
-                    <p class="pillar-desc" style="color: #92400e;">
-                        Increase energy, movement and daily performance.
-                    </p>
+                    <p class="pillar-desc" style="color: #92400e;">Increase energy, movement and daily performance.</p>
                 </div>
 
-                <!-- PILLAR 3: MINDSET -->
                 <div class="pillar-card" style="background: #f3e8ff; border-left: 4px solid #a855f7;">
                     <div class="pillar-icon">🧠</div>
                     <h3 class="pillar-title" style="color: #581c87;">Mindset</h3>
-                    <p class="pillar-desc" style="color: #6b21a8;">
-                        Develop focus, resilience and sustainable habits.
-                    </p>
+                    <p class="pillar-desc" style="color: #6b21a8;">Develop focus, resilience and sustainable habits.</p>
                 </div>
 
-                <!-- PILLAR 4: LONGEVITY -->
                 <div class="pillar-card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
                     <div class="pillar-icon">🌱</div>
                     <h3 class="pillar-title" style="color: #0c4a6e;">Longevity</h3>
-                    <p class="pillar-desc" style="color: #0369a1;">
-                        Optimise healthspan and long-term wellbeing.
-                    </p>
+                    <p class="pillar-desc" style="color: #0369a1;">Optimise healthspan and long-term wellbeing.</p>
                 </div>
-
             </div>
 
-            <!-- SUPPORTING STATEMENT UNDERNEATH -->
             <div style="text-align: center; background: rgba(37, 99, 235, 0.05); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; max-width: 750px; margin: 0 auto;">
                 <p style="font-size: 0.95rem; color: var(--text-light); margin: 0; font-weight: 500; letter-spacing: 0.3px;">
                     Powered by personalised advisory, AI-enhanced insight, measurable data, behavioural science and practical daily implementation.
@@ -572,7 +559,7 @@
             </div>
         </section>
 
-        <!-- YOUR JOURNEY: 5-STEP ADVISORY PROCESS -->
+        <!-- YOUR JOURNEY SECTION -->
         <section id="journey" class="section">
             <h2 class="section-title" style="margin-bottom: 0.5rem; color: #ffffff;">
                 Your <span class="gradient-text">Journey</span>
@@ -582,8 +569,7 @@
             </p>
 
             <div class="journey-container">
-                
-                <!-- STEP 01: DISCOVERY -->
+                <!-- STEP 01 -->
                 <div class="journey-card-wrapper odd">
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -600,8 +586,7 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad1)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow1)"/>
+                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" stroke="url(#cyanArcGrad1)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow1)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">01</div>
@@ -621,7 +606,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 02: ASSESSMENT -->
+                <!-- STEP 02 -->
                 <div class="journey-card-wrapper even">
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -638,8 +623,7 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#tealArcGrad2)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow2)"/>
+                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" stroke="url(#tealArcGrad2)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow2)"/>
                     </svg>
 
                     <div class="journey-step-node node-teal">02</div>
@@ -659,7 +643,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 03: PERSONAL ADVANTAGE PLAN -->
+                <!-- STEP 03 -->
                 <div class="journey-card-wrapper odd">
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -676,8 +660,7 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad3)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow3)"/>
+                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" stroke="url(#cyanArcGrad3)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow3)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">03</div>
@@ -698,7 +681,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 04: GUIDED PROGRESS -->
+                <!-- STEP 04 -->
                 <div class="journey-card-wrapper even">
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -715,8 +698,7 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#tealArcGrad4)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow4)"/>
+                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" stroke="url(#tealArcGrad4)" stroke-width="3.5" stroke-linecap="round" filter="url(#tealGlow4)"/>
                     </svg>
 
                     <div class="journey-step-node node-teal">04</div>
@@ -735,7 +717,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 05: LONG-TERM ADVANTAGE -->
+                <!-- STEP 05 -->
                 <div class="journey-card-wrapper odd">
                     <svg class="arc-connector" viewBox="0 0 130 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -752,8 +734,7 @@
                                 </feMerge>
                             </filter>
                         </defs>
-                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" 
-                              stroke="url(#cyanArcGrad5)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow5)"/>
+                        <path d="M 28 55 C -5 22, 25 2, 75 8 C 110 12, 130 30, 130 55 C 130 80, 110 98, 75 102 C 25 108, -5 88, 28 55" stroke="url(#cyanArcGrad5)" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow5)"/>
                     </svg>
 
                     <div class="journey-step-node node-cyan">05</div>
@@ -770,11 +751,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- TRANSFORMATIONAL OUTCOMES SECTION -->
+        <!-- TRANSFORMATIONAL OUTCOMES -->
         <section id="outcomes" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">
                 What Changes When You Gain Your Advantage?
@@ -811,7 +791,7 @@
             </div>
         </section>
 
-        <!-- TARGET AUDIENCE / WHO THIS IS FOR SECTION -->
+        <!-- TARGET AUDIENCE -->
         <section id="audience" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">Who This Is For</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 850px; margin: 0 auto 3rem auto; line-height: 1.6;">
@@ -849,7 +829,7 @@
             </div>
         </section>
 
-        <!-- OUR PHILOSOPHY SECTION -->
+        <!-- PHILOSOPHY SECTION -->
         <section id="about" class="section">
             <h2 class="section-title" style="margin-bottom: 0.75rem;">Our Philosophy</h2>
             
@@ -862,10 +842,9 @@
                 <p style="margin: 0; font-weight: 600; color: var(--text-light);">Because lasting change rarely comes from information alone. It comes from clarity, accountability, support and a plan built specifically around you.</p>
             </div>
 
-            <!-- TWO HEADINGS CARDS -->
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 800px; margin: 0 auto 2.5rem auto;">
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
-                    <img src="Hess-BLTC-prize-CloseUp.jpg" alt="Dr Hessam Khoshnevisan" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
+                    <img src="https://placehold.co/100x100/081a30/38bdf8?text=HK" alt="Dr Hessam Khoshnevisan" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
                     <div>
                         <h3 style="font-size: 1.2rem; color: var(--text-light); margin: 0; font-weight: 700;">Dr Hessam Khoshnevisan</h3>
                         <p style="font-size: 0.85rem; color: var(--accent); margin: 0; font-weight: 600;">Founder, The Longevity Advantage</p>
@@ -873,7 +852,7 @@
                 </div>
 
                 <div class="card" style="border-top: 3px solid var(--accent); padding: 1.5rem; display: flex; align-items: center; gap: 1.25rem;">
-                    <img src="Atlas Logo emblem.png" alt="Atlas Emblem" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
+                    <img src="https://placehold.co/100x100/081a30/2dd4bf?text=Atlas" alt="Atlas Emblem" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); flex-shrink: 0;" />
                     <div>
                         <h3 style="font-size: 1.2rem; color: var(--text-light); margin: 0; font-weight: 700;">Atlas</h3>
                         <p style="font-size: 0.85rem; color: var(--accent); margin: 0; font-weight: 600;">The TLA Longevity Intelligence System</p>
@@ -881,7 +860,6 @@
                 </div>
             </div>
 
-            <!-- CONCLUDING PHILOSOPHY STATEMENT BLOCK -->
             <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 12px; padding: 2rem; max-width: 850px; margin: 0 auto; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
                 <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Most programmes offer information.</p>
                 <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Some offer technology.</p>
@@ -906,7 +884,7 @@
             </div>
         </section>
 
-        <!-- DUAL FEATURE SECTION: VAULT PREVIEW & CLIENT PORTAL -->
+        <!-- VAULT & PORTAL SECTION -->
         <section id="vault-teaser" class="section">
             <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
                 <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--accent);">
@@ -957,31 +935,25 @@
             </div>
         </section>
 
-        <!-- REFINED FINAL CTA SECTION -->
+        <!-- FINAL CTA SECTION -->
         <section id="apply" class="section">
             <div class="navy-hex-section">
-                
-                <!-- HEADLINE WITH GOLD "Future Version Of You" -->
                 <h2 style="font-size: 2.1rem; font-weight: 800; margin-bottom: 1.5rem; color: #ffffff; line-height: 1.3; letter-spacing: 0.3px;">
                     The <span class="highlight-gold">Future Version Of You</span> Is Being Built Today
                 </h2>
                 
-                <!-- PARAGRAPH 1 -->
                 <p style="color: var(--text-offwhite); font-size: 1.05rem; line-height: 1.65; margin-bottom: 1.25rem;">
                     Every decision you make today contributes to your future health, vitality and quality of life.
                 </p>
 
-                <!-- CONDENSED SINGLE PARAGRAPH 2 -->
                 <p style="color: var(--text-offwhite); font-size: 1.05rem; line-height: 1.65; margin-bottom: 1.25rem;">
                     Most people don't need more information. They need the right guidance, support and accountability to turn intention into lasting change.
                 </p>
 
-                <!-- QUOTE SENTENCE -->
                 <p style="color: var(--accent-gold); font-size: 1.25rem; font-weight: 700; font-style: italic; line-height: 1.5; margin-top: 2.5rem; margin-bottom: 2.5rem; padding: 0 1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
                     "Your health deserves the same level of strategic guidance as every other important area of your life."
                 </p>
                 
-                <!-- BUTTON WITH NEW ACTION TEXT -->
                 <button onclick="openModal('faqVideoModal')" class="btn-gold">
                     Begin Your Discovery &rarr;
                 </button>
@@ -989,7 +961,7 @@
         </section>
     </div>
 
-    <!-- CLIENT DASHBOARD VIEW (HIDDEN UNTIL CLIENT LOGIN) -->
+    <!-- CLIENT DASHBOARD VIEW -->
     <div id="dashboardView" class="section" style="display: none; padding-top: 2rem;">
         <div class="tracker-section" style="max-width: 900px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
@@ -1137,7 +1109,7 @@
         </div>
     </div>
 
-    <!-- MODAL 6: DEDICATED COMPLETE REPORT FOR FAFAR -->
+    <!-- MODAL 6: COMPLETE REPORT FOR FAFAR -->
     <div id="fafarReportModal" class="modal">
         <div class="modal-content" style="max-width: 900px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
             <span class="close-btn" onclick="closeModal('fafarReportModal')">&times;</span>
@@ -1382,7 +1354,6 @@
             <form id="discoveryForm" onsubmit="handleDiscoverySubmit(event)">
                 <input type="text" id="discName" class="modal-input" placeholder="Full Name" required>
                 
-                <!-- DATE OF BIRTH FIELD WITH FORMAT MASKING -->
                 <input type="text" id="discDob" class="modal-input" placeholder="Date of Birth (DD/MM/YYYY)" maxlength="10" required oninput="formatDobInput(this)">
                 <span id="dobError" style="color: #ef4444; font-size: 0.8rem; display: none; text-align: left; margin-bottom: 0.5rem;">Please enter a valid date in DD/MM/YYYY format.</span>
 
@@ -1529,6 +1500,11 @@
             </div>
         </div>
     </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastNotification" class="toast-notification">
+        <span id="toastMessage"></span>
+    </div>
     
     <footer>
         &copy; 2026 The Longevity Advantage. All rights reserved.
@@ -1544,6 +1520,16 @@
 
         const VAULT_KEY = "TLA2026";
         const CLIENT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScYIzuGp177S3rRNIMECRxQ7LPOURoalhfVA6BaJzmxeeswdw/viewform?usp=sharing&ouid=112886386324327961542";
+
+        function showNotification(message) {
+            const toast = document.getElementById('toastNotification');
+            const msgEl = document.getElementById('toastMessage');
+            msgEl.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 5000);
+        }
 
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
@@ -1606,7 +1592,7 @@
         }
 
         function openProtocolPage(title) {
-            alert(
+            showNotification(
                 `Accessing ${title} Module.\n\n` +
                 `Should you choose to continue your journey with TLA, the next step is our Deeper Discovery Consultation. ` +
                 `Following completion, your TLA Advantage Advisor and Atlas will create a highly personalised roadmap of guidance, ` +
@@ -1700,10 +1686,10 @@
                     document.getElementById('discoveryForm').style.display = 'none';
                     document.getElementById('discoverySuccess').style.display = 'block';
                 } else {
-                    alert("Submission error. Please check your Formspree Endpoint setting.");
+                    showNotification("Submission error. Please check your network or form endpoint setting.");
                 }
             } catch (err) {
-                alert("Network connection error. Please try again.");
+                showNotification("Network connection error. Please try again.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalBtnText;
@@ -1712,4 +1698,5 @@
     </script>
 </body>
 </html>
+
 
