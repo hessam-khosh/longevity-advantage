@@ -569,13 +569,13 @@
         </div>
     </div>
 
-    <!-- ANONYMISED EXAMPLE REPORT MODAL -->
+    <!-- REVISED ANONYMISED EXAMPLE REPORT MODAL -->
     <div id="fafarReportModal" class="modal">
         <div class="modal-content" style="max-width: 900px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2rem;">
             <span class="close-btn" onclick="closeModal('fafarReportModal')">&times;</span>
             
             <div style="background: var(--accent-gold); color: #040d1a; font-weight: 800; font-size: 0.75rem; letter-spacing: 1.5px; padding: 0.25rem 0.75rem; border-radius: 4px; display: inline-block; margin-bottom: 1rem; text-transform: uppercase;">
-                Example Report, Fictional Client
+                Sample First Report, with partial data
             </div>
 
             <h2 style="color: var(--text-light); font-size: 1.65rem; margin-bottom: 0.3rem; text-align: center;">
@@ -596,6 +596,7 @@
                     This report represents the first step in understanding your unique Longevity Advantage. Drawing on your body composition data, fitness assessment results and Discovery responses, it provides an integrated view of your current health and vitality profile.
                 </p>
 
+                <!-- EXECUTIVE SUMMARY -->
                 <div style="background: var(--bg-dark); border-left: 4px solid var(--accent); border-radius: 6px; padding: 1.25rem; margin-bottom: 2rem;">
                     <h3 style="color: var(--accent); font-size: 1.15rem; margin-bottom: 0.5rem;">Executive Summary</h3>
                     <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0;">
@@ -603,6 +604,7 @@
                     </p>
                 </div>
 
+                <!-- BODY COMPOSITION SNAPSHOT -->
                 <h3 style="color: var(--accent-teal); font-size: 1.15rem; margin-bottom: 0.4rem;">Body Composition Snapshot</h3>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
                     Assessment Tool Used: Technogym Bioelectrical Impedance Analysis (BIA) System
@@ -628,29 +630,100 @@
                     </table>
                 </div>
 
-                <h3 style="color: var(--accent-teal); font-size: 1.15rem; margin-bottom: 0.4rem;">Fitness Assessment &amp; Aerobic Capacity</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
-                    You completed the Rockport 1-Mile Walking Test in 15 mins 32 secs (heart rate 132 bpm). 
-                </p>
-                <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.65; margin-bottom: 1rem;">
-                    <strong>Understanding Your Results:</strong> Your walk completion time shows good functional mobility and submaximal exercise tolerance for your age bracket. However, the calculated estimated VO₂ Max score of <strong>29.86 mL/kg/min</strong> is classified in the <strong>Poor</strong> bracket (below 30.1 mL/kg/min). These two markers evaluate different parameters: the walk test measures practical endurance, while VO₂ max estimates peak oxygen uptake efficiency under demand. Aerobic capacity is highly trainable and will respond directly to targeted weekly conditioning.
-                </p>
+                <!-- FITNESS ASSESSMENT TABLE -->
+                <h3 style="color: var(--accent-teal); font-size: 1.15rem; margin-bottom: 0.4rem;">Fitness Assessment &amp; Physical Capacity</h3>
 
-                <div style="overflow-x: auto; margin-bottom: 1.5rem;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; color: var(--text-light); text-align: left;">
+                <div style="overflow-x: auto; margin-bottom: 0.75rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-light); text-align: left;">
                         <thead>
                             <tr style="border-bottom: 2px solid var(--border); background: rgba(255,255,255,0.03);">
-                                <th style="padding: 0.5rem 0.8rem;">Classification</th>
-                                <th style="padding: 0.5rem 0.8rem;">VO₂ Max Range (mL/kg/min)</th>
+                                <th style="padding: 0.6rem 0.8rem;">Test</th>
+                                <th style="padding: 0.6rem 0.8rem;">Result</th>
+                                <th style="padding: 0.6rem 0.8rem;">Classification</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.4rem 0.8rem;">Excellent (80th Percentile)</td><td style="padding: 0.4rem 0.8rem;">36.7 – 41.0</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.4rem 0.8rem;">Good (60th Percentile)</td><td style="padding: 0.4rem 0.8rem;">33.0 – 36.6</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.4rem 0.8rem;">Fair (40th Percentile)</td><td style="padding: 0.4rem 0.8rem;">30.1 – 32.9</td></tr>
-                            <tr style="border-bottom: 1px solid var(--border); background: rgba(239, 68, 68, 0.15);"><td style="padding: 0.4rem 0.8rem; color: #fca5a5; font-weight: 700;">Poor (Below 40th Percentile)</td><td style="padding: 0.4rem 0.8rem; color: #fca5a5; font-weight: 700;">&lt; 30.1 (Your Score: 29.86)</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: rgba(239, 68, 68, 0.1);">
+                                <td style="padding: 0.5rem 0.8rem;">Cardiorespiratory Fitness</td>
+                                <td style="padding: 0.5rem 0.8rem; color: #ef4444; font-weight: 700;">VO2 Max est &lt; 30.1 (Your Score: 29.86)</td>
+                                <td style="padding: 0.5rem 0.8rem; color: #ef4444; font-weight: 700;">Poor (Below 40th Percentile)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.8rem;">Lower-Body Power</td><td style="padding: 0.5rem 0.8rem;">—</td><td style="padding: 0.5rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.8rem;">Neuromuscular Stability</td><td style="padding: 0.5rem 0.8rem;">—</td><td style="padding: 0.5rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.8rem;">Upper Body &amp; Core</td><td style="padding: 0.5rem 0.8rem;">—</td><td style="padding: 0.5rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.8rem;">Lower-Body Endurance</td><td style="padding: 0.5rem 0.8rem;">—</td><td style="padding: 0.5rem 0.8rem; color: var(--text-muted);">—</td></tr>
                         </tbody>
                     </table>
+                </div>
+
+                <p style="font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem;">
+                    *Note: Different tests are selected for each of the categories above depending on the client's age, approximate current fitness, and individual physical profile.
+                </p>
+
+                <!-- YOUR KEY OPPORTUNITIES OVER THE NEXT 90 DAYS -->
+                <div style="background: var(--bg-dark); border-left: 4px solid var(--accent-gold); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin-bottom: 0.75rem;">Your Key Opportunities over the next 90 Days</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-light); margin-bottom: 0.5rem;">
+                        The primary opportunity is not significant weight loss, but rather creating:
+                    </p>
+                    <p style="font-size: 1rem; color: var(--text-light); font-weight: 700; text-align: center; margin-bottom: 0.75rem; letter-spacing: 0.5px;">
+                        Consistency + Accountability + Support
+                    </p>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                        These would in turn lead to <strong>body composition optimisation</strong>. For example, a modest reduction in body fat while preserving or enhancing muscle mass could lead to improvements in energy levels, confidence, metabolic health and greater physical capability. Over the next 90 days aim to:
+                    </p>
+
+                    <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-light); line-height: 1.65;">
+                        <li style="margin-bottom: 0.5rem;">🎯 Increase daily walking and movement outside the gym</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Improve consistency of energy on waking</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Address evening cravings</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Build an achievable meditation/recovery practice</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Make full use of the support your TLA Advisor is there to provide. Examples include Progress review calls; One-to-one coaching sessions; Video consultations; Goal-setting discussions; <u>Accountability</u> check-ins; Walking meetings or shared physical activity sessions; Guided breathing, mindfulness or meditation practices; Problem-solving and habit-building support.</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Reduce body fat while preserving muscle</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Work with your TLA Advisor to build simple daily habits that increase energy, resilience, and cardiovascular fitness, with progress tracked through improvements in VO₂ max</li>
+                        <li style="margin-bottom: 0.5rem;">🎯 Create resilience plans for periods of stress, when exercise, nutrition and social connection tend to decline</li>
+                    </ul>
+                </div>
+
+                <!-- FUTURE REASSESSMENT BASELINE -->
+                <div style="background: var(--bg-dark); border-left: 4px solid var(--accent-cyan); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+                    <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.85rem;">Future Reassessment Baseline</h3>
+
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; color: var(--text-light); text-align: left;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid var(--border); background: rgba(255,255,255,0.03);">
+                                    <th style="padding: 0.6rem 0.8rem;">Measure</th>
+                                    <th style="padding: 0.6rem 0.8rem;">Current Baseline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Weight</td><td style="padding: 0.45rem 0.8rem;">72.8 kg</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Body Fat %</td><td style="padding: 0.45rem 0.8rem;">27.7%</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Fat Mass</td><td style="padding: 0.45rem 0.8rem;">20.1 kg</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Skeletal Muscle Mass</td><td style="padding: 0.45rem 0.8rem;">29.1 kg</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Phase Angle</td><td style="padding: 0.45rem 0.8rem;">6.1°</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">BMR</td><td style="padding: 0.45rem 0.8rem;">1,505 kcal</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Bone Mineral Content</td><td style="padding: 0.45rem 0.8rem;">3.1 kg</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">VO2 Max</td><td style="padding: 0.45rem 0.8rem;">29.86</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Lower-Body Power</td><td style="padding: 0.45rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Neuromuscular Stability</td><td style="padding: 0.45rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Upper Body &amp; Core</td><td style="padding: 0.45rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                                <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.45rem 0.8rem;">Lower-Body Endurance</td><td style="padding: 0.45rem 0.8rem; color: var(--text-muted);">—</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- IN CONCLUSION -->
+                <div style="background: var(--bg-dark); border-left: 4px solid var(--accent-green); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--accent-green); font-size: 1.15rem; margin-bottom: 0.75rem;">In Conclusion</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.65; margin-bottom: 0.75rem;">
+                        You are beginning this journey from a position of strength. Your assessment reflects a healthy, capable individual with excellent muscle reserves, good cellular vitality and strong long-term potential. The focus over the coming months is not dramatic transformation but intelligent optimisation.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--accent-green); font-weight: 700; line-height: 1.65; margin: 0;">
+                        Your Longevity Advantage is already visible. Together, we will work to unlock more of it.
+                    </p>
                 </div>
             </div>
 
