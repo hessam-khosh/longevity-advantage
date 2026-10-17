@@ -178,7 +178,7 @@
         }
     </style>
     <!-- Supabase JavaScript SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1093,7 +1093,7 @@
                 <span>·</span>
                 <a href="#" onclick="openModal('contactModal'); return false;" style="color: var(--text-muted); text-decoration: none;">Contact</a>
                 <span>·</span>
-                <a href="#" onclick="openModal('loginModal')" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
+                <a href="#" onclick="openModal('loginModal'); return false;" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -1103,7 +1103,7 @@
     </footer>
 
     <script>
-        // 1. Initialize Supabase Client with your project credentials
+        // 1. Initialize Supabase Client with project credentials
         const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1226,4 +1226,5 @@
     </script>
 </body>
 </html>
+
 
