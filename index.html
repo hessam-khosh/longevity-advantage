@@ -209,8 +209,8 @@
             .hero h1 { font-size: 2rem; }
         }
     </style>
-    <!-- Async loading to prevent blocking inline scripts -->
-    <script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Replace the existing async script tag in <head> with this: -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1196,12 +1196,20 @@
         const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
         let supabase = null;
 
-        function getSupabase() {
-            if (!supabase && window.supabase && typeof window.supabase.createClient === 'function') {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+function getSupabase() {
+    if (!supabase) {
+        // Fallback check if global variable loaded slightly later
+        var globalSupabase = window.supabase || (window.supabaseJS && window.supabaseJS.supabase);
+        if (globalSupabase && typeof globalSupabase.createClient === 'function') {
+            try {
+                supabase = globalSupabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (err) {
+                console.error("Supabase creation failed:", err);
             }
-            return supabase;
         }
+    }
+    return supabase;
+}
 
         async function authenticateClient() {
             var email = document.getElementById('clientNameInput').value.trim();
