@@ -452,8 +452,8 @@
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                    <button onclick="openModal('fafarReportModal')" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
-                    <button onclick="openModal('dailyLoggingModal')" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
+                    <button type="button" onclick="openModal('fafarReportModal')" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
+                    <button type="button" onclick="openModal('dailyLoggingModal')" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
                 </div>
             </div>
         </section>
@@ -598,11 +598,11 @@
         <div class="card" style="max-width: 900px; margin: 0 auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
                 <h2 id="clientGreeting" style="color: var(--text-light); margin: 0;">Welcome, Client</h2>
-                <button onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
+                <button type="button" onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
 
             <div style="margin-bottom: 2rem; text-align: center;">
-                <button onclick="openModal('fafarReportModal')" class="btn-primary" style="width: 100%;">
+                <button type="button" onclick="openModal('fafarReportModal')" class="btn-primary" style="width: 100%;">
                     📄 Your Vitality Assessment Report &rarr;
                 </button>
             </div>
@@ -796,7 +796,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem;">
-                <button onclick="closeModal('fafarReportModal')" class="btn-secondary">Close Example Report</button>
+                <button type="button" onclick="closeModal('fafarReportModal')" class="btn-secondary">Close Example Report</button>
             </div>
         </div>
     </div>
@@ -1016,7 +1016,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem;">
-                <button onclick="closeModal('dailyLoggingModal')" class="btn-secondary">Close Logging Example</button>
+                <button type="button" onclick="closeModal('dailyLoggingModal')" class="btn-secondary">Close Logging Example</button>
             </div>
         </div>
     </div>
@@ -1059,7 +1059,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem;">
-                <button onclick="closeModal('contactModal')" class="btn-secondary" style="width: 100%;">Close</button>
+                <button type="button" onclick="closeModal('contactModal')" class="btn-secondary" style="width: 100%;">Close</button>
             </div>
         </div>
     </div>
@@ -1075,7 +1075,7 @@
             <input type="password" id="clientKeyInput" class="form-input" placeholder="Password" required>
             <p id="loginError" style="color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem;">Invalid credentials. Please check your email and password.</p>
             
-            <button onclick="authenticateClient()" class="btn-primary" style="width: 100%;">Access Portal</button>
+            <button type="button" onclick="authenticateClient()" class="btn-primary" style="width: 100%;">Access Portal</button>
         </div>
     </div>
 
@@ -1087,13 +1087,13 @@
             </p>
 
             <div style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem;">
-                <a href="#" onclick="alert('Awaiting final revisions. This page will be updated in the coming days'); return false;" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                <a href="javascript:void(0)" onclick="alert('Awaiting final revisions. This page will be updated in the coming days');" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
                 <span>·</span>
-                <a href="#" onclick="alert('Awaiting final revisions. This page will be updated in the coming days'); return false;" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+                <a href="javascript:void(0)" onclick="alert('Awaiting final revisions. This page will be updated in the coming days');" style="color: var(--text-muted); text-decoration: none;">Terms</a>
                 <span>·</span>
-                <a href="#" onclick="openModal('contactModal'); return false;" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+                <a href="javascript:void(0)" onclick="openModal('contactModal');" style="color: var(--text-muted); text-decoration: none;">Contact</a>
                 <span>·</span>
-                <a href="#" onclick="openModal('loginModal'); return false;" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
+                <a href="javascript:void(0)" onclick="openModal('loginModal');" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -1103,18 +1103,32 @@
     </footer>
 
     <script>
-        // 1. Initialize Supabase Client with project credentials
+        // 1. Safe Supabase Initialization
         const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let supabase = null;
+
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (err) {
+            console.warn("Supabase failed to initialize:", err);
+        }
 
         // 2. Modal Controls
         function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+            }
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
         }
 
         // 3. Secure Client Authentication via Supabase
@@ -1132,37 +1146,48 @@
                 return;
             }
 
-            submitBtn.innerText = "Authenticating...";
-            submitBtn.disabled = true;
-
-            // Call Supabase Authentication Service
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-
-            submitBtn.innerText = "Access Portal";
-            submitBtn.disabled = false;
-
-            if (error) {
-                errorElement.innerText = "Invalid credentials. Please check your email and password.";
+            if (!supabase) {
+                errorElement.innerText = "Authentication service unavailable. Please check internet connection.";
                 errorElement.style.display = 'block';
                 return;
             }
 
-            // Success: Hide Modal & Show Private Client Portal
-            closeModal('loginModal');
-            document.getElementById('mainView').style.display = 'none';
-            document.getElementById('dashboardView').style.display = 'block';
-            
-            // Personalize Client Portal Header
-            document.getElementById('clientGreeting').innerText = `Welcome back, ${data.user.email}`;
-            window.scrollTo(0, 0);
+            submitBtn.innerText = "Authenticating...";
+            submitBtn.disabled = true;
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) {
+                    errorElement.innerText = "Invalid credentials. Please check your email and password.";
+                    errorElement.style.display = 'block';
+                    return;
+                }
+
+                // Success: Hide Modal & Show Private Client Portal
+                closeModal('loginModal');
+                document.getElementById('mainView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                document.getElementById('clientGreeting').innerText = `Welcome back, ${data.user.email}`;
+                window.scrollTo(0, 0);
+
+            } catch (err) {
+                errorElement.innerText = "Connection error during login. Please try again.";
+                errorElement.style.display = 'block';
+            } finally {
+                submitBtn.innerText = "Access Portal";
+                submitBtn.disabled = false;
+            }
         }
 
         // 4. Secure Client Logout
         async function logoutClient() {
-            await supabase.auth.signOut();
+            if (supabase) {
+                await supabase.auth.signOut();
+            }
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
             window.scrollTo(0, 0);
@@ -1170,12 +1195,17 @@
 
         // 5. Automatically Check Active Login Session on Page Refresh
         window.addEventListener('DOMContentLoaded', async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (session) {
-                document.getElementById('mainView').style.display = 'none';
-                document.getElementById('dashboardView').style.display = 'block';
-                document.getElementById('clientGreeting').innerText = `Welcome back, ${session.user.email}`;
+            if (supabase) {
+                try {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    if (session) {
+                        document.getElementById('mainView').style.display = 'none';
+                        document.getElementById('dashboardView').style.display = 'block';
+                        document.getElementById('clientGreeting').innerText = `Welcome back, ${session.user.email}`;
+                    }
+                } catch (err) {
+                    console.warn("Session check error:", err);
+                }
             }
         });
 
@@ -1226,5 +1256,6 @@
     </script>
 </body>
 </html>
+
 
 
