@@ -151,20 +151,20 @@
         .form-input:focus { border-color: var(--accent-teal); outline: none; }
         textarea.form-input { resize: vertical; min-height: 100px; }
 
-        /* Modal Base Styles */
+        /* Modal Overlay & Card Formatting */
         .modal { 
-            display: none; 
+            display: none !important; 
             position: fixed; 
             top: 0; 
             left: 0; 
-            width: 100%; 
-            height: 100%; 
+            width: 100vw; 
+            height: 100vh; 
             background-color: rgba(0, 0, 0, 0.88); 
-            z-index: 9999; 
+            z-index: 99999; 
             align-items: center; 
             justify-content: center; 
         }
-        .modal.active {
+        .modal.open {
             display: flex !important;
         }
         .modal-content { 
@@ -189,7 +189,6 @@
         }
         .close-btn:hover { color: var(--text-light); }
 
-        /* Tag Pills for Options */
         .tag-pill {
             display: inline-block;
             background: rgba(255, 255, 255, 0.06);
@@ -210,8 +209,8 @@
             .hero h1 { font-size: 2rem; }
         }
     </style>
-    <!-- Supabase JavaScript SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Async loading to prevent blocking inline scripts -->
+    <script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -246,7 +245,7 @@
     </header>
 
     <div id="mainView">
-        <!-- 1. HERO SECTION -->
+        <!-- HERO SECTION -->
         <section class="hero">
             <h1>
                 You don't need more health advice. You need a plan you'll actually stick to
@@ -266,7 +265,7 @@
             </div>
         </section>
 
-        <!-- 2. PHILOSOPHY SECTION -->
+        <!-- PHILOSOPHY SECTION -->
         <section class="section" style="padding-top: 1rem;">
             <div class="card" style="max-width: 850px; margin: 0 auto; text-align: center; padding: 2.5rem;">
                 <h2 style="font-size: 1.6rem; color: var(--text-light); margin-bottom: 1.25rem; font-weight: 800;">
@@ -281,7 +280,7 @@
             </div>
         </section>
 
-        <!-- 3. WHAT WE WORK ON TOGETHER (4 PILLARS) -->
+        <!-- WHAT WE WORK ON TOGETHER (4 PILLARS) -->
         <section class="section">
             <h2 class="section-title">What we work on together</h2>
             <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; max-width: 800px; margin: 0 auto 2.5rem auto;">
@@ -319,7 +318,7 @@
             </p>
         </section>
 
-        <!-- 4. HOW IT WORKS & MEET ATLAS -->
+        <!-- HOW IT WORKS & MEET ATLAS -->
         <section class="section">
             <h2 class="section-title">How it works</h2>
 
@@ -377,7 +376,7 @@
             </div>
         </section>
 
-        <!-- 5. MEET YOUR COACH -->
+        <!-- MEET YOUR COACH -->
         <section class="section">
             <h2 class="section-title">Meet your coach</h2>
 
@@ -417,7 +416,7 @@
             </div>
         </section>
 
-        <!-- 6. FOUNDING CLIENT OFFER -->
+        <!-- FOUNDING CLIENT OFFER -->
         <section class="section">
             <div class="card" style="border: 2px solid var(--accent-gold); max-width: 900px; margin: 0 auto; padding: 2.5rem; background: linear-gradient(180deg, var(--card-bg) 0%, rgba(201, 162, 39, 0.05) 100%);">
                 <div style="text-align: center; margin-bottom: 2rem;">
@@ -471,7 +470,7 @@
             </div>
         </section>
 
-        <!-- 7. EXAMPLE REPORT & DAILY LOGGING SECTION -->
+        <!-- EXAMPLE REPORT & DAILY LOGGING SECTION -->
         <section class="section">
             <div class="card" style="max-width: 880px; margin: 0 auto; text-align: center; padding: 2.5rem;">
                 <h2 style="font-size: 1.75rem; color: var(--text-light); margin-bottom: 0.75rem; font-weight: 800;">
@@ -491,13 +490,12 @@
             </div>
         </section>
 
-        <!-- 8. FAQ SECTION -->
+        <!-- FAQ SECTION -->
         <section class="section">
             <h2 class="section-title">Frequently Asked Questions</h2>
 
             <div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 850px; margin: 0 auto;">
                 
-                <!-- TOP FAQ: IS TLA RIGHT FOR YOU? -->
                 <div class="card" style="padding: 1.5rem; border-left: 4px solid var(--accent-gold);">
                     <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin-bottom: 0.75rem; font-weight: 700;">Is TLA Right for You?</h3>
                     <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0.85rem;">
@@ -574,7 +572,7 @@
             </div>
         </section>
 
-        <!-- 9. FINAL CALL TO ACTION & BOOKING FORM -->
+        <!-- FINAL CALL TO ACTION & BOOKING FORM -->
         <section id="booking-form" class="section">
             <div class="card" style="max-width: 650px; margin: 0 auto; padding: 2.5rem; border-top: 4px solid var(--accent-gold);">
                 <h2 style="font-size: 2rem; color: var(--text-light); text-align: center; margin-bottom: 0.75rem; font-weight: 800;">
@@ -857,9 +855,7 @@
                 Below is a representative sample of active protocol options customized for client logging:
             </p>
 
-            <!-- LOGGING ITEMS DISPLAY -->
             <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-                
                 <!-- CORE METRICS -->
                 <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;">
                     <h3 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem;">
@@ -931,7 +927,6 @@
                     </h3>
 
                     <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                        
                         <div style="border-bottom: 1px dashed var(--border); padding-bottom: 0.6rem;">
                             <div style="display: flex; justify-content: space-between;">
                                 <span style="font-weight: 600; font-size: 0.92rem; color: var(--text-light);">Weight Training</span>
@@ -1025,7 +1020,6 @@
                                 <span class="tag-pill">Badminton</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -1039,13 +1033,11 @@
                     </div>
                 </div>
 
-                <!-- TAILORED PLAN NOTE BANNER -->
                 <div style="background: rgba(201, 162, 39, 0.08); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 0.85rem 1.25rem; text-align: center;">
                     <p style="font-size: 0.88rem; color: var(--accent-gold); font-weight: 600; margin: 0; line-height: 1.5;">
                         📌 <em>Note: The interface above demonstrates a potential sample of logging options. Your daily tracker is always bespoke and specifically tailored to your personal plan and agreed routines.</em>
                     </p>
                 </div>
-
             </div>
 
             <div style="text-align: center; margin-top: 1.5rem;">
@@ -1124,9 +1116,9 @@
                 <span>·</span>
                 <a href="javascript:void(0)" onclick="alert('Awaiting final revisions. This page will be updated in the coming days');" style="color: var(--text-muted); text-decoration: none;">Terms</a>
                 <span>·</span>
-                <a href="javascript:void(0)" onclick="openModal('contactModal');" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+                <a href="javascript:openModal('contactModal');" style="color: var(--text-muted); text-decoration: none;">Contact</a>
                 <span>·</span>
-                <a href="javascript:void(0)" onclick="openModal('loginModal');" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
+                <a href="javascript:openModal('loginModal');" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.8;">Client login</a>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -1135,125 +1127,42 @@
         </div>
     </footer>
 
+    <!-- ISOLATED PRIMARY JAVASCRIPT -->
     <script>
-        // 1. Safe Supabase Initialization
-        const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
-        let supabase = null;
-
-        try {
-            if (window.supabase && typeof window.supabase.createClient === 'function') {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
-        } catch (err) {
-            console.warn("Supabase initialization error:", err);
-        }
-
-        // 2. Direct Modal Functions (Uses CSS class toggle for maximum reliability)
+        // Modal functions defined immediately so button events execute reliably
         function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                modal.style.display = 'flex';
+            var el = document.getElementById(modalId);
+            if (el) {
+                el.classList.add('open');
+                el.style.setProperty('display', 'flex', 'important');
             }
         }
 
         function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                modal.style.display = 'none';
+            var el = document.getElementById(modalId);
+            if (el) {
+                el.classList.remove('open');
+                el.style.setProperty('display', 'none', 'important');
             }
         }
 
-        // 3. Client Authentication via Supabase
-        async function authenticateClient() {
-            const email = document.getElementById('clientNameInput').value.trim();
-            const password = document.getElementById('clientKeyInput').value.trim();
-            const errorElement = document.getElementById('loginError');
-            const submitBtn = document.querySelector('#loginModal .btn-primary');
-
-            errorElement.style.display = 'none';
-
-            if (!email || !password) {
-                errorElement.innerText = "Please enter both email and password.";
-                errorElement.style.display = 'block';
-                return;
+        // Close on backdrop click
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target.id);
             }
+        };
 
-            if (!supabase) {
-                errorElement.innerText = "Authentication service unavailable. Please check internet connection.";
-                errorElement.style.display = 'block';
-                return;
-            }
-
-            submitBtn.innerText = "Authenticating...";
-            submitBtn.disabled = true;
-
-            try {
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: password
-                });
-
-                if (error) {
-                    errorElement.innerText = "Invalid credentials. Please check your email and password.";
-                    errorElement.style.display = 'block';
-                    return;
-                }
-
-                // Success: Hide Modal & Show Private Client Portal
-                closeModal('loginModal');
-                document.getElementById('mainView').style.display = 'none';
-                document.getElementById('dashboardView').style.display = 'block';
-                document.getElementById('clientGreeting').innerText = `Welcome back, ${data.user.email}`;
-                window.scrollTo(0, 0);
-
-            } catch (err) {
-                errorElement.innerText = "Connection error during login. Please try again.";
-                errorElement.style.display = 'block';
-            } finally {
-                submitBtn.innerText = "Access Portal";
-                submitBtn.disabled = false;
-            }
-        }
-
-        // 4. Secure Client Logout
-        async function logoutClient() {
-            if (supabase) {
-                await supabase.auth.signOut();
-            }
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('mainView').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        // 5. Automatically Check Active Login Session on Page Refresh
-        window.addEventListener('DOMContentLoaded', async () => {
-            if (supabase) {
-                try {
-                    const { data: { session } } = await supabase.auth.getSession();
-                    if (session) {
-                        document.getElementById('mainView').style.display = 'none';
-                        document.getElementById('dashboardView').style.display = 'block';
-                        document.getElementById('clientGreeting').innerText = `Welcome back, ${session.user.email}`;
-                    }
-                } catch (err) {
-                    console.warn("Session check error:", err);
-                }
-            }
-        });
-
-        // 6. Discovery Call Form Submission (Formspree Integration)
+        // Formspree Handling
         async function handleDiscoverySubmit(event) {
             event.preventDefault();
 
-            const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
-            const submitBtn = document.getElementById('discSubmitBtn');
+            var FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
+            var submitBtn = document.getElementById('discSubmitBtn');
             submitBtn.disabled = true;
             submitBtn.innerText = "Sending Request...";
 
-            const payload = {
+            var payload = {
                 name: document.getElementById('discName').value,
                 dob: document.getElementById('discDob').value,
                 email: document.getElementById('discEmail').value,
@@ -1262,7 +1171,7 @@
             };
 
             try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
+                var response = await fetch(FORMSPREE_ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(payload)
@@ -1282,15 +1191,94 @@
             }
         }
 
-        // 7. Close Modals When Clicking Backdrop
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                closeModal(event.target.id);
+        // Supabase Integration with Safe Initialization Check
+        const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
+        let supabase = null;
+
+        function getSupabase() {
+            if (!supabase && window.supabase && typeof window.supabase.createClient === 'function') {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+            return supabase;
+        }
+
+        async function authenticateClient() {
+            var email = document.getElementById('clientNameInput').value.trim();
+            var password = document.getElementById('clientKeyInput').value.trim();
+            var errorElement = document.getElementById('loginError');
+            var submitBtn = document.querySelector('#loginModal .btn-primary');
+
+            errorElement.style.display = 'none';
+
+            if (!email || !password) {
+                errorElement.innerText = "Please enter both email and password.";
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            var client = getSupabase();
+            if (!client) {
+                errorElement.innerText = "Authentication service unavailable. Please try again in a moment.";
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            submitBtn.innerText = "Authenticating...";
+            submitBtn.disabled = true;
+
+            try {
+                var res = await client.auth.signInWithPassword({ email: email, password: password });
+                if (res.error) {
+                    errorElement.innerText = "Invalid credentials. Please check your email and password.";
+                    errorElement.style.display = 'block';
+                    return;
+                }
+
+                closeModal('loginModal');
+                document.getElementById('mainView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                document.getElementById('clientGreeting').innerText = "Welcome back, " + res.data.user.email;
+                window.scrollTo(0, 0);
+
+            } catch (err) {
+                errorElement.innerText = "Connection error during login. Please try again.";
+                errorElement.style.display = 'block';
+            } finally {
+                submitBtn.innerText = "Access Portal";
+                submitBtn.disabled = false;
             }
         }
+
+        async function logoutClient() {
+            var client = getSupabase();
+            if (client) {
+                await client.auth.signOut();
+            }
+            document.getElementById('dashboardView').style.display = 'none';
+            document.getElementById('mainView').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener('DOMContentLoaded', async function() {
+            setTimeout(async function() {
+                var client = getSupabase();
+                if (client) {
+                    try {
+                        var sessionRes = await client.auth.getSession();
+                        if (sessionRes.data && sessionRes.data.session) {
+                            document.getElementById('mainView').style.display = 'none';
+                            document.getElementById('dashboardView').style.display = 'block';
+                            document.getElementById('clientGreeting').innerText = "Welcome back, " + sessionRes.data.session.user.email;
+                        }
+                    } catch (err) {
+                        console.warn("Session check bypass:", err);
+                    }
+                }
+            }, 500);
+        });
     </script>
 </body>
 </html>
-
 
 
