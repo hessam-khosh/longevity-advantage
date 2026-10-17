@@ -209,9 +209,7 @@
             .hero h1 { font-size: 2rem; }
         }
     </style>
-    <!-- Replace the existing async script tag in <head> with this: -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+    </head>
 <body>
 
     <header>
@@ -1128,164 +1126,174 @@
     </footer>
 
     <!-- ISOLATED PRIMARY JAVASCRIPT -->
-    <script>
-        // Modal functions defined immediately so button events execute reliably
-        function openModal(modalId) {
-            var el = document.getElementById(modalId);
-            if (el) {
-                el.classList.add('open');
-                el.style.setProperty('display', 'flex', 'important');
-            }
-        }
-
-        function closeModal(modalId) {
-            var el = document.getElementById(modalId);
-            if (el) {
-                el.classList.remove('open');
-                el.style.setProperty('display', 'none', 'important');
-            }
-        }
-
-        // Close on backdrop click
-        window.onclick = function(e) {
-            if (e.target.classList.contains('modal')) {
-                closeModal(e.target.id);
-            }
-        };
-
-        // Formspree Handling
-        async function handleDiscoverySubmit(event) {
-            event.preventDefault();
-
-            var FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
-            var submitBtn = document.getElementById('discSubmitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Sending Request...";
-
-            var payload = {
-                name: document.getElementById('discName').value,
-                dob: document.getElementById('discDob').value,
-                email: document.getElementById('discEmail').value,
-                phone: document.getElementById('discPhone').value,
-                message: document.getElementById('discMessage').value || "No additional comments provided."
-            };
-
-            try {
-                var response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    document.getElementById('discoveryForm').style.display = 'none';
-                    document.getElementById('discoverySuccess').style.display = 'block';
-                } else {
-                    alert("Submission error. Please check form inputs.");
-                }
-            } catch (err) {
-                alert("Network connection error. Please try again.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Book my free call →";
-            }
-        }
-
-        // Supabase Integration with Safe Initialization Check
-        const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
-        let supabase = null;
-
-function getSupabase() {
-    if (!supabase) {
-        // Fallback check if global variable loaded slightly later
-        var globalSupabase = window.supabase || (window.supabaseJS && window.supabaseJS.supabase);
-        if (globalSupabase && typeof globalSupabase.createClient === 'function') {
-            try {
-                supabase = globalSupabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            } catch (err) {
-                console.error("Supabase creation failed:", err);
-            }
+   <script>
+    // 1. Instant Modal Functions (Guaranteed to work regardless of network/CDN)
+    function openModal(modalId) {
+        var el = document.getElementById(modalId);
+        if (el) {
+            el.classList.add('open');
+            el.style.setProperty('display', 'flex', 'important');
         }
     }
-    return supabase;
-}
 
-        async function authenticateClient() {
-            var email = document.getElementById('clientNameInput').value.trim();
-            var password = document.getElementById('clientKeyInput').value.trim();
-            var errorElement = document.getElementById('loginError');
-            var submitBtn = document.querySelector('#loginModal .btn-primary');
+    function closeModal(modalId) {
+        var el = document.getElementById(modalId);
+        if (el) {
+            el.classList.remove('open');
+            el.style.setProperty('display', 'none', 'important');
+        }
+    }
 
-            errorElement.style.display = 'none';
+    // Close on backdrop click
+    window.onclick = function(e) {
+        if (e.target && e.target.classList.contains('modal')) {
+            closeModal(e.target.id);
+        }
+    };
 
-            if (!email || !password) {
-                errorElement.innerText = "Please enter both email and password.";
-                errorElement.style.display = 'block';
-                return;
+    // 2. Formspree Handling
+    async function handleDiscoverySubmit(event) {
+        event.preventDefault();
+
+        var FORMSPREE_ENDPOINT = "https://formspree.io/f/xgavdnea";
+        var submitBtn = document.getElementById('discSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending Request...";
+
+        var payload = {
+            name: document.getElementById('discName').value,
+            dob: document.getElementById('discDob').value,
+            email: document.getElementById('discEmail').value,
+            phone: document.getElementById('discPhone').value,
+            message: document.getElementById('discMessage').value || "No additional comments provided."
+        };
+
+        try {
+            var response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                document.getElementById('discoveryForm').style.display = 'none';
+                document.getElementById('discoverySuccess').style.display = 'block';
+            } else {
+                alert("Submission error. Please check form inputs.");
             }
+        } catch (err) {
+            alert("Network connection error. Please try again.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Book my free call →";
+        }
+    }
 
-            var client = getSupabase();
-            if (!client) {
-                errorElement.innerText = "Authentication service unavailable. Please try again in a moment.";
-                errorElement.style.display = 'block';
-                return;
-            }
+    // 3. Safe Dynamic Supabase Initializer
+    const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
+    let supabase = null;
 
-            submitBtn.innerText = "Authenticating...";
-            submitBtn.disabled = true;
+    function initSupabase() {
+        return new Promise((resolve) => {
+            if (supabase) return resolve(supabase);
 
-            try {
-                var res = await client.auth.signInWithPassword({ email: email, password: password });
-                if (res.error) {
-                    errorElement.innerText = "Invalid credentials. Please check your email and password.";
-                    errorElement.style.display = 'block';
-                    return;
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                try {
+                    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    return resolve(supabase);
+                } catch (e) {
+                    console.warn("Supabase client init error:", e);
                 }
-
-                closeModal('loginModal');
-                document.getElementById('mainView').style.display = 'none';
-                document.getElementById('dashboardView').style.display = 'block';
-                document.getElementById('clientGreeting').innerText = "Welcome back, " + res.data.user.email;
-                window.scrollTo(0, 0);
-
-            } catch (err) {
-                errorElement.innerText = "Connection error during login. Please try again.";
-                errorElement.style.display = 'block';
-            } finally {
-                submitBtn.innerText = "Access Portal";
-                submitBtn.disabled = false;
             }
-        }
 
-        async function logoutClient() {
-            var client = getSupabase();
-            if (client) {
-                await client.auth.signOut();
-            }
-            document.getElementById('dashboardView').style.display = 'none';
-            document.getElementById('mainView').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        window.addEventListener('DOMContentLoaded', async function() {
-            setTimeout(async function() {
-                var client = getSupabase();
-                if (client) {
-                    try {
-                        var sessionRes = await client.auth.getSession();
-                        if (sessionRes.data && sessionRes.data.session) {
-                            document.getElementById('mainView').style.display = 'none';
-                            document.getElementById('dashboardView').style.display = 'block';
-                            document.getElementById('clientGreeting').innerText = "Welcome back, " + sessionRes.data.session.user.email;
-                        }
-                    } catch (err) {
-                        console.warn("Session check bypass:", err);
+            // Dynamically load script if not present
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+            script.onload = () => {
+                try {
+                    if (window.supabase && typeof window.supabase.createClient === 'function') {
+                        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                     }
+                } catch (e) {
+                    console.warn("Supabase async init error:", e);
                 }
-            }, 500);
+                resolve(supabase);
+            };
+            script.onerror = () => {
+                console.warn("Supabase CDN blocked or unavailable.");
+                resolve(null);
+            };
+            document.head.appendChild(script);
         });
-    </script>
+    }
+
+    // Start background loading Supabase as soon as DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        initSupabase();
+    });
+
+    // 4. Client Authentication via Supabase
+    async function authenticateClient() {
+        var email = document.getElementById('clientNameInput').value.trim();
+        var password = document.getElementById('clientKeyInput').value.trim();
+        var errorElement = document.getElementById('loginError');
+        var submitBtn = document.querySelector('#loginModal .btn-primary');
+
+        errorElement.style.display = 'none';
+
+        if (!email || !password) {
+            errorElement.innerText = "Please enter both email and password.";
+            errorElement.style.display = 'block';
+            return;
+        }
+
+        submitBtn.innerText = "Authenticating...";
+        submitBtn.disabled = true;
+
+        var client = await initSupabase();
+
+        if (!client) {
+            errorElement.innerText = "Unable to connect to authentication server. If you are using an ad-blocker or strict firewall, please disable it for this site and try again.";
+            errorElement.style.display = 'block';
+            submitBtn.innerText = "Access Portal";
+            submitBtn.disabled = false;
+            return;
+        }
+
+        try {
+            var res = await client.auth.signInWithPassword({ email: email, password: password });
+            if (res.error) {
+                errorElement.innerText = "Invalid credentials. Please check your email and password.";
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            closeModal('loginModal');
+            document.getElementById('mainView').style.display = 'none';
+            document.getElementById('dashboardView').style.display = 'block';
+            document.getElementById('clientGreeting').innerText = "Welcome back, " + res.data.user.email;
+            window.scrollTo(0, 0);
+
+        } catch (err) {
+            errorElement.innerText = "Connection error during login. Please try again.";
+            errorElement.style.display = 'block';
+        } finally {
+            submitBtn.innerText = "Access Portal";
+            submitBtn.disabled = false;
+        }
+    }
+
+    async function logoutClient() {
+        var client = await initSupabase();
+        if (client) {
+            await client.auth.signOut();
+        }
+        document.getElementById('dashboardView').style.display = 'none';
+        document.getElementById('mainView').style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+</script>
 </body>
 </html>
 
