@@ -177,6 +177,8 @@
             .hero h1 { font-size: 2rem; }
         }
     </style>
+    <!-- Supabase JavaScript SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -1069,9 +1071,9 @@
             <h3 style="margin-bottom: 0.5rem; color: var(--text-light);">Private Client Access</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Enter your client access credentials.</p>
             
-            <input type="text" id="clientNameInput" class="form-input" placeholder="Client Name">
-            <input type="password" id="clientKeyInput" class="form-input" placeholder="Access Key">
-            <p id="loginError" style="color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem;">Invalid Client Name or Key.</p>
+            <input type="email" id="clientNameInput" class="form-input" placeholder="Registered Email Address" required>
+            <input type="password" id="clientKeyInput" class="form-input" placeholder="Password" required>
+            <p id="loginError" style="color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem;">Invalid credentials. Please check your email and password.</p>
             
             <button onclick="authenticateClient()" class="btn-primary" style="width: 100%;">Access Portal</button>
         </div>
@@ -1101,6 +1103,12 @@
     </footer>
 
     <script>
+        // 1. Initialize Supabase Client with your project credentials
+        const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 2. Modal Controls
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
         }
@@ -1109,27 +1117,69 @@
             document.getElementById(modalId).style.display = 'none';
         }
 
-        function authenticateClient() {
-            const nameInput = document.getElementById('clientNameInput').value.trim().toLowerCase();
-            const keyInput = document.getElementById('clientKeyInput').value.trim();
+        // 3. Secure Client Authentication via Supabase
+        async function authenticateClient() {
+            const email = document.getElementById('clientNameInput').value.trim();
+            const password = document.getElementById('clientKeyInput').value.trim();
+            const errorElement = document.getElementById('loginError');
+            const submitBtn = document.querySelector('#loginModal .btn-primary');
 
-            if (nameInput === "example" || nameInput === "fafar") {
-                closeModal('loginModal');
-                document.getElementById('mainView').style.display = 'none';
-                document.getElementById('dashboardView').style.display = 'block';
-                document.getElementById('clientGreeting').innerText = "Welcome back";
-                window.scrollTo(0, 0);
-            } else {
-                document.getElementById('loginError').style.display = 'block';
+            errorElement.style.display = 'none';
+
+            if (!email || !password) {
+                errorElement.innerText = "Please enter both email and password.";
+                errorElement.style.display = 'block';
+                return;
             }
+
+            submitBtn.innerText = "Authenticating...";
+            submitBtn.disabled = true;
+
+            // Call Supabase Authentication Service
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            submitBtn.innerText = "Access Portal";
+            submitBtn.disabled = false;
+
+            if (error) {
+                errorElement.innerText = "Invalid credentials. Please check your email and password.";
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // Success: Hide Modal & Show Private Client Portal
+            closeModal('loginModal');
+            document.getElementById('mainView').style.display = 'none';
+            document.getElementById('dashboardView').style.display = 'block';
+            
+            // Personalize Client Portal Header
+            document.getElementById('clientGreeting').innerText = `Welcome back, ${data.user.email}`;
+            window.scrollTo(0, 0);
         }
 
-        function logoutClient() {
+        // 4. Secure Client Logout
+        async function logoutClient() {
+            await supabase.auth.signOut();
             document.getElementById('dashboardView').style.display = 'none';
             document.getElementById('mainView').style.display = 'block';
             window.scrollTo(0, 0);
         }
 
+        // 5. Automatically Check Active Login Session on Page Refresh
+        window.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (session) {
+                document.getElementById('mainView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                document.getElementById('clientGreeting').innerText = `Welcome back, ${session.user.email}`;
+            }
+        });
+
+        // 6. Discovery Call Form Submission (Formspree Integration)
         async function handleDiscoverySubmit(event) {
             event.preventDefault();
 
@@ -1167,6 +1217,7 @@
             }
         }
 
+        // 7. Close Modals When Clicking Backdrop
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
