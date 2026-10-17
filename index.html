@@ -151,10 +151,43 @@
         .form-input:focus { border-color: var(--accent-teal); outline: none; }
         textarea.form-input { resize: vertical; min-height: 100px; }
 
-        /* Modal Styles */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.88); align-items: center; justify-content: center; }
-        .modal-content { background-color: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--card-border); max-width: 500px; width: 90%; text-align: center; position: relative; }
-        .close-btn { position: absolute; right: 1rem; top: 0.8rem; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; }
+        /* Modal Base Styles */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.88); 
+            z-index: 9999; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .modal.active {
+            display: flex !important;
+        }
+        .modal-content { 
+            background-color: #081a30; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--card-border); 
+            max-width: 500px; 
+            width: 90%; 
+            text-align: center; 
+            position: relative; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .close-btn { 
+            position: absolute; 
+            right: 1.2rem; 
+            top: 0.8rem; 
+            font-size: 1.8rem; 
+            color: var(--text-muted); 
+            cursor: pointer; 
+            line-height: 1;
+        }
+        .close-btn:hover { color: var(--text-light); }
 
         /* Tag Pills for Options */
         .tag-pill {
@@ -1113,13 +1146,14 @@
                 supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             }
         } catch (err) {
-            console.warn("Supabase failed to initialize:", err);
+            console.warn("Supabase initialization error:", err);
         }
 
-        // 2. Modal Controls
+        // 2. Direct Modal Functions (Uses CSS class toggle for maximum reliability)
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
+                modal.classList.add('active');
                 modal.style.display = 'flex';
             }
         }
@@ -1127,11 +1161,12 @@
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
+                modal.classList.remove('active');
                 modal.style.display = 'none';
             }
         }
 
-        // 3. Secure Client Authentication via Supabase
+        // 3. Client Authentication via Supabase
         async function authenticateClient() {
             const email = document.getElementById('clientNameInput').value.trim();
             const password = document.getElementById('clientKeyInput').value.trim();
@@ -1250,7 +1285,7 @@
         // 7. Close Modals When Clicking Backdrop
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
+                closeModal(event.target.id);
             }
         }
     </script>
