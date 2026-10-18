@@ -209,7 +209,8 @@
             .hero h1 { font-size: 2rem; }
         }
     </style>
-    <script src="supabase.js"></script>
+    <!-- Official CDN for Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -483,8 +484,8 @@
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                    <button type="button" onclick="openModal('fafarReportModal')" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
-                    <button type="button" onclick="openModal('dailyLoggingModal')" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
+                    <button type="button" id="btnReportModal" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
+                    <button type="button" id="btnLoggingModal" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
                 </div>
             </div>
         </section>
@@ -632,7 +633,7 @@
             </div>
 
             <div style="margin-bottom: 2rem; text-align: center;">
-                <button type="button" onclick="openModal('fafarReportModal')" class="btn-primary" style="width: 100%;">
+                <button type="button" id="btnDashReportModal" class="btn-primary" style="width: 100%;">
                     📄 Your Vitality Assessment Report &rarr;
                 </button>
             </div>
@@ -1146,7 +1147,7 @@
     // 2. Attach Event Listeners on Load
     document.addEventListener('DOMContentLoaded', function() {
         
-        // Modal Trigger Elements
+        // Footer Trigger Links
         var contactBtn = document.getElementById('contactBtn');
         if (contactBtn) {
             contactBtn.addEventListener('click', function(e) {
@@ -1176,6 +1177,31 @@
             termsLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 alert('Awaiting final revisions. This page will be updated in the coming days');
+            });
+        }
+
+        // Section Button Triggers
+        var btnReportModal = document.getElementById('btnReportModal');
+        if (btnReportModal) {
+            btnReportModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('fafarReportModal');
+            });
+        }
+
+        var btnDashReportModal = document.getElementById('btnDashReportModal');
+        if (btnDashReportModal) {
+            btnDashReportModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('fafarReportModal');
+            });
+        }
+
+        var btnLoggingModal = document.getElementById('btnLoggingModal');
+        if (btnLoggingModal) {
+            btnLoggingModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('dailyLoggingModal');
             });
         }
 
@@ -1283,7 +1309,7 @@
         var client = getSupabase();
 
         if (!client) {
-            errorElement.innerText = "Local authentication file (supabase.js) could not be loaded. Please ensure supabase.js is in the same folder as this page.";
+            errorElement.innerText = "Supabase SDK could not be loaded. Please check your internet connection.";
             errorElement.style.display = 'block';
             return;
         }
@@ -1342,5 +1368,6 @@
 </script>
 </body>
 </html>
+
 
 
