@@ -1130,19 +1130,19 @@
     <!-- PRIMARY JAVASCRIPT -->
     <script>
     // 1. Modal Helper Functions
-    function openModal(modalId) {
+    window.openModal = function(modalId) {
         var el = document.getElementById(modalId);
         if (el) {
             el.classList.add('open');
         }
-    }
+    };
 
-    function closeModal(modalId) {
+    window.closeModal = function(modalId) {
         var el = document.getElementById(modalId);
         if (el) {
             el.classList.remove('open');
         }
-    }
+    };
 
     // 2. Attach Event Listeners on Load
     document.addEventListener('DOMContentLoaded', function() {
@@ -1275,20 +1275,20 @@
         }
     }
 
-    // 4. Supabase Initializer
+    // 4. Supabase Initializer (Renamed local variable to avoid collision with CDN global)
     const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
-    let supabase = null;
+    let supabaseClient = null;
 
     function getSupabase() {
-        if (!supabase && window.supabase && typeof window.supabase.createClient === 'function') {
+        if (!supabaseClient && window.supabase && typeof window.supabase.createClient === 'function') {
             try {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             } catch (err) {
                 console.error("Supabase client init error:", err);
             }
         }
-        return supabase;
+        return supabaseClient;
     }
 
     // 5. Client Authentication
@@ -1368,4 +1368,5 @@
 </script>
 </body>
 </html>
+
 
