@@ -153,7 +153,7 @@
 
         /* Modal Overlay & Card Formatting */
         .modal { 
-            display: none !important; 
+            display: none; 
             position: fixed; 
             top: 0; 
             left: 0; 
@@ -581,7 +581,7 @@
                     Book a free 30-minute call to tell us your goals, ask any questions and see whether TLA is right for you. No pressure, no obligation.
                 </p>
 
-                <form id="discoveryForm" onsubmit="handleDiscoverySubmit(event)">
+                <form id="discoveryForm">
                     <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Full Name</label>
                     <input type="text" id="discName" class="form-input" placeholder="Your name" required>
 
@@ -628,7 +628,7 @@
         <div class="card" style="max-width: 900px; margin: 0 auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
                 <h2 id="clientGreeting" style="color: var(--text-light); margin: 0;">Welcome, Client</h2>
-                <button type="button" onclick="logoutClient()" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
+                <button type="button" id="logoutBtn" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
 
             <div style="margin-bottom: 2rem; text-align: center;">
@@ -1099,7 +1099,7 @@
             <input type="password" id="clientKeyInput" class="form-input" placeholder="Password" required>
             <p id="loginError" style="color: #ef4444; font-size: 0.85rem; display: none; margin-bottom: 1rem;">Invalid credentials. Please check your email and password.</p>
             
-            <button type="button" onclick="authenticateClient()" class="btn-primary" style="width: 100%;">Access Portal</button>
+            <button type="button" id="loginSubmitBtn" class="btn-primary" style="width: 100%;">Access Portal</button>
         </div>
     </div>
 
@@ -1111,13 +1111,13 @@
             </p>
 
             <div style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; font-size: 0.85rem;">
-                <a href="javascript:void(0)" onclick="alert('Awaiting final revisions. This page will be updated in the coming days');" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+                <a href="javascript:void(0)" id="privacyLink" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
                 <span>·</span>
-                <a href="javascript:void(0)" onclick="alert('Awaiting final revisions. This page will be updated in the coming days');" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+                <a href="javascript:void(0)" id="termsLink" style="color: var(--text-muted); text-decoration: none;">Terms</a>
                 <span>·</span>
-                <button type="button" onclick="openModal('contactModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; padding: 0; text-decoration: underline;">Contact</button>
+                <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: underline; cursor: pointer;">Contact</a>
                 <span>·</span>
-                <button type="button" onclick="openModal('loginModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; opacity: 0.8; padding: 0; text-decoration: underline;">Client login</button>
+                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: underline; cursor: pointer; opacity: 0.9;">Client login</a>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -1128,12 +1128,11 @@
 
     <!-- PRIMARY JAVASCRIPT -->
     <script>
-    // 1. Modal Toggle Functions
+    // 1. Modal Helper Functions
     function openModal(modalId) {
         var el = document.getElementById(modalId);
         if (el) {
             el.classList.add('open');
-            el.style.setProperty('display', 'flex', 'important');
         }
     }
 
@@ -1141,18 +1140,78 @@
         var el = document.getElementById(modalId);
         if (el) {
             el.classList.remove('open');
-            el.style.setProperty('display', 'none', 'important');
         }
     }
 
-    // Close on backdrop click
-    window.onclick = function(e) {
-        if (e.target && e.target.classList.contains('modal')) {
-            closeModal(e.target.id);
+    // 2. Attach Event Listeners on Load
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Modal Trigger Elements
+        var contactBtn = document.getElementById('contactBtn');
+        if (contactBtn) {
+            contactBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('contactModal');
+            });
         }
-    };
 
-    // 2. Discovery Form Submission (Formspree)
+        var loginBtn = document.getElementById('loginBtn');
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('loginModal');
+            });
+        }
+
+        var privacyLink = document.getElementById('privacyLink');
+        if (privacyLink) {
+            privacyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Awaiting final revisions. This page will be updated in the coming days');
+            });
+        }
+
+        var termsLink = document.getElementById('termsLink');
+        if (termsLink) {
+            termsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Awaiting final revisions. This page will be updated in the coming days');
+            });
+        }
+
+        // Close when clicking modal backdrop
+        var modals = document.querySelectorAll('.modal');
+        modals.forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // Formspree Submit Listener
+        var discForm = document.getElementById('discoveryForm');
+        if (discForm) {
+            discForm.addEventListener('submit', handleDiscoverySubmit);
+        }
+
+        // Login Submit Listener
+        var loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        if (loginSubmitBtn) {
+            loginSubmitBtn.addEventListener('click', authenticateClient);
+        }
+
+        // Logout Listener
+        var logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', logoutClient);
+        }
+
+        // Active Session Check
+        checkActiveSession();
+    });
+
+    // 3. Formspree Discovery Call Handler
     async function handleDiscoverySubmit(event) {
         event.preventDefault();
 
@@ -1190,7 +1249,7 @@
         }
     }
 
-    // 3. Local Supabase Initializer
+    // 4. Supabase Initializer
     const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
     let supabase = null;
@@ -1206,12 +1265,12 @@
         return supabase;
     }
 
-    // 4. Client Authentication
+    // 5. Client Authentication
     async function authenticateClient() {
         var email = document.getElementById('clientNameInput').value.trim();
         var password = document.getElementById('clientKeyInput').value.trim();
         var errorElement = document.getElementById('loginError');
-        var submitBtn = document.querySelector('#loginModal .btn-primary');
+        var submitBtn = document.getElementById('loginSubmitBtn');
 
         errorElement.style.display = 'none';
 
@@ -1265,8 +1324,7 @@
         window.scrollTo(0, 0);
     }
 
-    // Check active session on load
-    window.addEventListener('DOMContentLoaded', async function() {
+    async function checkActiveSession() {
         var client = getSupabase();
         if (client) {
             try {
@@ -1280,8 +1338,9 @@
                 console.warn("Session check error:", err);
             }
         }
-    });
+    }
 </script>
 </body>
 </html>
+
 
