@@ -210,7 +210,7 @@
         }
     </style>
     <script src="supabase.js"></script>
-    </head>
+</head>
 <body>
 
     <header>
@@ -1126,9 +1126,9 @@
         </div>
     </footer>
 
-    <!-- ISOLATED PRIMARY JAVASCRIPT -->
-   <script>
-    // 1. Instant Modal Functions (Guaranteed to work regardless of network/CDN)
+    <!-- PRIMARY JAVASCRIPT -->
+    <script>
+    // 1. Modal Toggle Functions
     function openModal(modalId) {
         var el = document.getElementById(modalId);
         if (el) {
@@ -1152,7 +1152,7 @@
         }
     };
 
-    // 2. Formspree Handling
+    // 2. Discovery Form Submission (Formspree)
     async function handleDiscoverySubmit(event) {
         event.preventDefault();
 
@@ -1190,51 +1190,23 @@
         }
     }
 
-    // 3. Safe Dynamic Supabase Initializer
+    // 3. Local Supabase Initializer
     const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
     let supabase = null;
 
-    function initSupabase() {
-        return new Promise((resolve) => {
-            if (supabase) return resolve(supabase);
-
-            if (window.supabase && typeof window.supabase.createClient === 'function') {
-                try {
-                    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    return resolve(supabase);
-                } catch (e) {
-                    console.warn("Supabase client init error:", e);
-                }
+    function getSupabase() {
+        if (!supabase && window.supabase && typeof window.supabase.createClient === 'function') {
+            try {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (err) {
+                console.error("Supabase client init error:", err);
             }
-
-            // Dynamically load script if not present
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-            script.onload = () => {
-                try {
-                    if (window.supabase && typeof window.supabase.createClient === 'function') {
-                        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    }
-                } catch (e) {
-                    console.warn("Supabase async init error:", e);
-                }
-                resolve(supabase);
-            };
-            script.onerror = () => {
-                console.warn("Supabase CDN blocked or unavailable.");
-                resolve(null);
-            };
-            document.head.appendChild(script);
-        });
+        }
+        return supabase;
     }
 
-    // Start background loading Supabase as soon as DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-        initSupabase();
-    });
-
-    // 4. Client Authentication via Supabase
+    // 4. Client Authentication
     async function authenticateClient() {
         var email = document.getElementById('clientNameInput').value.trim();
         var password = document.getElementById('clientKeyInput').value.trim();
@@ -1249,18 +1221,16 @@
             return;
         }
 
-        submitBtn.innerText = "Authenticating...";
-        submitBtn.disabled = true;
-
-        var client = await initSupabase();
+        var client = getSupabase();
 
         if (!client) {
-            errorElement.innerText = "Unable to connect to authentication server. If you are using an ad-blocker or strict firewall, please disable it for this site and try again.";
+            errorElement.innerText = "Local authentication file (supabase.js) could not be loaded. Please ensure supabase.js is in the same folder as this page.";
             errorElement.style.display = 'block';
-            submitBtn.innerText = "Access Portal";
-            submitBtn.disabled = false;
             return;
         }
+
+        submitBtn.innerText = "Authenticating...";
+        submitBtn.disabled = true;
 
         try {
             var res = await client.auth.signInWithPassword({ email: email, password: password });
@@ -1286,7 +1256,7 @@
     }
 
     async function logoutClient() {
-        var client = await initSupabase();
+        var client = getSupabase();
         if (client) {
             await client.auth.signOut();
         }
@@ -1294,8 +1264,24 @@
         document.getElementById('mainView').style.display = 'block';
         window.scrollTo(0, 0);
     }
+
+    // Check active session on load
+    window.addEventListener('DOMContentLoaded', async function() {
+        var client = getSupabase();
+        if (client) {
+            try {
+                var sessionRes = await client.auth.getSession();
+                if (sessionRes.data && sessionRes.data.session) {
+                    document.getElementById('mainView').style.display = 'none';
+                    document.getElementById('dashboardView').style.display = 'block';
+                    document.getElementById('clientGreeting').innerText = "Welcome back, " + sessionRes.data.session.user.email;
+                }
+            } catch (err) {
+                console.warn("Session check error:", err);
+            }
+        }
+    });
 </script>
 </body>
 </html>
-
 
