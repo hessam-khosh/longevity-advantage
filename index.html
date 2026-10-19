@@ -782,13 +782,10 @@
             <!-- FOUNDING PROGRAMME -->
             <div style="background: rgba(201, 162, 39, 0.08); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
                 <h3 style="color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">
-                    Founding Programme
+                    Become a Founding Organisation
                 </h3>
-                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.5rem;">
-                    We are currently refining the structure, technology and participant experience ahead of launch.
-                </p>
-                <p style="color: var(--accent-gold); font-size: 0.92rem; font-weight: 600; margin-bottom: 1rem;">
-                    A limited number of organisations will have the opportunity to express interest in helping shape the founding version of the programme.
+                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
+                    We're currently inviting a small number of organisations to help shape the founding version of the Team Vitality Challenge™. If you'd be interested in early access, providing feedback or participating in a future pilot cohort, we'd love to hear from you.
                 </p>
                 <button type="button" onclick="scrollToTeamForm()" class="btn-gold" style="padding: 0.7rem 1.4rem; font-size: 0.92rem;">
                     Register Interest &rarr;
@@ -815,22 +812,67 @@
                 </p>
 
                 <form id="teamEnquiryForm">
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Full Name</label>
-                    <input type="text" id="teamName" class="form-input" placeholder="Your name" required>
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Contact Name</label>
+                    <input type="text" id="teamContactName" class="form-input" placeholder="Your name" required>
 
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Your Organisation</label>
-                    <input type="text" id="teamOrg" class="form-input" placeholder="Company or team name" required>
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Organisation</label>
+                    <input type="text" id="teamOrg" class="form-input" placeholder="Company or organisation name" required>
+
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Job Title</label>
+                    <input type="text" id="teamJobTitle" class="form-input" placeholder="Your job title" required>
 
                     <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Email Address</label>
                     <input type="email" id="teamEmail" class="form-input" placeholder="you@example.com" required>
 
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Phone Number</label>
-                    <input type="tel" id="teamPhone" class="form-input" placeholder="Your contact number" required>
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Team Size</label>
+                    <select id="teamSize" class="form-input" required style="cursor: pointer;">
+                        <option value="" disabled selected>Select team size...</option>
+                        <option value="3-8">3–8</option>
+                        <option value="9-20">9–20</option>
+                        <option value="21-50">21–50</option>
+                        <option value="50+">50+</option>
+                    </select>
 
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Comments or Questions</label>
-                    <textarea id="teamMessage" class="form-input" placeholder=""></textarea>
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Which best describes your interest?</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 1rem; margin-bottom: 1.25rem; font-size: 0.88rem; color: var(--text-offwhite);">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Team wellbeing">
+                            <span>Team wellbeing</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Team performance">
+                            <span>Team performance</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Leadership development">
+                            <span>Leadership development</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Employee engagement">
+                            <span>Employee engagement</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Corporate wellbeing initiative">
+                            <span>Corporate wellbeing initiative</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Exploring options">
+                            <span>Exploring options</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="teamInterest" value="Other">
+                            <span>Other</span>
+                        </label>
+                    </div>
 
-                    <div style="margin-bottom: 1.5rem; text-align: left;">
+                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">What interests you most about the concept?</label>
+                    <textarea id="teamMessage" class="form-input" placeholder="Tell us what caught your attention or how you think a programme like this could benefit your team."></textarea>
+
+                    <div style="margin-bottom: 1.5rem; text-align: left; display: flex; flex-direction: column; gap: 0.75rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+                            <input type="checkbox" id="stayUpdatedCheck" style="margin-top: 0.2rem;">
+                            <span>Please keep me informed about programme development and launch updates.</span>
+                        </label>
                         <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
                             <input type="checkbox" required style="margin-top: 0.2rem;">
                             <span>I agree to The Longevity Advantage contacting me regarding the Team Vitality Challenge™.</span>
@@ -838,14 +880,20 @@
                     </div>
 
                     <button type="submit" id="teamSubmitBtn" class="btn-gold" style="width: 100%;">
-                        Submit my enquiry &rarr;
+                        Join the Founding Interest List &rarr;
                     </button>
                 </form>
 
-                <div id="teamSuccess" style="display: none; padding: 1.5rem 1rem; text-align: center;">
-                    <p style="color: #10b981; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">✓ Thank you, your enquiry has been submitted!</p>
-                    <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6;">
-                        We will be in touch shortly to discuss your organisation and answer any questions.
+                <div id="teamSuccess" style="display: none; padding: 2rem 1rem; text-align: center;">
+                    <p style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">Thank You</p>
+                    <p style="font-size: 0.98rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0.75rem;">
+                        Thank you for registering your interest in the Team Vitality Challenge™.
+                    </p>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
+                        We are currently shaping the programme and will share updates as development progresses.
+                    </p>
+                    <p style="font-size: 0.92rem; color: var(--accent-cyan); line-height: 1.6; margin: 0;">
+                        In the meantime, should you wish to discuss the concept further, we'd be delighted to hear from you.
                     </p>
                 </div>
             </div>
@@ -1520,13 +1568,22 @@
         submitBtn.disabled = true;
         submitBtn.innerText = "Submitting Enquiry...";
 
+        // Collect checked interests
+        var selectedInterests = [];
+        document.querySelectorAll('input[name="teamInterest"]:checked').forEach(function(cb) {
+            selectedInterests.push(cb.value);
+        });
+
         var payload = {
-            form_type: "Team Vitality Challenge Enquiry",
-            name: document.getElementById('teamName').value,
+            form_type: "Team Vitality Challenge Founding Interest",
+            contact_name: document.getElementById('teamContactName').value,
             organisation: document.getElementById('teamOrg').value,
+            job_title: document.getElementById('teamJobTitle').value,
             email: document.getElementById('teamEmail').value,
-            phone: document.getElementById('teamPhone').value,
-            message: document.getElementById('teamMessage').value || "No additional comments provided."
+            team_size: document.getElementById('teamSize').value,
+            interests: selectedInterests.length > 0 ? selectedInterests.join(', ') : 'None specified',
+            message: document.getElementById('teamMessage').value || "No additional comments provided.",
+            keep_updated: document.getElementById('stayUpdatedCheck').checked ? "Yes" : "No"
         };
 
         try {
@@ -1546,7 +1603,7 @@
             alert("Network connection error. Please try again.");
         } finally {
             submitBtn.disabled = false;
-            submitBtn.innerText = "Submit my enquiry →";
+            submitBtn.innerText = "Join the Founding Interest List →";
         }
     }
 
