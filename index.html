@@ -99,6 +99,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: color 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
         }
 
         .hero-teaser-link:hover {
@@ -294,7 +295,7 @@
 
         <!-- HERO TEASER STRIP -->
         <div class="hero-teaser-strip">
-            <a href="#teams-section" class="hero-teaser-link">
+            <a href="javascript:void(0)" onclick="openModal('teamChallengeModal')" class="hero-teaser-link">
                 <span>✨ Launching 2027: <strong>TLA for teams</strong></span>
                 <span>Learn more &rarr;</span>
             </a>
@@ -435,7 +436,7 @@
                         Hi, I'm Hessam. After more than 25 years in senior technology and business leadership, including C-suite roles at major financial institutions in the City of London, I've seen first-hand how much clarity, wellbeing and good decisions matter in a fast-paced world.
                     </p>
                     <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1rem;">
-                        Leading high-performing teams taught me that people achieve their best when support is tailored to their individual needs. It also shaped my belief that longevity isn't just about living longer — it's about staying healthy, capable and fully engaged in life.
+                        Leading high-performing teams taught me that people achieve their best when support is tailored to their individual needs. It also shaped my belief that longevity isn't just about living longer - it's about staying healthy, capable and fully engaged in life.
                     </p>
                     <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1rem;">
                         I hold a PhD in Computer Science and an MBA, both from Imperial College London, and I founded The Longevity Advantage to bring a more personal, tailored approach to living better for longer.
@@ -529,24 +530,6 @@
                     <button type="button" id="btnReportModal" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
                     <button type="button" id="btnLoggingModal" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
                 </div>
-            </div>
-        </section>
-
-        <!-- TLA FOR TEAMS SECTION -->
-        <section id="teams-section" class="section" style="scroll-margin-top: 20px;">
-            <div class="card" style="max-width: 850px; margin: 0 auto; padding: 2.5rem; border-top: 4px solid var(--accent-teal); text-align: center;">
-                <span style="background: rgba(45, 212, 191, 0.12); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800; font-size: 0.8rem; letter-spacing: 1.5px; padding: 0.3rem 0.85rem; border-radius: 20px; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">
-                    Launching 2027
-                </span>
-                <h2 style="font-size: 2rem; color: var(--text-light); margin-bottom: 0.75rem; font-weight: 800;">
-                    TLA for teams
-                </h2>
-                <p style="color: var(--text-light); font-size: 1.05rem; line-height: 1.65; max-width: 760px; margin: 0 auto 1.75rem auto;">
-                    Personal coaching and smart technology, for you and your team.
-                </p>
-                <button type="button" onclick="openModal('teamChallengeModal')" class="btn-gold">
-                    Explore the Concept &rarr;
-                </button>
             </div>
         </section>
 
@@ -825,7 +808,7 @@
                     Register your organisation’s interest
                 </h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem;">
-                    Complete the form below to connect with us about shaping the founding 2027 TLA for teams.
+                    Complete the form below to connect with us about shaping the founding TLA for teams programme.
                 </p>
 
                 <form id="teamEnquiryForm">
@@ -1138,7 +1121,7 @@
             </div>
 
             <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.25rem; line-height: 1.5;">
-                Below is a sample of the kinds of routines you might log. Your own Check-In page will be tailored to your plan.
+                Below is a sample of the kinds of routines you might log. Your own logging page will be tailored to your plan.
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 1.25rem;">
