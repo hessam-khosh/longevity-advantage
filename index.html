@@ -80,6 +80,32 @@
         .hero { text-align: center; padding: 4.5rem 5% 2.5rem 5%; max-width: 900px; margin: 0 auto; }
         .hero h1 { font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.25; font-weight: 800; }
 
+        /* Teaser Strip directly under Hero */
+        .hero-teaser-strip {
+            background: rgba(45, 212, 191, 0.08);
+            border-top: 1px solid rgba(45, 212, 191, 0.25);
+            border-bottom: 1px solid rgba(45, 212, 191, 0.25);
+            padding: 0.75rem 5%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-teaser-link {
+            color: var(--accent-teal);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .hero-teaser-link:hover {
+            color: var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+
         .section { padding: 3.5rem 5%; max-width: 1100px; margin: 0 auto; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 2rem; font-weight: 800; }
 
@@ -265,6 +291,14 @@
                 </p>
             </div>
         </section>
+
+        <!-- HERO TEASER STRIP -->
+        <div class="hero-teaser-strip">
+            <a href="#teams-section" class="hero-teaser-link">
+                <span>✨ Launching 2027: <strong>TLA for teams</strong></span>
+                <span>Learn more &rarr;</span>
+            </a>
+        </div>
 
         <!-- THE FOLLOW-THROUGH GAP SECTION -->
         <section class="section" style="padding-top: 1rem;">
@@ -499,7 +533,7 @@
         </section>
 
         <!-- TLA FOR TEAMS SECTION -->
-        <section class="section">
+        <section id="teams-section" class="section" style="scroll-margin-top: 20px;">
             <div class="card" style="max-width: 850px; margin: 0 auto; padding: 2.5rem; border-top: 4px solid var(--accent-teal); text-align: center;">
                 <span style="background: rgba(45, 212, 191, 0.12); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800; font-size: 0.8rem; letter-spacing: 1.5px; padding: 0.3rem 0.85rem; border-radius: 20px; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">
                     Launching 2027
@@ -507,15 +541,9 @@
                 <h2 style="font-size: 2rem; color: var(--text-light); margin-bottom: 0.75rem; font-weight: 800;">
                     TLA For teams
                 </h2>
-                <p style="color: var(--text-light); font-size: 1rem; line-height: 1.65; max-width: 760px; margin: 0 auto 1.5rem auto;">
-                    Personal coaching and smart technology, for you and your team. Over 12 weeks, each person works towards their own goals with their own plan, while the team supports each other along the way. No rankings, no comparisons, and individual health information stays private.
+                <p style="color: var(--text-light); font-size: 1.05rem; line-height: 1.65; max-width: 760px; margin: 0 auto 1.75rem auto;">
+                    Personal coaching and smart technology, for you and your team. Launching 2027.
                 </p>
-                <div style="background: rgba(4, 13, 26, 0.6); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.5rem; max-width: 760px; margin: 0 auto 2rem auto;">
-                    <strong style="color: var(--accent-gold); font-size: 0.92rem; display: block; margin-bottom: 0.35rem;">Currently in development</strong>
-                    <p style="color: var(--text-offwhite); font-size: 0.95rem; font-style: italic; margin: 0;">
-                        We are inviting expressions of interest from organisations interested in helping shape the founding version of the programme.
-                    </p>
-                </div>
                 <button type="button" onclick="openModal('teamChallengeModal')" class="btn-gold">
                     Explore the Concept &rarr;
                 </button>
@@ -696,7 +724,7 @@
             </div>
 
             <h2 style="color: var(--text-light); font-size: 1.8rem; margin-bottom: 0.3rem; text-align: center; font-weight: 800;">
-                TLA For teams · Launching 2027
+                TLA for teams · Launching 2027
             </h2>
             <p style="color: var(--accent-cyan); font-size: 1.1rem; text-align: center; margin-bottom: 1.5rem; font-weight: 700;">
                 Healthier, more energised teams, together
@@ -797,7 +825,7 @@
                     Register your organisation’s interest
                 </h3>
                 <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem;">
-                    Complete the form below to connect with us about shaping the founding 2027 Team Vitality Challenge™.
+                    Complete the form below to connect with us about shaping the founding 2027 TLA for teams.
                 </p>
 
                 <form id="teamEnquiryForm">
@@ -864,7 +892,7 @@
                         </label>
                         <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
                             <input type="checkbox" required style="margin-top: 0.2rem;">
-                            <span>I agree to The Longevity Advantage contacting me regarding the Team Vitality Challenge™.</span>
+                            <span>I agree to The Longevity Advantage contacting me regarding TLA for teams.</span>
                         </label>
                     </div>
 
@@ -1562,7 +1590,7 @@
         });
 
         var payload = {
-            form_type: "Team Vitality Challenge Founding Interest",
+            form_type: "TLA for teams Founding Interest",
             contact_name: document.getElementById('teamContactName').value,
             organisation: document.getElementById('teamOrg').value,
             job_title: document.getElementById('teamJobTitle').value,
