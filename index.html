@@ -230,6 +230,15 @@
 
         footer { padding: 3rem 5% 2rem 5%; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; text-align: center; }
 
+        /* Legal Popup Typography */
+        .legal-doc-content h3 { color: var(--accent-teal); font-size: 1.15rem; margin-top: 1.25rem; margin-bottom: 0.5rem; font-weight: 700; }
+        .legal-doc-content p { color: var(--text-light); font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.85rem; }
+        .legal-doc-content ul { padding-left: 1.5rem; margin-bottom: 0.85rem; color: var(--text-light); font-size: 0.92rem; line-height: 1.6; }
+        .legal-doc-content li { margin-bottom: 0.35rem; }
+        .legal-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; text-align: left; }
+        .legal-table th, .legal-table td { padding: 0.6rem; border: 1px solid var(--border); }
+        .legal-table th { background: rgba(255,255,255,0.05); color: var(--accent-gold); }
+
         @media (max-width: 820px) {
             .how-it-works-container { grid-template-columns: 1fr; }
             .pillars-grid { grid-template-columns: 1fr; }
@@ -665,7 +674,7 @@
                 </div>
 
                 <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1.25rem;">
-                    We'll only use your details to arrange your call. See our Privacy Policy.
+                    We'll only use your details to arrange your call. <a href="javascript:void(0)" onclick="openModal('privacyModal')" style="color: var(--text-muted); text-decoration: underline;">See our Privacy Policy</a>.
                 </p>
             </div>
         </section>
@@ -880,7 +889,7 @@
                     </div>
 
                     <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.25rem; text-align: center;">
-                        We’ll only use your details to respond to your enquiry. Individual health information is never shared with your organisation. See our Privacy Policy.
+                        We’ll only use your details to respond to your enquiry. Individual health information is never shared with your organisation. <a href="javascript:void(0)" onclick="openModal('privacyModal')" style="color: var(--text-muted); text-decoration: underline;">See our Privacy Policy</a>.
                     </p>
 
                     <button type="submit" id="teamSubmitBtn" class="btn-gold" style="width: 100%;">
@@ -1027,7 +1036,7 @@
                                 <li>One-to-one coaching sessions</li>
                                 <li>Video consultations</li>
                                 <li>Goal-setting discussions</li>
-                                <li><u>Accountability</u> check-ins</li>
+                                <li>Accountability check-ins</li>
                                 <li>Walking meetings or shared physical activity sessions</li>
                                 <li>Guided breathing, mindfulness or meditation practices</li>
                                 <li>Problem-solving and habit-building support</li>
@@ -1313,6 +1322,236 @@
         </div>
     </div>
 
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
+            <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+
+            <h2 style="color: var(--text-light); font-size: 1.8rem; margin-bottom: 0.25rem; font-weight: 800; text-align: center;">
+                Privacy Policy
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 1.5rem;">
+                Last updated: 21st October 2026
+            </p>
+
+            <div class="legal-doc-content">
+                <h3>1. Who we are</h3>
+                <p>The Longevity Advantage ("TLA", "we", "us") is a wellness coaching service run by Dr Hessam Khoshnevisan as a sole trader. We're the "controller" of your personal data, which means we decide how and why it's used.</p>
+                <p>The Longevity Advantage, Suite 848, 80A Ruskin Ave, London, DA16 3QQ<br>Email: contact@thelongevityadvantage.co.uk<br>Our registration number with the Information Commissioner's Office (ICO) will be confirmed here before launch.</p>
+
+                <h3>2. What this policy covers</h3>
+                <p>How we use your personal data when you visit our website, book a discovery call, ask about our team programme, or become a client. If you're a client, our Client Agreement explains the rest of how we work together.</p>
+
+                <h3>3. What we collect</h3>
+                <p><strong>When you book a discovery call:</strong> your name, email address, phone number, and anything you write in the comments box.</p>
+                <p><strong>When you ask about TLA for teams:</strong> your name, organisation, job title, work email, team size, the area you're interested in, anything you tell us about your interest, and whether you'd like updates.</p>
+                <p><strong>When you become a client:</strong></p>
+                <ul>
+                    <li>your answers to our health and lifestyle screening questions;</li>
+                    <li>body composition and fitness measurements and test results, and the reports we produce from them;</li>
+                    <li>your goals, habits, routines, sleep, energy and nutrition information;</li>
+                    <li>your daily logs, including any optional measures you and your coach agree (such as overnight fasting hours) and any notes or reflections you add;</li>
+                    <li>notes from our sessions and your messages to us;</li>
+                    <li>your portal login details (your email address and password, which is stored securely); and</li>
+                </ul>
+                <p>Information about your health is "special category data" and gets extra protection under the law. We only collect it with your explicit consent.</p>
+
+                <h3>4. Why we use your data, and our legal basis</h3>
+                <div style="overflow-x: auto; margin-bottom: 1rem;">
+                    <table class="legal-table">
+                        <thead>
+                            <tr>
+                                <th>What we do</th>
+                                <th>Data involved</th>
+                                <th>Our legal basis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Arrange and hold your discovery call</td>
+                                <td>Name, contact details, comments</td>
+                                <td>Taking steps at your request before a contract</td>
+                            </tr>
+                            <tr>
+                                <td>Respond to a team enquiry</td>
+                                <td>Contact and organisation details</td>
+                                <td>Our legitimate interest in replying to business enquiries</td>
+                            </tr>
+                            <tr>
+                                <td>Send programme updates you've asked for</td>
+                                <td>Name, email</td>
+                                <td>Your consent, which you can withdraw at any time</td>
+                            </tr>
+                            <tr>
+                                <td>Provide your coaching: plan, sessions, portal, logging and check-ins</td>
+                                <td>Client information</td>
+                                <td>Our contract with you</td>
+                            </tr>
+                            <tr>
+                                <td>Use your health information to tailor your plan safely</td>
+                                <td>Screening answers, measurements, health-related notes</td>
+                                <td>Your explicit consent, which you can withdraw at any time</td>
+                            </tr>
+                            <tr>
+                                <td>Analyse your data with Atlas to track progress and suggest ideas</td>
+                                <td>Client information, including health data</td>
+                                <td>Our contract with you and your explicit consent</td>
+                            </tr>
+                            <tr>
+                                <td>Take payment and keep accounts</td>
+                                <td>Contact and payment details</td>
+                                <td>Our contract with you and a legal duty to keep accounting records</td>
+                            </tr>
+                            <tr>
+                                <td>Improve our service and ask for feedback</td>
+                                <td>Feedback, and anonymised or combined results</td>
+                                <td>Our legitimate interest in running and improving TLA</td>
+                            </tr>
+                            <tr>
+                                <td>Publish a testimonial or case study</td>
+                                <td>Your words, and your name only if you agree</td>
+                                <td>Your consent, given after you've approved the exact wording</td>
+                            </tr>
+                            <tr>
+                                <td>Reply to messages and handle complaints</td>
+                                <td>Contact details, messages</td>
+                                <td>Our legitimate interests and our contract with you</td>
+                            </tr>
+                            <tr>
+                                <td>Keep our website and portal secure</td>
+                                <td>Technical data, login details</td>
+                                <td>Our legitimate interests</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>5. How Atlas uses your data</h3>
+                <p>Atlas is our AI companion. It analyses the information you and your coach add, such as measurements, logs and goals, to spot patterns and suggest ideas, which your coach then reviews with you. Atlas doesn't make decisions about you on its own that have legal or similarly significant effects. We do not allow Atlas to use your data to train its models. You can ask us not to use Atlas on your data at any time. Atlas offers wellness insights, not medical advice.</p>
+
+                <h3>6. WhatsApp and email</h3>
+                <p>We use WhatsApp and email to arrange sessions and answer quick questions. WhatsApp is run by Meta, which has its own privacy policy. Please don't send health information by WhatsApp or email. Share it in your sessions or through your private client portal.</p>
+
+                <h3>7. Who we share your data with</h3>
+                <p>We never sell your data. We share it only with the organisations that help us run TLA, under contract and only as far as they need it: website hosting provider, email provider, WhatsApp, AI provider(s) for Atlas, accountant, and professional advisers or authorities where the law requires. If you'd like us to speak to your GP or another professional, we'll do that only with your written permission.</p>
+
+                <h3>8. TLA for teams (planned for 2027)</h3>
+                <p>When we run programmes for organisations, we'll never share an individual's health information, measurements, logs or coaching conversations with their employer or anyone else in the organisation. Taking part will always be voluntary. Team-level results will be shown only for groups of five or more people, and only to the team itself. Before launch, we'll add the details of how we work with each organisation.</p>
+
+                <h3>9. Transfers outside the UK</h3>
+                <p>Some of our providers may process data outside the UK. When they do, we make sure appropriate safeguards are in place, such as UK adequacy regulations / the UK International Data Transfer Agreement or Addendum.</p>
+
+                <h3>10. How long we keep your data</h3>
+                <p><strong>Enquiries that don't become clients:</strong> 12 months, then we delete them.<br>
+                <strong>Team enquiries:</strong> 12 months, or until you ask us to stop.<br>
+                <strong>Client records, including health, measurement and logging data:</strong> the length of your programme plus one year, then we delete or anonymise them, unless the law requires us to keep them longer.<br>
+                <strong>Accounting records:</strong> 6 years, which is the usual UK requirement.<br>
+                <strong>Testimonials:</strong> until you withdraw your consent.</p>
+
+                <h3>11. Keeping your data safe</h3>
+                <p>We limit who can see your information, and we use password-protected access and encrypted connections. If a data breach is likely to put you at risk, we'll tell you and the ICO as the law requires.</p>
+
+                <h3>12. Your rights</h3>
+                <p>You can ask us to:</p>
+                <ul>
+                    <li>show you the data we hold about you;</li>
+                    <li>correct anything that's wrong;</li>
+                    <li>delete your data, or restrict how we use it;</li>
+                    <li>give you a copy of your data in a portable format;</li>
+                    <li>stop using your data where we rely on our legitimate interests;</li>
+                    <li>stop sending you updates, at any time;</li>
+                    <li>withdraw your consent, which won't affect anything we did before.</li>
+                </ul>
+                <p>To use any of these rights, email contact@thelongevityadvantage.co.uk. We'll reply within one month. If you're unhappy with how we've handled your data, you can complain to the Information Commissioner's Office at ico.org.uk or on 0303 123 1113. We'd always like the chance to put things right first.</p>
+
+                <h3>13. Children</h3>
+                <p>TLA is for adults aged 18 and over, and we don't knowingly collect children's data.</p>
+
+                <h3>14. Changes to this policy</h3>
+                <p>If we change how we use your data, we'll update this page and the date at the top.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button type="button" onclick="closeModal('privacyModal')" class="btn-secondary">Close Privacy Policy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS POPUP MODAL -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
+            <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
+
+            <h2 style="color: var(--text-light); font-size: 1.8rem; margin-bottom: 0.25rem; font-weight: 800; text-align: center;">
+                Terms of Use
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 1.5rem;">
+                Last updated: 21st October 2026
+            </p>
+
+            <div class="legal-doc-content">
+                <h3>1. About these terms</h3>
+                <p>These terms apply when you use thelongevityadvantage.co.uk, its client portal and its example reports and logging examples (together, "the website"). The website is run by The Longevity Advantage ("TLA", "we", "us"), at Suite 848, 80A Ruskin Ave, London, DA16 3QQ. You can contact us at contact@thelongevityadvantage.co.uk. By using the website, you agree to these terms. If you don't agree, please don't use it. Our Privacy Policy explains how we use your personal data.</p>
+
+                <h3>2. What the website is and isn't</h3>
+                <p>The website tells you about our wellness coaching service and lets you book a discovery call, register interest in our team programme, and (if you're a client) log in to your portal. Nothing on the website is a contract offer. A coaching agreement exists only when you and we have both signed our Client Agreement.</p>
+
+                <h3>3. Not medical advice</h3>
+                <p>TLA provides wellness coaching and general information only. It isn't medical advice, diagnosis or treatment, and it doesn't replace your GP or any other healthcare professional. Body composition and fitness measurements are estimates. Please speak to your GP or a qualified healthcare professional before changing your exercise, diet or health routine, especially if you have a medical condition. Exercise and heat therapy such as steam rooms and saunas aren't suitable for everyone.</p>
+                <p>If you feel unwell, or think you may need urgent help, don't use the website or your portal: in a medical emergency call 999, and for non-emergency advice call NHS 111. If you're in distress, you can contact your GP, NHS 111, or the Samaritans on 116 123.</p>
+
+                <h3>4. Examples and results</h3>
+                <p>Example reports, logging screens and any figures on the website are illustrative. Results vary from person to person, and we can't guarantee any particular outcome.</p>
+
+                <h3>5. Atlas</h3>
+                <p>Atlas is our AI companion. It offers wellness insights, not medical advice, and like any AI it can make mistakes. Your coach reviews its suggestions with you, and you should treat them as ideas to discuss, not instructions.</p>
+
+                <h3>6. Booking a call</h3>
+                <p>The discovery call is free and carries no obligation on either side. We may decline an enquiry, for example if we're not the right fit or our founding places are full. Founding places are limited to 5 clients, and founding-client pricing is introductory and doesn't apply to future clients.</p>
+
+                <h3>7. Coaching services</h3>
+                <p>If you become a client, our Client Agreement sets out what you receive, what you pay, how you can cancel, and what each of us is responsible for. If anything in these terms conflicts with your Client Agreement, the Client Agreement applies to your coaching.</p>
+
+                <h3>8. TLA for teams</h3>
+                <p>The team programme described on the website is in development and is planned to launch in 2027. Details may change. Registering interest doesn't commit either of us to anything, and we're not offering a service until we've agreed terms with your organisation in writing.</p>
+
+                <h3>9. Your portal account</h3>
+                <p>If you have a client portal login, please keep your details private and tell us straight away if you think someone else has used them. You're responsible for activity under your account. We may suspend access if we believe an account is being misused, or at the end of your coaching.</p>
+
+                <h3>10. Acceptable use</h3>
+                <p>Please don't:</p>
+                <ul>
+                    <li>use the website unlawfully or in a way that could harm it or other people;</li>
+                    <li>try to gain access to areas, accounts or data you're not entitled to;</li>
+                    <li>copy, resell or share our plans, audio, guides, reports or portal content outside your own personal use;</li>
+                    <li>upload anything harmful, or anything that breaks someone else's rights.</li>
+                </ul>
+
+                <h3>11. Our content</h3>
+                <p>The website's content, including the names TLA and Atlas, the logos, text, images, audio and reports, belongs to us or our licensors. You may view it and use your own plan and materials for your own personal use, but you may not copy or reuse it without our written permission.</p>
+
+                <h3>12. Links to other sites</h3>
+                <p>The website may link to other organisations, such as WhatsApp. We don't control them and aren't responsible for their content or policies.</p>
+
+                <h3>13. Our responsibility to you</h3>
+                <p>We'll take reasonable care to keep the website accurate and available, but we can't promise it will always be error-free or uninterrupted. Nothing in these terms limits any liability that can't be limited by law, including for death or personal injury caused by our negligence, for fraud, or for your rights as a consumer. Otherwise, to the extent the law allows, we aren't liable for losses that arise from your use of the website or from relying on the general information on it.</p>
+
+                <h3>14. Changes</h3>
+                <p>We may update these terms and the website from time to time. The version on this page, with its date, is the current one. If you keep using the website after a change, you accept the updated terms.</p>
+
+                <h3>15. Governing law</h3>
+                <p>These terms are governed by the law of England and Wales, and the courts of England and Wales can settle any dispute. If you live in Scotland or Northern Ireland, you may also be able to bring a claim in your local courts.</p>
+
+                <h3>16. Complaints</h3>
+                <p>If you're unhappy with anything, please tell us first at contact@thelongevityadvantage.co.uk, and we'll reply within 10 working days.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button type="button" onclick="closeModal('termsModal')" class="btn-secondary">Close Terms</button>
+            </div>
+        </div>
+    </div>
+
     <!-- BRANDED CONTACT POPUP MODAL -->
     <div id="contactModal" class="modal">
         <div class="modal-content" style="max-width: 480px; text-align: left; padding: 2rem; border-top: 4px solid var(--accent-gold);">
@@ -1387,9 +1626,9 @@
                 <span>·</span>
                 <a href="javascript:void(0)" id="termsLink" style="color: var(--text-muted); text-decoration: none;">Terms</a>
                 <span>·</span>
-                <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: underline; cursor: pointer;">Contact</a>
+                <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Contact</a>
                 <span>·</span>
-                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: underline; cursor: pointer; opacity: 0.9;">Client login</a>
+                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client login</a>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
@@ -1446,7 +1685,7 @@
         if (privacyLink) {
             privacyLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('Awaiting final revisions. This page will be updated in the coming days');
+                openModal('privacyModal');
             });
         }
 
@@ -1454,7 +1693,7 @@
         if (termsLink) {
             termsLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('Awaiting final revisions. This page will be updated in the coming days');
+                openModal('termsModal');
             });
         }
 
