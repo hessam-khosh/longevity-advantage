@@ -48,7 +48,15 @@
         .highlight-green { color: var(--accent-green); }
         .highlight-gold { color: var(--accent-gold); }
 
-        header { display: flex; justify-between: space-between; align-items: center; padding: 1.5rem 5%; border-bottom: 1px solid var(--border); }
+        /* HEADER ALIGNMENT FIX */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1.5rem 5%; 
+            border-bottom: 1px solid var(--border); 
+            width: 100%;
+        }
         .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-light); }
         
         .btn-primary { background-color: var(--accent); color: white; padding: 0.75rem 1.4rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background 0.2s, transform 0.2s; border: none; cursor: pointer; display: inline-block; text-align: center; }
@@ -226,6 +234,50 @@
             border-radius: 12px;
             margin-right: 0.35rem;
             margin-top: 0.35rem;
+        }
+
+        /* ACCORDION FAQ STYLING */
+        details.faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 1.1rem 1.5rem;
+            transition: all 0.2s ease;
+        }
+        details.faq-item[open] {
+            border-color: var(--accent-teal);
+            background: rgba(8, 26, 48, 0.85);
+        }
+        summary.faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary.faq-question::-webkit-details-marker {
+            display: none;
+        }
+        summary.faq-question::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--accent-teal);
+            transition: transform 0.2s ease;
+            margin-left: 1rem;
+        }
+        details[open] summary.faq-question::after {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding-top: 1rem;
+            margin-top: 0.75rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.65;
         }
 
         footer { padding: 3rem 5% 2rem 5%; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; text-align: center; }
@@ -499,7 +551,7 @@
                     <div style="background: rgba(4, 13, 26, 0.6); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border);">
                         <h3 style="font-size: 1.15rem; color: var(--accent-gold); margin-bottom: 0.5rem;">What it costs:</h3>
                         <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 0.5rem; line-height: 1.5;">
-                            From £100 a month, and the amount is yours to choose. We’ll talk it through together in our early conversations, and we’re confident we can find something that feels right for both of us.
+                            As part of our introductory 3-month offer, founding client membership start at £100 a month. We'll discuss the program and available options during your complimentary discovery call.
                         </p>
                         <p style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 1.25rem;">
                             📍 Founding-client pricing is introductory and won’t apply to future clients.
@@ -542,92 +594,99 @@
             </div>
         </section>
 
-        <!-- FAQ SECTION -->
+        <!-- FAQ SECTION (INTERACTIVE ACCORDION COLLAPSIBLE DROPDOWNS) -->
         <section class="section">
             <h2 class="section-title">Frequently Asked Questions</h2>
 
-            <div style="display: flex; flex-direction: column; gap: 1.25rem; max-width: 850px; margin: 0 auto;">
+            <div style="display: flex; flex-direction: column; gap: 0.85rem; max-width: 850px; margin: 0 auto;">
                 
-                <div class="card" style="padding: 1.5rem; border-left: 4px solid var(--accent-teal);">
-                    <h3 style="color: var(--accent-teal); font-size: 1.15rem; margin-bottom: 0.5rem; font-weight: 700;">What makes TLA different from using a health app?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.65; margin: 0;">
+                <details class="faq-item">
+                    <summary class="faq-question">What makes TLA different from using a health app?</summary>
+                    <div class="faq-answer">
                         Most health apps track what happened. TLA is designed to help influence what happens next. Through a combination of personalised coach support, Atlas AI insights, structured accountability and regular review, the focus is not simply collecting data but helping you consistently follow through on the actions that matter most.
-                    </p>
-                </div>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem; border-left: 4px solid var(--accent-gold);">
-                    <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin-bottom: 0.75rem; font-weight: 700;">Is TLA Right for You?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0.85rem;">
-                        TLA is for people who know roughly what healthy living looks like but find it hard to do consistently. If you’d like a plan built around your life, someone to keep you accountable, and simple routines to follow, we’d love to talk.
-                    </p>
-                    <p style="font-size: 0.92rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.35rem;">It’s a good fit if you are:</p>
-                    <ul style="list-style: disc; padding-left: 1.5rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 0.85rem;">
-                        <li>a busy professional or executive</li>
-                        <li>looking for personal guidance and accountability</li>
-                        <li>in mid-life and want more energy and better health for the years ahead</li>
-                    </ul>
+                <details class="faq-item">
+                    <summary class="faq-question" style="color: var(--accent-gold);">Is TLA Right for You?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 0.85rem;">
+                            TLA is for people who know roughly what healthy living looks like but find it hard to do consistently. If you’d like a plan built around your life, someone to keep you accountable, and simple routines to follow, we’d love to talk.
+                        </p>
+                        <p style="font-weight: 600; margin-bottom: 0.35rem;">It’s a good fit if you are:</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+                            <li>a busy professional or executive</li>
+                            <li>looking for personal guidance and accountability</li>
+                            <li>in mid-life and want more energy and better health for the years ahead</li>
+                        </ul>
 
-                    <p style="font-size: 0.92rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.35rem;">It’s probably not for you if you:</p>
-                    <ul style="list-style: disc; padding-left: 1.5rem; font-size: 0.92rem; color: var(--text-muted); line-height: 1.65;">
-                        <li>want medical diagnosis or treatment (please see your GP)</li>
-                        <li>are looking for a quick fix or a strict diet plan</li>
-                        <li>can’t commit to a weekly session and a few minutes of daily routines</li>
-                    </ul>
-                </div>
+                        <p style="font-weight: 600; margin-bottom: 0.35rem;">It’s probably not for you if you:</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted);">
+                            <li>want medical diagnosis or treatment (please see your GP)</li>
+                            <li>are looking for a quick fix or a strict diet plan</li>
+                            <li>can’t commit to a weekly session and a few minutes of daily routines</li>
+                        </ul>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">What happens on the call?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                <details class="faq-item">
+                    <summary class="faq-question">What happens on the call?</summary>
+                    <div class="faq-answer">
                         It's a relaxed conversation, not a sales pitch. We'll ask about your goals, your current routine and what's got in the way before. You can ask us anything, and we'll tell you honestly whether we think TLA is a good fit.
-                    </p>
-                </div>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">Is there any obligation?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                <details class="faq-item">
+                    <summary class="faq-question">Is there any obligation?</summary>
+                    <div class="faq-answer">
                         No. The call is free, and there's no pressure to sign up. If it's not right for you, that's fine.
-                    </p>
-                </div>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">Who will I be speaking to?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                <details class="faq-item">
+                    <summary class="faq-question">Who will I be speaking to?</summary>
+                    <div class="faq-answer">
                         Hessam Khoshnevisan, our founder, will take your call and personally coach all our founding clients.
-                    </p>
-                </div>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">What does it cost?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.5rem;">
-                        Founding-client price is from £100 a month, and the amount is yours to choose. We’ll talk it through together in our early conversations, and we’re confident we can find something that feels right for both of us.
-                    </p>
-                    <p style="font-size: 0.88rem; color: var(--accent-gold); font-weight: 600; margin: 0;">
-                        Founding-client pricing is introductory and won’t apply to future clients.
-                    </p>
-                </div>
+                <details class="faq-item">
+                    <summary class="faq-question">What does it cost?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 0.5rem;">
+                            As part of our introductory 3-month offer, founding client membership start at £100 a month. We'll discuss the program and available options during your complimentary discovery call.
+                        </p>
+                        <p style="font-size: 0.88rem; color: var(--accent-gold); font-weight: 600; margin: 0;">
+                            Founding-client pricing is introductory and won’t apply to future clients.
+                        </p>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">What is self-hypnosis, and is it right for me?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
-                        Self-hypnosis is a guided relaxation technique. You listen to a short audio session, usually while sitting or lying comfortably, and follow a calm voice that helps you slow down, settle your mind and focus on a positive intention, such as winding down in the evening or staying consistent with your routines.
-                    </p>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
-                        It's nothing like stage hypnosis. You stay aware and in control the whole time, you can open your eyes and stop whenever you like, and nobody can make you do anything you don't want to.
-                    </p>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
-                        Within TLA, self-hypnosis sits alongside breathwork and meditation as an optional part of your daily routine. Many people find these sessions a helpful way to relax, reset and build habits they can stick to. Experiences vary from person to person, and results aren't guaranteed.
-                    </p>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                        Self-hypnosis isn't a substitute for medical or mental health care. If you have a diagnosed mental health condition, or you're unsure whether it's suitable, please speak to your GP or healthcare professional first. We're also happy to talk it through on your discovery call.
-                    </p>
-                </div>
+                <details class="faq-item">
+                    <summary class="faq-question">What is self-hypnosis, and is it right for me?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 0.75rem;">
+                            Self-hypnosis is a guided relaxation technique. You listen to a short audio session, usually while sitting or lying comfortably, and follow a calm voice that helps you slow down, settle your mind and focus on a positive intention, such as winding down in the evening or staying consistent with your routines.
+                        </p>
+                        <p style="margin-bottom: 0.75rem;">
+                            It's nothing like stage hypnosis. You stay aware and in control the whole time, you can open your eyes and stop whenever you like, and nobody can make you do anything you don't want to.
+                        </p>
+                        <p style="margin-bottom: 0.75rem;">
+                            Within TLA, self-hypnosis sits alongside breathwork and meditation as an optional part of your daily routine. Many people find these sessions a helpful way to relax, reset and build habits they can stick to. Experiences vary from person to person, and results aren't guaranteed.
+                        </p>
+                        <p style="margin: 0;">
+                            Self-hypnosis isn't a substitute for medical or mental health care. If you have a diagnosed mental health condition, or you're unsure whether it's suitable, please speak to your GP or healthcare professional first. We're also happy to talk it through on your discovery call.
+                        </p>
+                    </div>
+                </details>
 
-                <div class="card" style="padding: 1.5rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">Is this safe for me, and is it medical advice?</h3>
-                    <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                <details class="faq-item">
+                    <summary class="faq-question">Is this safe for me, and is it medical advice?</summary>
+                    <div class="faq-answer">
                         TLA is a wellness coaching service. It isn't medical advice, diagnosis or treatment. Before we begin, we'll ask a few health screening questions. Exercise and heat therapy such as steam rooms and saunas aren't suitable for everyone, so if you have a heart condition or high blood pressure, are pregnant, or take regular medication, please check with your GP first.
-                    </p>
-                </div>
+                    </div>
+                </details>
+
             </div>
         </section>
 
