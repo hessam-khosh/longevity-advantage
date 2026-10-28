@@ -64,6 +64,26 @@
         .btn-secondary { background-color: transparent; color: var(--text-light); padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--border); transition: border-color 0.2s; cursor: pointer; }
         .btn-secondary:hover { border-color: var(--accent); }
 
+        /* Gradient Button Matching "How it works" numbers */
+        .btn-cyan-gradient {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-teal));
+            color: #040d1a;
+            padding: 0.75rem 1.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: transform 0.2s, opacity 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-cyan-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
         .btn-gold { 
             background-color: var(--accent-gold); 
             color: #040d1a; 
@@ -577,7 +597,7 @@
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                    <button type="button" id="btnReportModal" class="btn-primary">View an example Baseline Vitality Report &rarr;</button>
+                    <button type="button" id="btnReportModal" class="btn-cyan-gradient">View an example Baseline Vitality Report &rarr;</button>
                     <button type="button" id="btnLoggingModal" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal);">View Daily Logging Example &rarr;</button>
                 </div>
             </div>
@@ -597,7 +617,7 @@
                 </details>
 
                 <details class="faq-item">
-                    <summary class="faq-question" style="color: var(--accent-gold);">Is TLA Right for You?</summary>
+                    <summary class="faq-question">Is TLA Right for You?</summary>
                     <div class="faq-answer">
                         <p style="margin-bottom: 0.85rem;">
                             TLA is for people who know roughly what healthy living looks like but find it hard to do consistently. If you’d like a plan built around your life, someone to keep you accountable, and simple routines to follow, we’d love to talk.
@@ -737,7 +757,7 @@
             </div>
 
             <div style="margin-bottom: 2rem; text-align: center;">
-                <button type="button" id="btnDashReportModal" class="btn-primary" style="width: 100%;">
+                <button type="button" id="btnDashReportModal" class="btn-cyan-gradient" style="width: 100%;">
                     📄 Your Vitality Assessment Report &rarr;
                 </button>
             </div>
