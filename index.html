@@ -108,14 +108,14 @@
         .hero { text-align: center; padding: 4.5rem 5% 2.5rem 5%; max-width: 900px; margin: 0 auto; }
         .hero h1 { font-size: 2.6rem; margin-bottom: 1.5rem; line-height: 1.25; font-weight: 800; color: var(--text-light); }
 
-        /* Teaser Strip directly under Hero */
+        /* Teaser Banner Placement */
         .hero-teaser-strip {
             background: rgba(45, 212, 191, 0.08);
             border-top: 1px solid rgba(45, 212, 191, 0.25);
             border-bottom: 1px solid rgba(45, 212, 191, 0.25);
             padding: 0.75rem 5%;
             text-align: center;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
         }
 
         .hero-teaser-link {
@@ -356,13 +356,12 @@
         <!-- HERO SECTION -->
         <section class="hero">
             <h1>
-                Live Better. Feel Stronger.<br>
-                Age Smarter.
+                Your personal route to more energy, vitality and health.
             </h1>
 
             <div style="background: rgba(8, 30, 55, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(45, 212, 191, 0.35); padding: 1.5rem 1.75rem; border-radius: 14px; margin: 0 auto 2.5rem auto; text-align: center; max-width: 820px;">
                 <p style="font-size: 1.15rem; font-weight: 500; color: var(--text-light); margin: 0; line-height: 1.6;">
-                    Personalised weekly <span class="highlight-cyan" style="font-weight: 700;">coaching</span>, simple <span class="highlight-teal" style="font-weight: 700;">daily routines</span> and <span class="highlight-green" style="font-weight: 700;">Atlas AI insights</span>, all built around your life to help you keep the promises you make to yourself.
+                    Weekly one-to-one coaching, simple daily routines, accountability and progress tracking, with insights from Atlas, our AI companion, all built around your goals and your life.
                 </p>
             </div>
 
@@ -373,14 +372,6 @@
                 </p>
             </div>
         </section>
-
-        <!-- HERO TEASER STRIP -->
-        <div class="hero-teaser-strip">
-            <a href="javascript:void(0)" onclick="openModal('teamChallengeModal')" class="hero-teaser-link">
-                <span>✨ Launching 2027: <strong>TLA for teams</strong></span>
-                <span>Learn more &rarr;</span>
-            </a>
-        </div>
 
         <!-- THE FOLLOW-THROUGH GAP SECTION -->
         <section class="section" style="padding-top: 1rem;">
@@ -603,6 +594,14 @@
             </div>
         </section>
 
+        <!-- TEASER STRIP MOVED BEFORE FAQ SECTION -->
+        <div class="hero-teaser-strip">
+            <a href="javascript:void(0)" onclick="openModal('teamChallengeModal')" class="hero-teaser-link">
+                <span>✨ Launching 2027: <strong>TLA for teams</strong></span>
+                <span>Learn more &rarr;</span>
+            </a>
+        </div>
+
         <!-- FAQ SECTION (INTERACTIVE ACCORDION COLLAPSIBLE DROPDOWNS) -->
         <section class="section">
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -619,21 +618,22 @@
                 <details class="faq-item">
                     <summary class="faq-question">Is TLA Right for You?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 0.85rem;">
-                            TLA is for people who know roughly what healthy living looks like but find it hard to do consistently. If you’d like a plan built around your life, someone to keep you accountable, and simple routines to follow, we’d love to talk.
+                        <p style="margin-bottom: 0.85rem; color: var(--text-light);">
+                            TLA is for anyone with a health or energy goal who finds it hard to follow through. Whether you want to lose weight, get fitter, sleep better or simply feel more energised, we’ll build a plan around your life and help you stick to it.
                         </p>
-                        <p style="font-weight: 600; margin-bottom: 0.35rem;">It’s a good fit if you are:</p>
-                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted); margin-bottom: 0.85rem;">
-                            <li>a busy professional or executive</li>
-                            <li>looking for personal guidance and accountability</li>
-                            <li>in mid-life and want more energy and better health for the years ahead</li>
+                        <p style="font-weight: 700; color: var(--text-light); margin-bottom: 0.5rem;">It’s a good fit if you:</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-light); margin-bottom: 1.25rem;">
+                            <li style="margin-bottom: 0.35rem;">have a goal in mind, such as losing weight, building strength, having more energy or feeling better</li>
+                            <li style="margin-bottom: 0.35rem;">know roughly what to do, but find it hard to do it consistently</li>
+                            <li style="margin-bottom: 0.35rem;">want personal guidance, accountability and someone in your corner</li>
+                            <li style="margin-bottom: 0.35rem;">can commit to a weekly session and a few minutes of daily routines</li>
                         </ul>
 
-                        <p style="font-weight: 600; margin-bottom: 0.35rem;">It’s probably not for you if you:</p>
-                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-muted);">
-                            <li>want medical diagnosis or treatment (please see your GP)</li>
-                            <li>are looking for a quick fix or a strict diet plan</li>
-                            <li>can’t commit to a weekly session and a few minutes of daily routines</li>
+                        <p style="font-weight: 700; color: var(--text-light); margin-bottom: 0.5rem;">It’s probably not for you if you:</p>
+                        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--text-light);">
+                            <li style="margin-bottom: 0.35rem;">want medical diagnosis or treatment (please see your GP)</li>
+                            <li style="margin-bottom: 0.35rem;">are looking for a quick fix or a crash diet</li>
+                            <li style="margin-bottom: 0.35rem;">want a ready-made plan to follow on your own, without personal support</li>
                         </ul>
                     </div>
                 </details>
@@ -1003,14 +1003,14 @@
 
             <div style="color: var(--text-light); line-height: 1.6;">
                 <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-                    This report represents the first step in understanding your unique Longevity Advantage. Drawing on your body composition data, fitness assessment results and Discovery responses, it provides an integrated view of your current health and vitality profile.
+                    Thank you for sharing your goals with us during our Discovery conversation. You first got in touch because you wanted to lose weight, and you also told us about your energy, your routines and what has made it hard to stay consistent. This report brings that together with your body composition and fitness results, to give you a clear starting point and a practical way forward.
                 </p>
 
                 <!-- EXECUTIVE SUMMARY -->
                 <div style="background: var(--bg-dark); border-left: 4px solid var(--accent); border-radius: 6px; padding: 1.25rem; margin-bottom: 2rem;">
                     <h3 style="color: var(--accent); font-size: 1.15rem; margin-bottom: 0.5rem;">Executive Summary</h3>
                     <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.85rem;">
-                        The findings from your Discovery Session suggest that the opportunity is not to increase your motivation, but to improve the structure supporting it. With the right personalised plan, small consistent actions can compound into meaningful improvements in health, vitality and longevity.
+                        You first approached us because you wanted to lose weight, and we talked about this alongside your energy, routines and lifestyle. What stands out is that the opportunity isn’t to increase your motivation, but to improve the structure supporting it. With the right personalised plan, small consistent actions can build into meaningful progress towards your goals.
                     </p>
                     <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.85rem;">
                         Your assessment results reveal a strong foundation for healthy ageing and long-term vitality. Muscle mass, activity levels, and nutrition awareness provide a solid platform. Small improvements in daily movement, recovery, body composition and accountability will create meaningful increases in energy and wellbeing over the coming months.
