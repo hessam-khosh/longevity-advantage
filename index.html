@@ -2260,27 +2260,36 @@
 
     // 7. Check Questionnaire Onboarding Status
     async function checkQuestionnaireStatus(userId) {
-        var client = getSupabase();
-        if (!client) return;
+    var client = getSupabase();
+    if (!client) return;
 
-        try {
-            var res = await client
-                .from('discovery_questionnaires')
-                .select('is_completed')
-                .eq('user_id', userId)
-                .single();
+    // Always reset form fields to blank first
+    resetQuestionnaireForm();
 
-            if (res.error || !res.data || !res.data.is_completed) {
-                // First-time or incomplete client onboarding: trigger questionnaire modal automatically
-                currentQuestStep = 1;
-                updateQuestStepUI();
-                openModal('questModal');
-            }
-        } catch (err) {
-            console.warn("Questionnaire check error:", err);
+    try {
+        var res = await client
+            .from('discovery_questionnaires')
+            .select('is_completed, responses')
+            .eq('user_id', userId)
+            .maybeSingle();
+
+        if (res.error) {
+            console.warn("Questionnaire check error:", res.error);
         }
-    }
 
+        // If no record exists or questionnaire is incomplete
+        if (!res.data || !res.data.is_completed) {
+            currentQuestStep = 1;
+            updateQuestStepUI();
+            openModal('questModal');
+        } else if (res.data && res.data.responses) {
+            // Optional: If they already completed it, populate their specific saved answers
+            populateQuestionnaireForm(res.data.responses);
+        }
+    } catch (err) {
+        console.warn("Questionnaire check error:", err);
+    }
+}
     // 8. Client Authentication
     async function authenticateClient() {
         var email = document.getElementById('clientNameInput').value.trim();
@@ -2334,14 +2343,15 @@
     }
 
     async function logoutClient() {
-        var client = getSupabase();
-        if (client) {
-            await client.auth.signOut();
-        }
-        document.getElementById('dashboardView').style.display = 'none';
-        document.getElementById('mainView').style.display = 'block';
-        window.scrollTo(0, 0);
+    var client = getSupabase();
+    if (client) {
+        await client.auth.signOut();
     }
+    resetQuestionnaireForm(); // Clear all fields on logout
+    document.getElementById('dashboardView').style.display = 'none';
+    document.getElementById('mainView').style.display = 'block';
+    window.scrollTo(0, 0);
+}
 
     async function checkActiveSession() {
         var client = getSupabase();
@@ -2361,6 +2371,46 @@
             }
         }
     }
+  // Helper function to reset the questionnaire form to a completely blank state
+function resetQuestionnaireForm() {
+    var form = document.getElementById('questForm');
+    if (form) form.reset();
+
+    // Explicitly clear text/textareas
+    ['q4', 'q6', 'q7', 'q8', 'q10', 'q13_wake', 'q13_bed', 'q50', 'q51_name'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.value = '';
+    });
+
+    // Reset range sliders to defaults & update display badges
+    var sliders = [
+        { id: 'q9_imp', badge: 'v_q9_imp', def: '8' },
+        { id: 'q9_conf', badge: 'v_q9_conf', def: '7' },
+        { id: 'q21', badge: 'v_q21', def: '5' },
+        { id: 'q29', badge: 'v_q29', def: '3' },
+        { id: 'q31', badge: 'v_q31', def: '6' },
+        { id: 'sc_energy', def: '5' },
+        { id: 'sc_sleep', def: '5' },
+        { id: 'sc_nutrition', def: '5' },
+        { id: 'sc_movement', def: '5' },
+        { id: 'sc_stress', def: '5' },
+        { id: 'sc_health', def: '5' }
+    ];
+
+    sliders.forEach(function(s) {
+        var el = document.getElementById(s.id);
+        if (el) el.value = s.def;
+        if (s.badge) {
+            var b = document.getElementById(s.badge);
+            if (b) b.innerText = s.def;
+        }
+    });
+
+    // Uncheck all dynamic check cards
+    document.querySelectorAll('#questForm input[type="checkbox"]').forEach(function(cb) {
+        cb.checked = false;
+    });
+}
 </script>
 </body>
 </html>
