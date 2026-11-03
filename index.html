@@ -256,6 +256,19 @@
             margin-top: 0.35rem;
         }
 
+        /* Questionnaire Wizard Custom Styling */
+        .quest-step { display: none; }
+        .quest-step.active { display: block; }
+        .q-label { display: block; font-size: 0.92rem; font-weight: 700; color: var(--text-light); margin-bottom: 0.5rem; text-align: left; }
+        .q-sub { font-size: 0.82rem; color: var(--text-muted); font-weight: 400; display: block; margin-bottom: 0.4rem; }
+        .q-group { margin-bottom: 1.5rem; text-align: left; }
+        .q-checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.6rem; margin-bottom: 1rem; }
+        .q-checkbox-card { background: var(--bg-dark); border: 1px solid var(--border); padding: 0.75rem 1rem; border-radius: 6px; display: flex; align-items: flex-start; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: var(--text-offwhite); }
+        .q-checkbox-card input { margin-top: 0.2rem; }
+        .q-slider-container { display: flex; align-items: center; gap: 1rem; }
+        .q-slider-container input { flex-grow: 1; }
+        .q-slider-val { font-weight: 800; color: var(--accent-gold); min-width: 25px; text-align: right; }
+
         /* ACCORDION FAQ STYLING */
         details.faq-item {
             background: var(--card-bg);
@@ -762,9 +775,12 @@
                 <button type="button" id="logoutBtn" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Log Out</button>
             </div>
 
-            <div style="margin-bottom: 2rem; text-align: center;">
-                <button type="button" id="btnDashReportModal" class="btn-cyan-gradient" style="width: 100%;">
+            <div style="margin-bottom: 2rem; text-align: center; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <button type="button" id="btnDashReportModal" class="btn-cyan-gradient" style="flex: 1; min-width: 250px;">
                     📄 Your Vitality Assessment Report &rarr;
+                </button>
+                <button type="button" id="btnOpenQuestModal" class="btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold); flex: 1; min-width: 250px;">
+                    📋 Review Your Discovery Questionnaire
                 </button>
             </div>
 
@@ -780,207 +796,359 @@
         </div>
     </div>
 
-    <!-- TEAM VITALITY CHALLENGE CONCEPT MODAL -->
-    <div id="teamChallengeModal" class="modal">
-        <div class="modal-content" style="max-width: 850px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
-            <span class="close-btn" onclick="closeModal('teamChallengeModal')">&times;</span>
-
-            <div style="background: var(--accent-teal); color: #040d1a; font-weight: 800; font-size: 0.75rem; letter-spacing: 1.5px; padding: 0.25rem 0.75rem; border-radius: 4px; display: inline-block; margin-bottom: 1rem; text-transform: uppercase;">
-                Programme Concept
+    <!-- CLIENT DISCOVERY QUESTIONNAIRE WIZARD MODAL -->
+    <div id="questModal" class="modal">
+        <div class="modal-content" style="max-width: 800px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 0.85rem; margin-bottom: 1.25rem;">
+                <div>
+                    <span style="background: var(--accent-teal); color: #040d1a; font-weight: 800; font-size: 0.72rem; letter-spacing: 1.2px; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">Client Onboarding</span>
+                    <h2 style="color: var(--text-light); font-size: 1.45rem; margin-top: 0.3rem; font-weight: 800;">Client Discovery Questionnaire</h2>
+                </div>
+                <span id="questStepIndicator" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">Step 1 of 6</span>
             </div>
 
-            <h2 style="color: var(--text-light); font-size: 1.8rem; margin-bottom: 0.3rem; text-align: center; font-weight: 800;">
-                TLA for teams · Launching 2027
-            </h2>
-            <p style="color: var(--accent-cyan); font-size: 1.1rem; text-align: center; margin-bottom: 1.5rem; font-weight: 700;">
-                Healthier, more energised teams, together
-            </p>
-
-            <div style="background: var(--bg-dark); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
-                <p style="color: var(--text-offwhite); font-size: 0.98rem; line-height: 1.6; margin: 0;">
-                    Over 12 weeks, each person works towards their own goals with their own plan, while the team supports each other along the way. No rankings, no comparisons, and individual health information stays private.
-                </p>
-            </div>
-
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
-                <!-- WHAT WE'RE AIMING FOR -->
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;">
-                    <h3 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.75rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem;">
-                        What we’re aiming for
-                    </h3>
-                    <ul style="list-style: disc; padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-light); line-height: 1.7;">
-                        <li>More energy and focus</li>
-                        <li>Healthier everyday habits</li>
-                        <li>A more supportive team culture</li>
-                        <li>Healthier ways of handling busy periods</li>
-                        <li>Progress each person can see for themselves</li>
-                    </ul>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 0.75rem; margin-bottom: 0;">
-                        Outcomes vary and aren’t guaranteed.
-                    </p>
+            <form id="questForm">
+                <!-- STEP 1: BEFORE YOU START / CONSENT -->
+                <div class="quest-step active" id="questStep1">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 1rem;">Consent &amp; Disclosures</h3>
+                    <div class="q-group">
+                        <label class="q-checkbox-card">
+                            <input type="checkbox" id="q1" required>
+                            <span><strong>Item 1:</strong> I have read the Privacy Notice and understand how TLA uses my information.</span>
+                        </label>
+                    </div>
+                    <div class="q-group">
+                        <label class="q-checkbox-card">
+                            <input type="checkbox" id="q2" required>
+                            <span><strong>Item 2:</strong> I consent to TLA collecting and using my health information (Section 7 and any health details I give) to design my plan. I can withdraw this at any time.</span>
+                        </label>
+                    </div>
+                    <div class="q-group">
+                        <label class="q-checkbox-card">
+                            <input type="checkbox" id="q3" required>
+                            <span><strong>Item 3:</strong> I understand TLA is coaching and wellbeing support, not medical advice, diagnosis or treatment.</span>
+                        </label>
+                    </div>
                 </div>
 
-                <!-- WHO IT'S FOR -->
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;">
-                    <h3 style="color: var(--accent-teal); font-size: 1.05rem; margin-bottom: 0.75rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem;">
-                        Who it’s for
-                    </h3>
-                    <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.65; margin: 0;">
-                        Small teams, leadership groups, professional services firms, founder teams, and any organisation that wants to look after its people’s wellbeing together.
-                    </p>
+                <!-- STEP 2: GOALS, MOTIVATION & Energy -->
+                <div class="quest-step" id="questStep2">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 1rem;">Section 1 &amp; 2: Goals, Motivation &amp; Energy</h3>
+                    
+                    <div class="q-group">
+                        <label class="q-label">4. What prompted you to get in touch right now?</label>
+                        <input type="text" id="q4" class="form-input" placeholder="Short text...">
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">5. What would you like help with? (Tick all that apply)</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="More energy"> More energy</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Weight or body composition"> Weight or body composition</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Strength"> Strength</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Fitness and stamina"> Fitness and stamina</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Better sleep"> Better sleep</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Less stress"> Less stress</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Building habits that stick"> Building habits that stick</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q5" value="Long-term health"> Long-term health</label>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">6. Which ONE of those matters most?</label>
+                        <input type="text" id="q6" class="form-input" placeholder="State your single highest priority goal...">
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">7. Imagine it is 12 months from now and things have gone incredibly well. What is different?</label>
+                        <textarea id="q7" class="form-input" placeholder="Short text..."></textarea>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">8. What would that let you do that you cannot do today?</label>
+                        <input type="text" id="q8" class="form-input" placeholder="Short text...">
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">9. How important is making this change? (1 = Low, 10 = Essential)</label>
+                        <div class="q-slider-container">
+                            <input type="range" id="q9_imp" min="1" max="10" value="8" oninput="document.getElementById('v_q9_imp').innerText = this.value">
+                            <span class="q-slider-val" id="v_q9_imp">8</span>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">9b. How confident are you that you can? (1 = Low, 10 = High)</label>
+                        <div class="q-slider-container">
+                            <input type="range" id="q9_conf" min="1" max="10" value="7" oninput="document.getElementById('v_q9_conf').innerText = this.value">
+                            <span class="q-slider-val" id="v_q9_conf">7</span>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">10. When have you felt at your best, and what was different then?</label>
+                        <input type="text" id="q10" class="form-input" placeholder="Short text...">
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">11. What is the biggest obstacle? (Tick up to 3)</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Time"> Time</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Energy"> Energy</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Motivation"> Motivation</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Knowledge"> Knowledge</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Stress"> Stress</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Travel or work"> Travel or work</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Family"> Family</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q11" value="Injury or health"> Injury or health</label>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">13. Usual wake and bed times, and work pattern</label>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                            <input type="text" id="q13_wake" class="form-input" placeholder="Wake time (e.g., 06:30)" style="flex: 1;">
+                            <input type="text" id="q13_bed" class="form-input" placeholder="Bed time (e.g., 22:30)" style="flex: 1;">
+                        </div>
+                        <select id="q13_work" class="form-input">
+                            <option value="Office">Office-based</option>
+                            <option value="Home">Home-based</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Shifts">Shift work</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">14. Hours sitting on a typical day</label>
+                        <select id="q14" class="form-input">
+                            <option value="under 4">Under 4 hours</option>
+                            <option value="4-6">4 to 6 hours</option>
+                            <option value="6-8">6 to 8 hours</option>
+                            <option value="8-10">8 to 10 hours</option>
+                            <option value="over 10">Over 10 hours</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">15. When does your energy dip?</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q15" value="Morning"> Morning</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q15" value="Mid-morning"> Mid-morning</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q15" value="Afternoon"> Afternoon</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q15" value="Evening"> Evening</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q15" value="No clear pattern"> No clear pattern</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- HOW IT MAY WORK -->
-            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
-                <h3 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.85rem; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem;">
-                    How It May Work
-                </h3>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
-                    <div style="background: var(--bg-dark); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border);">
-                        <strong style="color: var(--accent-teal); font-size: 0.88rem; display: block; margin-bottom: 0.35rem;">Week 1: Start together</strong>
-                        <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Each person has a private starting-point conversation. The team agrees how it will support each other.</p>
+                <!-- STEP 3: MOVEMENT & FUEL -->
+                <div class="quest-step" id="questStep3">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 1rem;">Section 3 &amp; 4: Movement &amp; Fuel</h3>
+
+                    <div class="q-group">
+                        <label class="q-label">17. Days per week you do 20+ minutes of activity (0-7)</label>
+                        <input type="number" id="q17" class="form-input" min="0" max="7" value="3">
                     </div>
-                    <div style="background: var(--bg-dark); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border);">
-                        <strong style="color: var(--accent-cyan); font-size: 0.88rem; display: block; margin-bottom: 0.35rem;">Weeks 2 to 11: Support each other</strong>
-                        <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Everyone follows their own plan, with Atlas insights. Alongside it, you choose from team supports such as buddy check-ins, a short optional weekly team catch-up, and team habits like walking meetings or protected time for movement.</p>
+
+                    <div class="q-group">
+                        <label class="q-label">18. Activities you enjoy or would try</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Walking"> Walking</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Gym"> Gym</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Running"> Running</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Cycling"> Cycling</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Swimming"> Swimming</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q18" value="Yoga/Pilates"> Yoga or Pilates</label>
+                        </div>
                     </div>
-                    <div style="background: var(--bg-dark); padding: 0.85rem; border-radius: 6px; border: 1px solid var(--border);">
-                        <strong style="color: var(--accent-gold); font-size: 0.88rem; display: block; margin-bottom: 0.35rem;">Week 12: Review and keep what works</strong>
-                        <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">Each person reviews their own progress privately, and the team talks about which habits to keep.</p>
+
+                    <div class="q-group">
+                        <label class="q-label">19. Experience with strength training</label>
+                        <select id="q19" class="form-input">
+                            <option value="None">None</option>
+                            <option value="A little">A little</option>
+                            <option value="Regular but unstructured">Regular but unstructured</option>
+                            <option value="Regular and structured">Regular and structured</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">21. Rate your current physical fitness (1 = Low, 10 = Excellent)</label>
+                        <div class="q-slider-container">
+                            <input type="range" id="q21" min="1" max="10" value="5" oninput="document.getElementById('v_q21').innerText = this.value">
+                            <span class="q-slider-val" id="v_q21">5</span>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">22. Your usual eating pattern</label>
+                        <select id="q22" class="form-input">
+                            <option value="3 meals">3 regular meals</option>
+                            <option value="2 meals">2 regular meals</option>
+                            <option value="Grazing">Grazing through the day</option>
+                            <option value="Irregular">Irregular</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">24. When do cravings appear?</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q24" value="Mid-morning"> Mid-morning</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q24" value="Afternoon"> Afternoon</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q24" value="Evening"> Evening</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q24" value="Late night"> Late night</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q24" value="With stress"> With stress</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- WHAT STAYS PRIVATE -->
-            <div style="background: rgba(45, 212, 191, 0.08); border-left: 4px solid var(--accent-teal); border: 1px solid var(--card-border); border-left-width: 4px; border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;">
-                <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">
-                    What stays private
-                </h3>
-                <p style="color: var(--text-offwhite); font-size: 0.92rem; line-height: 1.65; margin: 0;">
-                    Each person’s measurements, logs and conversations with their coach stay private. Your organisation never sees individual health information. Taking part is always voluntary, and nobody is ranked or compared. The only team-level view is an overall effort measure, such as the share of weekly commitments kept, which doesn’t identify anyone. Team-level results are shown only for groups of five or more, and only to the team itself.
-                </p>
-            </div>
+                <!-- STEP 4: SLEEP, STRESS & SUPPORT -->
+                <div class="quest-step" id="questStep4">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 1rem;">Section 5 &amp; 6: Sleep, Stress &amp; Support</h3>
 
-            <!-- FOUNDING PROGRAMME -->
-            <div style="background: rgba(201, 162, 39, 0.08); border: 1px solid var(--accent-gold); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem; text-align: center;">
-                <h3 style="color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">
-                    Become a Founding Organisation
-                </h3>
-                <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-                    We’re shaping this programme with a small number of founding organisations. If you’d like early access, to give us feedback, or to trial it with one team, we’d love to hear from you.
-                </p>
-                <button type="button" onclick="scrollToTeamForm()" class="btn-gold" style="padding: 0.7rem 1.4rem; font-size: 0.92rem;">
-                    Register Interest &rarr;
-                </button>
-            </div>
-
-            <!-- WHY ARE WE BUILDING THIS? NOTE -->
-            <div style="background: rgba(4, 13, 26, 0.7); border-left: 4px solid var(--accent-teal); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
-                <h4 style="color: var(--accent-teal); font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">
-                    Why are we building this?
-                </h4>
-                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; margin: 0;">
-                    Healthy habits are easier to keep when the people around you are behind you. We believe the best results come from personalised guidance, smart technology and a team pulling in the same direction.
-                </p>
-            </div>
-
-            <!-- EMBEDDED EXPRESSION OF INTEREST ENQUIRY FORM -->
-            <div id="teamEnquiryContainer" style="background: var(--bg-dark); border: 1px solid var(--card-border); border-top: 4px solid var(--accent-gold); border-radius: 10px; padding: 2rem; scroll-margin-top: 20px;">
-                <h3 style="color: var(--text-light); font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem;">
-                    Register your organisation’s interest
-                </h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 1.5rem;">
-                    Complete the form below to connect with us about shaping the founding TLA for teams programme.
-                </p>
-
-                <form id="teamEnquiryForm">
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Contact Name</label>
-                    <input type="text" id="teamContactName" class="form-input" placeholder="Your name" required>
-
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Organisation</label>
-                    <input type="text" id="teamOrg" class="form-input" placeholder="Company or organisation name" required>
-
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Job Title</label>
-                    <input type="text" id="teamJobTitle" class="form-input" placeholder="Your job title" required>
-
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Email Address</label>
-                    <input type="email" id="teamEmail" class="form-input" placeholder="you@example.com" required>
-
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">Team Size</label>
-                    <select id="teamSize" class="form-input" required style="cursor: pointer;">
-                        <option value="" disabled selected>Select team size...</option>
-                        <option value="3 to 8">3 to 8</option>
-                        <option value="9 to 20">9 to 20</option>
-                        <option value="More than 20 (tell us more below)">More than 20 (tell us more below)</option>
-                        <option value="Not sure yet">Not sure yet</option>
-                    </select>
-
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.5rem; font-weight: 600;">Which best describes your interest?</label>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem 1rem; margin-bottom: 1.25rem; font-size: 0.88rem; color: var(--text-offwhite);">
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Team wellbeing">
-                            <span>Team wellbeing</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Team performance">
-                            <span>Team performance</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Leadership development">
-                            <span>Leadership development</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Employee engagement">
-                            <span>Employee engagement</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Corporate wellbeing initiative">
-                            <span>Corporate wellbeing initiative</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Exploring options">
-                            <span>Exploring options</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                            <input type="checkbox" name="teamInterest" value="Other">
-                            <span>Other</span>
-                        </label>
+                    <div class="q-group">
+                        <label class="q-label">28. Hours of sleep on a typical night</label>
+                        <select id="q28" class="form-input">
+                            <option value="under 5">Under 5 hours</option>
+                            <option value="5-6">5 to 6 hours</option>
+                            <option value="6-7">6 to 7 hours</option>
+                            <option value="7-8">7 to 8 hours</option>
+                            <option value="over 8">Over 8 hours</option>
+                        </select>
                     </div>
 
-                    <label style="display: block; font-size: 0.88rem; color: var(--text-light); margin-bottom: 0.35rem; font-weight: 600;">What interests you most about the concept?</label>
-                    <textarea id="teamMessage" class="form-input" placeholder="Tell us what caught your attention or how you think a programme like this could benefit your team."></textarea>
-
-                    <div style="margin-bottom: 1.5rem; text-align: left; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
-                            <input type="checkbox" id="stayUpdatedCheck" style="margin-top: 0.2rem;">
-                            <span>Please keep me informed about programme development and launch updates.</span>
-                        </label>
-                        <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
-                            <input type="checkbox" required style="margin-top: 0.2rem;">
-                            <span>I agree to The Longevity Advantage contacting me regarding TLA for teams.</span>
-                        </label>
+                    <div class="q-group">
+                        <label class="q-label">29. How refreshed do you feel on waking? (1 = Exhausted, 5 = Fully Energised)</label>
+                        <div class="q-slider-container">
+                            <input type="range" id="q29" min="1" max="5" value="3" oninput="document.getElementById('v_q29').innerText = this.value">
+                            <span class="q-slider-val" id="v_q29">3</span>
+                        </div>
                     </div>
 
-                    <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.25rem; text-align: center;">
-                        We’ll only use your details to respond to your enquiry. Individual health information is never shared with your organisation. <a href="javascript:void(0)" onclick="openModal('privacyModal')" style="color: var(--text-muted); text-decoration: underline;">See our Privacy Policy</a>.
-                    </p>
+                    <div class="q-group">
+                        <label class="q-label">31. Average stress level (1 = Very Low, 10 = Very High)</label>
+                        <div class="q-slider-container">
+                            <input type="range" id="q31" min="1" max="10" value="6" oninput="document.getElementById('v_q31').innerText = this.value">
+                            <span class="q-slider-val" id="v_q31">6</span>
+                        </div>
+                    </div>
 
-                    <button type="submit" id="teamSubmitBtn" class="btn-gold" style="width: 100%;">
-                        Join the Founding Interest List &rarr;
-                    </button>
-                </form>
+                    <div class="q-group">
+                        <label class="q-label">36. How would you like your coach to work with you?</label>
+                        <select id="q36" class="form-input">
+                            <option value="Gentle encourager">Gentle encourager</option>
+                            <option value="Straight-talking">Straight-talking</option>
+                            <option value="Structured and data-led">Structured and data-led</option>
+                            <option value="Flexible">Flexible</option>
+                        </select>
+                    </div>
 
-                <div id="teamSuccess" style="display: none; padding: 2rem 1rem; text-align: center;">
-                    <p style="color: #10b981; font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">Thank You</p>
-                    <p style="font-size: 0.98rem; color: var(--text-light); line-height: 1.6; margin: 0;">
-                        Thank you for registering your interest. We’re shaping the programme with a small number of founding organisations, and we’ll be in touch.
-                    </p>
+                    <div class="q-group">
+                        <label class="q-label">37. Realistically, how much time can you give each day to routines?</label>
+                        <select id="q37" class="form-input">
+                            <option value="10 mins">10 minutes</option>
+                            <option value="20 mins">20 minutes</option>
+                            <option value="30 mins">30 minutes</option>
+                            <option value="45+ mins">45+ minutes</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <button type="button" onclick="closeModal('teamChallengeModal')" class="btn-secondary">Close Concept</button>
+                <!-- STEP 5: HEALTH AND SAFETY -->
+                <div class="quest-step" id="questStep5">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem;">Section 7: Health &amp; Safety Triage</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Please complete these safety screening items accurately so we can adapt your plan appropriately.</p>
+
+                    <div class="q-group">
+                        <label class="q-label">40. Diagnosed conditions (Tick any that apply)</label>
+                        <div class="q-checkbox-grid">
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Heart/BP"> Heart or Blood Pressure</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Diabetes"> Diabetes</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Thyroid"> Thyroid</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Joint/Back"> Joint or Back problems</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Asthma"> Asthma</label>
+                            <label class="q-checkbox-card"><input type="checkbox" name="q40" value="Mental health"> Mental health</label>
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">42. In the last 6 months: chest pain, fainting, or unexplained breathlessness/dizziness on exertion?</label>
+                        <select id="q42" class="form-input">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes (Coach will pause exercise plan until GP clearance)</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">45. Pacemaker, implant, or anything that makes body-composition (BIA) scanning unsuitable?</label>
+                        <select id="q45" class="form-input">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes (We will skip Technogym BIA scan)</option>
+                        </select>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">46. Has a doctor ever said you should only exercise under medical supervision?</label>
+                        <select id="q46" class="form-input">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- STEP 6: SCORECARD, VISION & SIGN-OFF -->
+                <div class="quest-step" id="questStep6">
+                    <h3 style="color: var(--accent-teal); font-size: 1.1rem; margin-bottom: 0.5rem;">Section 8 &amp; 9: Vitality Scorecard &amp; Sign-Off</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Rate your current baseline across key vitality dimensions (1 = Poor, 10 = Excellent):</p>
+
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Energy:</span>
+                            <input type="range" id="sc_energy" min="1" max="10" value="5">
+                        </div>
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Sleep:</span>
+                            <input type="range" id="sc_sleep" min="1" max="10" value="5">
+                        </div>
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Nutrition:</span>
+                            <input type="range" id="sc_nutrition" min="1" max="10" value="5">
+                        </div>
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Movement:</span>
+                            <input type="range" id="sc_movement" min="1" max="10" value="5">
+                        </div>
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Stress Mgmt:</span>
+                            <input type="range" id="sc_stress" min="1" max="10" value="5">
+                        </div>
+                        <div>
+                            <span style="font-size: 0.82rem; color: var(--text-light); font-weight: 600;">Overall Health:</span>
+                            <input type="range" id="sc_health" min="1" max="10" value="5">
+                        </div>
+                    </div>
+
+                    <div class="q-group">
+                        <label class="q-label">50. What would success after 30 days look like?</label>
+                        <input type="text" id="q50" class="form-input" placeholder="Short text...">
+                    </div>
+
+                    <div class="q-group" style="background: rgba(8, 30, 55, 0.7); border: 1px solid var(--accent-gold); padding: 1rem; border-radius: 8px;">
+                        <label class="q-checkbox-card" style="background: transparent; border: none; padding: 0;">
+                            <input type="checkbox" id="q51_check" required>
+                            <span><strong>51. My Commitment:</strong> "I commit to becoming the healthiest, most energised and capable version of myself through consistent daily actions and personal accountability."</span>
+                        </label>
+                        <input type="text" id="q51_name" class="form-input" placeholder="Type your full name as digital signature" required style="margin-top: 0.85rem; margin-bottom: 0;">
+                    </div>
+                </div>
+            </form>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                <button type="button" id="questPrevBtn" class="btn-secondary" style="display: none;">&larr; Previous</button>
+                <div style="flex-grow: 1;"></div>
+                <button type="button" id="questNextBtn" class="btn-gold">Next Step &rarr;</button>
+                <button type="button" id="questSubmitBtn" class="btn-cyan-gradient" style="display: none;">Submit Discovery &rarr;</button>
             </div>
         </div>
     </div>
@@ -1735,7 +1903,35 @@
         }
     };
 
-    // 2. Attach Event Listeners on Load
+    // 2. Questionnaire Wizard Logic
+    var currentQuestStep = 1;
+    var totalQuestSteps = 6;
+
+    function updateQuestStepUI() {
+        for (var i = 1; i <= totalQuestSteps; i++) {
+            var stepEl = document.getElementById('questStep' + i);
+            if (stepEl) {
+                stepEl.classList.remove('active');
+            }
+        }
+        var activeStep = document.getElementById('questStep' + currentQuestStep);
+        if (activeStep) {
+            activeStep.classList.add('active');
+        }
+
+        document.getElementById('questStepIndicator').innerText = 'Step ' + currentQuestStep + ' of ' + totalQuestSteps;
+        document.getElementById('questPrevBtn').style.display = currentQuestStep > 1 ? 'inline-block' : 'none';
+
+        if (currentQuestStep === totalQuestSteps) {
+            document.getElementById('questNextBtn').style.display = 'none';
+            document.getElementById('questSubmitBtn').style.display = 'inline-block';
+        } else {
+            document.getElementById('questNextBtn').style.display = 'inline-block';
+            document.getElementById('questSubmitBtn').style.display = 'none';
+        }
+    }
+
+    // 3. Attach Event Listeners on Load
     document.addEventListener('DOMContentLoaded', function() {
         
         // Footer Trigger Links
@@ -1796,6 +1992,31 @@
             });
         }
 
+        var btnOpenQuestModal = document.getElementById('btnOpenQuestModal');
+        if (btnOpenQuestModal) {
+            btnOpenQuestModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('questModal');
+            });
+        }
+
+        // Wizard Buttons
+        document.getElementById('questNextBtn').addEventListener('click', function() {
+            if (currentQuestStep < totalQuestSteps) {
+                currentQuestStep++;
+                updateQuestStepUI();
+            }
+        });
+
+        document.getElementById('questPrevBtn').addEventListener('click', function() {
+            if (currentQuestStep > 1) {
+                currentQuestStep--;
+                updateQuestStepUI();
+            }
+        });
+
+        document.getElementById('questSubmitBtn').addEventListener('click', handleQuestSubmit);
+
         // Close when clicking modal backdrop
         var modals = document.querySelectorAll('.modal');
         modals.forEach(function(modal) {
@@ -1834,7 +2055,7 @@
         checkActiveSession();
     });
 
-    // 3. Formspree Handlers
+    // 4. Formspree Handlers
     async function handleDiscoverySubmit(event) {
         event.preventDefault();
 
@@ -1918,7 +2139,7 @@
         }
     }
 
-    // 4. Supabase Initializer
+    // 5. Supabase Initializer
     const SUPABASE_URL = 'https://uvasthyuvdhwbtgvunje.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_0rzCOTTKPU7gW1JLsSv9lQ_p6gPsILw';
     let supabaseClient = null;
@@ -1934,7 +2155,133 @@
         return supabaseClient;
     }
 
-    // 5. Client Authentication
+    // 6. Questionnaire Submission Handler
+    async function handleQuestSubmit() {
+        var client = getSupabase();
+        if (!client) return;
+
+        var sessionRes = await client.auth.getSession();
+        if (!sessionRes.data || !sessionRes.data.session) {
+            alert("Session expired. Please log in again.");
+            return;
+        }
+
+        var userId = sessionRes.data.session.user.id;
+        var submitBtn = document.getElementById('questSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Saving Questionnaire...";
+
+        // Gather checked values helper
+        function getChecked(name) {
+            var vals = [];
+            document.querySelectorAll('input[name="' + name + '"]:checked').forEach(function(c) { vals.push(c.value); });
+            return vals;
+        }
+
+        var responses = {
+            consent: {
+                privacy: document.getElementById('q1').checked,
+                health_info: document.getElementById('q2').checked,
+                coaching_disclosure: document.getElementById('q3').checked
+            },
+            goals_and_energy: {
+                q4_prompt: document.getElementById('q4').value,
+                q5_help_areas: getChecked('q5'),
+                q6_single_priority: document.getElementById('q6').value,
+                q7_vision_12m: document.getElementById('q7').value,
+                q8_enable_action: document.getElementById('q8').value,
+                q9_importance: document.getElementById('q9_imp').value,
+                q9_confidence: document.getElementById('q9_conf').value,
+                q10_best_self: document.getElementById('q10').value,
+                q11_obstacles: getChecked('q11'),
+                q13_wake: document.getElementById('q13_wake').value,
+                q13_bed: document.getElementById('q13_bed').value,
+                q13_work: document.getElementById('q13_work').value,
+                q14_sitting_hours: document.getElementById('q14').value,
+                q15_energy_dip: getChecked('q15')
+            },
+            movement_and_fuel: {
+                q17_active_days: document.getElementById('q17').value,
+                q18_activities: getChecked('q18'),
+                q19_strength_exp: document.getElementById('q19').value,
+                q21_fitness_rating: document.getElementById('q21').value,
+                q22_eating_pattern: document.getElementById('q22').value,
+                q24_cravings_timing: getChecked('q24')
+            },
+            sleep_stress_support: {
+                q28_sleep_hours: document.getElementById('q28').value,
+                q29_waking_refreshment: document.getElementById('q29').value,
+                q31_stress_rating: document.getElementById('q31').value,
+                q36_coach_style: document.getElementById('q36').value,
+                q37_daily_time: document.getElementById('q37').value
+            },
+            health_and_safety: {
+                q40_conditions: getChecked('q40'),
+                q42_cardiovascular_flags: document.getElementById('q42').value,
+                q45_bia_unsuitable: document.getElementById('q45').value,
+                q46_medical_supervision: document.getElementById('q46').value
+            },
+            scorecard_and_signature: {
+                energy: document.getElementById('sc_energy').value,
+                sleep: document.getElementById('sc_sleep').value,
+                nutrition: document.getElementById('sc_nutrition').value,
+                movement: document.getElementById('sc_movement').value,
+                stress: document.getElementById('sc_stress').value,
+                health: document.getElementById('sc_health').value,
+                q50_success_30d: document.getElementById('q50').value,
+                signed_by: document.getElementById('q51_name').value,
+                signature_date: new Date().toISOString()
+            }
+        };
+
+        try {
+            var upsertRes = await client
+                .from('discovery_questionnaires')
+                .upsert({
+                    user_id: userId,
+                    responses: responses,
+                    is_completed: true,
+                    updated_at: new Date().toISOString()
+                }, { onConflict: 'user_id' });
+
+            if (upsertRes.error) {
+                alert("Error saving questionnaire: " + upsertRes.error.message);
+            } else {
+                alert("Thank you! Your Discovery Questionnaire has been saved.");
+                closeModal('questModal');
+            }
+        } catch (err) {
+            alert("Connection error. Please try again.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Discovery →";
+        }
+    }
+
+    // 7. Check Questionnaire Onboarding Status
+    async function checkQuestionnaireStatus(userId) {
+        var client = getSupabase();
+        if (!client) return;
+
+        try {
+            var res = await client
+                .from('discovery_questionnaires')
+                .select('is_completed')
+                .eq('user_id', userId)
+                .single();
+
+            if (res.error || !res.data || !res.data.is_completed) {
+                // First-time or incomplete client onboarding: trigger questionnaire modal automatically
+                currentQuestStep = 1;
+                updateQuestStepUI();
+                openModal('questModal');
+            }
+        } catch (err) {
+            console.warn("Questionnaire check error:", err);
+        }
+    }
+
+    // 8. Client Authentication
     async function authenticateClient() {
         var email = document.getElementById('clientNameInput').value.trim();
         var password = document.getElementById('clientKeyInput').value.trim();
@@ -1974,6 +2321,9 @@
             document.getElementById('clientGreeting').innerText = "Welcome back, " + res.data.user.email;
             window.scrollTo(0, 0);
 
+            // Check onboarding questionnaire completion
+            checkQuestionnaireStatus(res.data.user.id);
+
         } catch (err) {
             errorElement.innerText = "Connection error during login. Please try again.";
             errorElement.style.display = 'block';
@@ -2002,6 +2352,9 @@
                     document.getElementById('mainView').style.display = 'none';
                     document.getElementById('dashboardView').style.display = 'block';
                     document.getElementById('clientGreeting').innerText = "Welcome back, " + sessionRes.data.session.user.email;
+
+                    // Check onboarding questionnaire completion
+                    checkQuestionnaireStatus(sessionRes.data.session.user.id);
                 }
             } catch (err) {
                 console.warn("Session check error:", err);
