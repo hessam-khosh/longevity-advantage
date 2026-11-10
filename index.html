@@ -2028,6 +2028,105 @@
         });
     }
 
+    function populateQuestionnaireForm(r) {
+        if (!r) return;
+
+        if (r.consent) {
+            document.getElementById('q1').checked = !!r.consent.privacy;
+            document.getElementById('q2').checked = !!r.consent.health_info;
+            document.getElementById('q3').checked = !!r.consent.coaching_disclosure;
+        }
+
+        if (r.goals_and_energy) {
+            document.getElementById('q4').value = r.goals_and_energy.q4_prompt || '';
+            document.getElementById('q6').value = r.goals_and_energy.q6_single_priority || '';
+            document.getElementById('q7').value = r.goals_and_energy.q7_vision_12m || '';
+            document.getElementById('q8').value = r.goals_and_energy.q8_enable_action || '';
+            document.getElementById('q10').value = r.goals_and_energy.q10_best_self || '';
+            document.getElementById('q13_wake').value = r.goals_and_energy.q13_wake || '';
+            document.getElementById('q13_bed').value = r.goals_and_energy.q13_bed || '';
+            if (r.goals_and_energy.q13_work) document.getElementById('q13_work').value = r.goals_and_energy.q13_work;
+            if (r.goals_and_energy.q14_sitting_hours) document.getElementById('q14').value = r.goals_and_energy.q14_sitting_hours;
+
+            if (r.goals_and_energy.q9_importance) {
+                document.getElementById('q9_imp').value = r.goals_and_energy.q9_importance;
+                document.getElementById('v_q9_imp').innerText = r.goals_and_energy.q9_importance;
+            }
+            if (r.goals_and_energy.q9_confidence) {
+                document.getElementById('q9_conf').value = r.goals_and_energy.q9_confidence;
+                document.getElementById('v_q9_conf').innerText = r.goals_and_energy.q9_confidence;
+            }
+
+            (r.goals_and_energy.q5_help_areas || []).forEach(v => {
+                let el = document.querySelector(`input[name="q5"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+            (r.goals_and_energy.q11_obstacles || []).forEach(v => {
+                let el = document.querySelector(`input[name="q11"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+            (r.goals_and_energy.q15_energy_dip || []).forEach(v => {
+                let el = document.querySelector(`input[name="q15"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+        }
+
+        if (r.movement_and_fuel) {
+            document.getElementById('q17').value = r.movement_and_fuel.q17_active_days || 3;
+            if (r.movement_and_fuel.q19_strength_exp) document.getElementById('q19').value = r.movement_and_fuel.q19_strength_exp;
+            if (r.movement_and_fuel.q22_eating_pattern) document.getElementById('q22').value = r.movement_and_fuel.q22_eating_pattern;
+            if (r.movement_and_fuel.q21_fitness_rating) {
+                document.getElementById('q21').value = r.movement_and_fuel.q21_fitness_rating;
+                document.getElementById('v_q21').innerText = r.movement_and_fuel.q21_fitness_rating;
+            }
+
+            (r.movement_and_fuel.q18_activities || []).forEach(v => {
+                let el = document.querySelector(`input[name="q18"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+            (r.movement_and_fuel.q24_cravings_timing || []).forEach(v => {
+                let el = document.querySelector(`input[name="q24"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+        }
+
+        if (r.sleep_stress_support) {
+            if (r.sleep_stress_support.q28_sleep_hours) document.getElementById('q28').value = r.sleep_stress_support.q28_sleep_hours;
+            if (r.sleep_stress_support.q36_coach_style) document.getElementById('q36').value = r.sleep_stress_support.q36_coach_style;
+            if (r.sleep_stress_support.q37_daily_time) document.getElementById('q37').value = r.sleep_stress_support.q37_daily_time;
+            if (r.sleep_stress_support.q29_waking_refreshment) {
+                document.getElementById('q29').value = r.sleep_stress_support.q29_waking_refreshment;
+                document.getElementById('v_q29').innerText = r.sleep_stress_support.q29_waking_refreshment;
+            }
+            if (r.sleep_stress_support.q31_stress_rating) {
+                document.getElementById('q31').value = r.sleep_stress_support.q31_stress_rating;
+                document.getElementById('v_q31').innerText = r.sleep_stress_support.q31_stress_rating;
+            }
+        }
+
+        if (r.health_and_safety) {
+            if (r.health_and_safety.q42_cardiovascular_flags) document.getElementById('q42').value = r.health_and_safety.q42_cardiovascular_flags;
+            if (r.health_and_safety.q45_bia_unsuitable) document.getElementById('q45').value = r.health_and_safety.q45_bia_unsuitable;
+            if (r.health_and_safety.q46_medical_supervision) document.getElementById('q46').value = r.health_and_safety.q46_medical_supervision;
+            (r.health_and_safety.q40_conditions || []).forEach(v => {
+                let el = document.querySelector(`input[name="q40"][value="${v}"]`);
+                if (el) el.checked = true;
+            });
+        }
+
+        if (r.scorecard_and_signature) {
+            document.getElementById('sc_energy').value = r.scorecard_and_signature.energy || 5;
+            document.getElementById('sc_sleep').value = r.scorecard_and_signature.sleep || 5;
+            document.getElementById('sc_nutrition').value = r.scorecard_and_signature.nutrition || 5;
+            document.getElementById('sc_movement').value = r.scorecard_and_signature.movement || 5;
+            document.getElementById('sc_stress').value = r.scorecard_and_signature.stress || 5;
+            document.getElementById('sc_health').value = r.scorecard_and_signature.health || 5;
+            document.getElementById('q50').value = r.scorecard_and_signature.q50_success_30d || '';
+            document.getElementById('q51_name').value = r.scorecard_and_signature.signed_by || '';
+            document.getElementById('q51_check').checked = !!r.scorecard_and_signature.signed_by;
+        }
+    }
+
     // 3. Attach Event Listeners on Load
     document.addEventListener('DOMContentLoaded', function() {
         
@@ -2207,6 +2306,16 @@
 
     // 6. Questionnaire Submission Handler
     async function handleQuestSubmit() {
+        var signedName = document.getElementById('q51_name').value.trim();
+        var isChecked = document.getElementById('q51_check').checked;
+
+        if (!isChecked || !signedName) {
+            alert("Please confirm your commitment checkbox and type your full name as digital signature before submitting.");
+            currentQuestStep = 6;
+            updateQuestStepUI();
+            return;
+        }
+
         var client = getSupabase();
         if (!client) return;
 
@@ -2278,7 +2387,7 @@
                 stress: document.getElementById('sc_stress').value,
                 health: document.getElementById('sc_health').value,
                 q50_success_30d: document.getElementById('q50').value,
-                signed_by: document.getElementById('q51_name').value,
+                signed_by: signedName,
                 signature_date: new Date().toISOString()
             }
         };
@@ -2314,7 +2423,6 @@
 
         resetQuestionnaireForm();
 
-        // Check if admin user logged in
         if (userEmail && (userEmail.toLowerCase() === 'hessam@sky.com' || userEmail.toLowerCase() === 'contact@thelongevityadvantage.co.uk')) {
             document.getElementById('adminPanelSection').style.display = 'block';
             loadAdminClientList();
@@ -2325,9 +2433,13 @@
         try {
             var res = await client
                 .from('discovery_questionnaires')
-                .select('is_completed')
+                .select('is_completed, responses')
                 .eq('user_id', userId)
                 .maybeSingle();
+
+            if (res.data) {
+                populateQuestionnaireForm(res.data.responses);
+            }
 
             if (!res.data || !res.data.is_completed) {
                 currentQuestStep = 1;
@@ -2499,7 +2611,6 @@
             document.getElementById('clientGreeting').innerText = "Welcome back, " + res.data.user.email;
             window.scrollTo(0, 0);
 
-            // Check onboarding questionnaire completion & admin role
             checkQuestionnaireStatus(res.data.user.id, res.data.user.email);
 
         } catch (err) {
@@ -2532,7 +2643,6 @@
                     document.getElementById('dashboardView').style.display = 'block';
                     document.getElementById('clientGreeting').innerText = "Welcome back, " + sessionRes.data.session.user.email;
 
-                    // Check onboarding questionnaire completion & admin role
                     checkQuestionnaireStatus(sessionRes.data.session.user.id, sessionRes.data.session.user.email);
                 }
             } catch (err) {
