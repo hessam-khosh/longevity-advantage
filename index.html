@@ -1788,51 +1788,142 @@
         }
     };
 
-    // 2. Client Assessment Renderer
-    function renderClientReport(email) {
-        var container = document.getElementById('reportContainer');
-        if (!container) return;
+    // Dynamic Client Assessment & Nakul Protocol Renderer
+function renderClientReport(email) {
+    var container = document.getElementById('reportContainer');
+    if (!container) return;
 
-        var cleanEmail = (email || '').toLowerCase().trim();
+    var cleanEmail = (email || '').toLowerCase().trim();
 
-        if (cleanEmail.includes('nakul')) {
-            container.innerHTML = `
-                <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid var(--accent-teal); border-radius: 10px; padding: 1.5rem; margin-bottom: 1.5rem; text-align: left;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                        <span style="background: var(--accent-teal); color: #040d1a; font-size: 0.75rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">
-                            ACTIVE CLIENT PROTOCOL: NAKUL
-                        </span>
-                        <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">Protocol Phase 1</span>
+    if (cleanEmail.includes('nakul')) {
+        container.innerHTML = `
+            <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid var(--accent-teal); border-radius: 12px; padding: 1.75rem; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                    <div>
+                        <span style="background: var(--accent-gold); color: #040d1a; font-weight: 800; font-size: 0.72rem; letter-spacing: 1.2px; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">Official TLA Report</span>
+                        <h3 style="color: var(--text-light); font-size: 1.4rem; margin-top: 0.35rem; font-weight: 800;">FIRST VITALITY ASSESSMENT REPORT — NAKUL SINGH</h3>
                     </div>
-                    <h3 style="color: var(--text-light); font-size: 1.35rem; margin-bottom: 0.5rem; font-weight: 800;">
-                        Cardiorespiratory &amp; Intermittent Hypoxia Protocol
-                    </h3>
-                    <p style="font-size: 0.95rem; color: var(--text-offwhite); line-height: 1.6; margin-bottom: 1.25rem;">
-                        Tailored specifically for Nakul following baseline analysis. Focus is directed towards rapid aerobic adaptation, high-intensity sprint intervals (REHIT), and controlled cellular hypoxia protocols.
-                    </p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-                        <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Target VO₂ Max Baseline Goal</span>
-                            <strong style="font-size: 1.4rem; color: var(--accent-cyan);">52.5 mL/kg/min</strong>
-                        </div>
-                        <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
-                            <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Protocol Adherence</span>
-                            <strong style="font-size: 1.4rem; color: var(--accent-green);">94% Complete</strong>
-                        </div>
+                    <span style="font-size: 0.85rem; color: var(--accent-teal); font-weight: 600;">Date: 11 November 2026</span>
+                </div>
+                
+                <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.25rem;">
+                    <strong>Executive Summary:</strong> Above-average muscle mass (40.5 kg), good lower-body strength, balanced movement patterns, and no obvious functional limitations. The focus moving forward is optimization: body fat reduction, aerobic fitness, recovery, and stress management.
+                </p>
+
+                <!-- Core Telemetry Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Weight & BMI</span>
+                        <p style="font-size: 1.3rem; font-weight: 700; color: var(--accent-cyan); margin-top: 0.2rem;">94.3 kg <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">(28.5 BMI)</span></p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Skeletal Muscle Mass</span>
+                        <p style="font-size: 1.3rem; font-weight: 700; color: #10B981; margin-top: 0.2rem;">40.5 kg</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Body Oxygen (BOLT Score)</span>
+                        <p style="font-size: 1.3rem; font-weight: 700; color: var(--accent-gold); margin-top: 0.2rem;">19 sec <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">(Target: 25-30s)</span></p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Stress Rating</span>
+                        <p style="font-size: 1.3rem; font-weight: 700; color: #ef4444; margin-top: 0.2rem;">8 / 10</p>
                     </div>
                 </div>
-            `;
-        } else {
-            container.innerHTML = `
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem; text-align: left;">
-                    <h4 style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 0.35rem; font-weight: 700;">Client Telemetry Summary</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
-                        Viewing baseline assessment and active habit protocol logs for account: <strong>${email}</strong>.
-                    </p>
+
+                <!-- Body Composition Metrics Table -->
+                <h4 style="color: var(--accent-teal); font-size: 1.05rem; margin-bottom: 0.5rem;">Body Composition Snapshot</h4>
+                <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);">
+                                <th style="padding: 0.5rem;">Body Fat Mass</th>
+                                <th style="padding: 0.5rem;">Fat Free Mass</th>
+                                <th style="padding: 0.5rem;">Total Body Water</th>
+                                <th style="padding: 0.5rem;">BMR</th>
+                                <th style="padding: 0.5rem;">Phase Angle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.5rem;">28.6 kg</td>
+                                <td style="padding: 0.5rem;">71.5 kg</td>
+                                <td style="padding: 0.5rem;">52.4 kg</td>
+                                <td style="padding: 0.5rem;">1,876 kcal/day</td>
+                                <td style="padding: 0.5rem; color: #10B981; font-weight: 700;">6.4° (Good)</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            `;
-        }
+
+                <!-- Functional & Strength Assessments -->
+                <h4 style="color: var(--accent-teal); font-size: 1.05rem; margin-bottom: 0.5rem;">Strength &amp; Functional Assessments</h4>
+                <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.02);">
+                                <th style="padding: 0.5rem;">Assessment</th>
+                                <th style="padding: 0.5rem;">Result</th>
+                                <th style="padding: 0.5rem;">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.5rem;">Single Leg Press (5+RM)</td>
+                                <td style="padding: 0.5rem; font-weight: 600;">100 kg / leg</td>
+                                <td style="padding: 0.5rem; color: var(--text-muted);">Good strength; Excellent left/right symmetry</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.5rem;">Leg Extension / Curl (5RM)</td>
+                                <td style="padding: 0.5rem; font-weight: 600;">45 kg / 45 kg</td>
+                                <td style="padding: 0.5rem; color: var(--text-muted);">Balanced Hamstring / Quadriceps ratio</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 0.5rem;">Wall Sit</td>
+                                <td style="padding: 0.5rem; font-weight: 600; color: var(--accent-gold);">20 sec</td>
+                                <td style="padding: 0.5rem; color: var(--accent-gold);">Endurance Opportunity — fatigue resistance focus</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.5rem;">Single Leg Squat</td>
+                                <td style="padding: 0.5rem; font-weight: 600;">4 reps / side</td>
+                                <td style="padding: 0.5rem; color: var(--text-muted);">Good control & stability; symmetrical</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 90-Day Plan Priorities -->
+                <h4 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.5rem;">90-Day Plan Priorities</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                    <div style="background: rgba(4, 13, 26, 0.6); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+                        <strong style="color: var(--accent-cyan); display: block;">1. Body Composition</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-muted);">Gradual fat loss preserving existing muscle mass.</span>
+                    </div>
+                    <div style="background: rgba(4, 13, 26, 0.6); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+                        <strong style="color: var(--accent-cyan); display: block;">2. Aerobic Fitness</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-muted);">Zone 2 cardiovascular training + formal VO₂ Max baseline test.</span>
+                    </div>
+                    <div style="background: rgba(4, 13, 26, 0.6); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+                        <strong style="color: var(--accent-cyan); display: block;">3. Sleep &amp; Recovery</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-muted);">Improve waking refreshment (currently 2/5) &amp; lower stress (8/10).</span>
+                    </div>
+                    <div style="background: rgba(4, 13, 26, 0.6); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--border);">
+                        <strong style="color: var(--accent-cyan); display: block;">4. Breathing Efficiency</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-muted);">Respiratory training to increase BOLT score from 19s to 25s+.</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;">
+                <h4 style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 0.35rem;">Client Telemetry Summary</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    Viewing personal protocol logs and baseline assessment details for <strong>${email}</strong>.
+                </p>
+            </div>
+        `;
     }
+}
 
     // 3. Admin Impersonation Logic
     function loadImpersonatedReport(targetEmail) {
