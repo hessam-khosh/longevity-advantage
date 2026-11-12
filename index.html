@@ -1965,7 +1965,7 @@ if (btnDashReportModal) {
         e.preventDefault();
         var cleanEmail = (currentLoggedInUserEmail || '').toLowerCase().trim();
         if (cleanEmail.includes('nakul')) {
-            window.open('nakul-baseline-report-11-Nov-2026', '_blank');
+            window.open('nakul-baseline-report-11-Nov-2026.pdf', '_blank');
         }
     });
 }
@@ -2184,25 +2184,55 @@ if (btnDashReportModal) {
 
     // 9. Check Questionnaire Onboarding Status
     async function checkQuestionnaireStatus(userId, userEmail) {
-    var client = getSupabase();
-    if (!client) return;
-    resetQuestionnaireForm();
-    currentLoggedInUserEmail = userEmail;
+        var client = getSupabase();
+        if (!client) return;
+        resetQuestionnaireForm();
+        currentLoggedInUserEmail = userEmail;
 
-    // Configure Baseline Vitality Assessment button based on client
-    var dashReportBtn = document.getElementById('btnDashReportModal');
-    if (dashReportBtn) {
-        var isNakul = (userEmail || '').toLowerCase().includes('nakul');
-        if (isNakul) {
-            dashReportBtn.disabled = false;
-            dashReportBtn.style.opacity = '1';
-            dashReportBtn.style.cursor = 'pointer';
-            dashReportBtn.title = 'Open your Baseline Vitality Assessment PDF';
+        // Configure Baseline Vitality Assessment button based on client
+        var dashReportBtn = document.getElementById('btnDashReportModal');
+        if (dashReportBtn) {
+            var isNakul = (userEmail || '').toLowerCase().includes('nakul');
+            if (isNakul) {
+                dashReportBtn.disabled = false;
+                dashReportBtn.style.opacity = '1';
+                dashReportBtn.style.cursor = 'pointer';
+                dashReportBtn.title = 'Open your Baseline Vitality Assessment PDF';
+            } else {
+                dashReportBtn.disabled = true;
+                dashReportBtn.style.opacity = '0.45';
+                dashReportBtn.style.cursor = 'not-allowed';
+                dashReportBtn.title = 'Your Baseline Vitality Assessment PDF will be available here once completed';
+            }
+        }
+
+        // Show Admin Panel if logged-in email matches admin
+        var adminPanel = document.getElementById('adminPanelSection');
+        if (userEmail && userEmail.toLowerCase() === 'hessam@sky.com') {
+            if (adminPanel) adminPanel.style.display = 'block';
+            loadAdminClientList();
         } else {
-            dashReportBtn.disabled = true;
-            dashReportBtn.style.opacity = '0.45';
-            dashReportBtn.style.cursor = 'not-allowed';
-            dashReportBtn.title = 'Your Baseline Vitality Assessment PDF will be available here once completed';
+            if (adminPanel) adminPanel.style.display = 'none';
+        }
+
+        try {
+            var res = await client
+                .from('discovery_questionnaires')
+                .select('is_completed, responses')
+                .eq('user_id', userId)
+                .maybeSingle();
+
+            if (res.data && res.data.responses) {
+                populateQuestionnaireForm(res.data.responses);
+            }
+
+            if (!res.data || !res.data.is_completed) {
+                currentQuestStep = 1;
+                updateQuestStepUI();
+                openModal('questModal');
+            }
+        } catch (err) {
+            console.warn("Questionnaire status check error:", err);
         }
     }
 
