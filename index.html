@@ -337,8 +337,9 @@
                 THE LONGEVITY ADVANTAGE
             </span>
         </div>
-        <div>
+        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 0.45rem;">
             <a href="#booking-form" class="btn-gold" style="padding: 0.55rem 1.1rem; font-size: 0.88rem;">Book Free Call</a>
+            <button type="button" onclick="openModal('loginModal')" class="btn-secondary" style="padding: 0.4rem 1.1rem; font-size: 0.84rem; text-align: center;">Client Login</button>
         </div>
     </header>
     <div id="mainView">
@@ -575,7 +576,12 @@
                 <details class="faq-item">
                     <summary class="faq-question">What makes TLA different from using a health app?</summary>
                     <div class="faq-answer">
-                        Most health apps track what happened. TLA is designed to help influence what happens next. Through a combination of personalised coach support, Atlas AI insights, structured accountability and regular review, the focus is not simply collecting data but helping you consistently follow through on the actions that matter most.
+                        <p style="margin-bottom: 0.85rem;">
+                            We recognise that feeling better isn't just about physical health. Your motivation, mindset, personal circumstances and sense of purpose all influence how you feel and the progress you make. That's why your programme is built around you, your priorities and what you want from life.
+                        </p>
+                        <p style="margin: 0;">
+                            Most health apps track what happened. TLA is designed to help influence what happens next. Through a combination of personalised coach support, Atlas AI insights, structured accountability and regular review, the focus is not simply collecting data but helping you consistently follow through on the actions that matter most.
+                        </p>
                     </div>
                 </details>
                 <details class="faq-item">
@@ -1746,7 +1752,7 @@
                 <span>·</span>
                 <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Contact</a>
                 <span>·</span>
-                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client login</a>
+                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client Login</a>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
                 &copy; 2026 The Longevity Advantage. All rights reserved.
