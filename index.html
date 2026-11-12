@@ -764,6 +764,9 @@
                 <div>
                     <span style="background: var(--accent-teal); color: #040d1a; font-weight: 800; font-size: 0.72rem; letter-spacing: 1.2px; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">Client Onboarding</span>
                     <h2 style="color: var(--text-light); font-size: 1.45rem; margin-top: 0.3rem; font-weight: 800;">Client Discovery Questionnaire</h2>
+                    <p id="questReadOnlyBanner" style="display: none; font-size: 0.84rem; color: var(--accent-gold); margin-top: 0.35rem; font-weight: 600;">
+    🔒 Submitted Baseline Record (Read-Only) — Contact your coach if you need to update anything or withdraw consent.
+</p>
                 </div>
                 <span id="questStepIndicator" style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700;">Step 1 of 6</span>
             </div>
@@ -1060,6 +1063,9 @@
                         <label class="q-label">50. What would success after 30 days look like?</label>
                         <input type="text" id="q50" class="form-input" placeholder="Short text...">
                     </div>
+                    <div id="questPreSubmitNotice" style="background: rgba(45, 212, 191, 0.08); border: 1px solid rgba(45, 212, 191, 0.35); padding: 0.85rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.86rem; color: var(--text-offwhite); line-height: 1.5;">
+    <strong style="color: var(--accent-teal);">Please review before signing:</strong> Once submitted, your Discovery Questionnaire will be locked as your baseline record. If you are unsure about any answer, please use <em>Previous</em> to review and adjust earlier pages first.
+</div>
                     <div class="q-group" style="background: rgba(8, 30, 55, 0.7); border: 1px solid var(--accent-gold); padding: 1rem; border-radius: 8px;">
                         <label class="q-checkbox-card" style="background: transparent; border: none; padding: 0;">
                             <input type="checkbox" id="q51_check" required>
@@ -1776,6 +1782,30 @@
     // 4. Questionnaire Wizard Logic
     var currentQuestStep = 1;
     var totalQuestSteps = 6;
+    var isQuestReadOnly = false;
+
+    function setQuestionnaireReadOnly(readOnly) {
+        isQuestReadOnly = !!readOnly;
+        var form = document.getElementById('questForm');
+        if (form) {
+            form.querySelectorAll('input, select, textarea').forEach(function(el) {
+                el.disabled = isQuestReadOnly;
+            });
+        }
+        var banner = document.getElementById('questReadOnlyBanner');
+        if (banner) banner.style.display = isQuestReadOnly ? 'block' : 'none';
+
+        var notice = document.getElementById('questPreSubmitNotice');
+        if (notice) notice.style.display = isQuestReadOnly ? 'none' : 'block';
+
+        var dashQuestBtn = document.getElementById('btnOpenQuestModal');
+        if (dashQuestBtn) {
+            dashQuestBtn.innerText = isQuestReadOnly
+                ? '📋 View Your Submitted Discovery Questionnaire'
+                : '📋 Complete Your Discovery Questionnaire';
+        }
+        updateQuestStepUI();
+    }
     function updateQuestStepUI() {
         for (var i = 1; i <= totalQuestSteps; i++) {
             var stepEl = document.getElementById('questStep' + i);
@@ -1791,7 +1821,7 @@
         document.getElementById('questPrevBtn').style.display = currentQuestStep > 1 ? 'inline-block' : 'none';
         if (currentQuestStep === totalQuestSteps) {
             document.getElementById('questNextBtn').style.display = 'none';
-            document.getElementById('questSubmitBtn').style.display = 'inline-block';
+            document.getElementById('questSubmitBtn').style.display = isQuestReadOnly ? 'none' : 'inline-block';
         } else {
             document.getElementById('questNextBtn').style.display = 'inline-block';
             document.getElementById('questSubmitBtn').style.display = 'none';
@@ -1828,6 +1858,7 @@
         document.querySelectorAll('#questForm input[type="checkbox"]').forEach(function(cb) {
             cb.checked = false;
         });
+        setQuestionnaireReadOnly(false);
     }
     function populateQuestionnaireForm(r) {
         if (!r) return;
@@ -1974,8 +2005,7 @@ if (btnDashReportModal) {
                 e.preventDefault();
                 openModal('dailyLoggingModal');
             });
-        }
-        var btnOpenQuestModal = document.getElementById('btnOpenQuestModal');
+        }var btnOpenQuestModal = document.getElementById('btnOpenQuestModal');
         if (btnOpenQuestModal) {
             btnOpenQuestModal.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1984,13 +2014,22 @@ if (btnDashReportModal) {
         }
         
         document.getElementById('questNextBtn').addEventListener('click', function() {
+            if (currentQuestStep === 1 && !isQuestReadOnly) {
+                var c1 = document.getElementById('q1').checked;
+                var c2 = document.getElementById('q2').checked;
+                var c3 = document.getElementById('q3').checked;
+                if (!c1 || !c2 || !c3) {
+                    alert("Please tick all three consent and disclosure boxes before continuing.");
+                    return;
+                }
+            }
             if (currentQuestStep < totalQuestSteps) {
                 currentQuestStep++;
                 updateQuestStepUI();
             }
         });
         document.getElementById('questPrevBtn').addEventListener('click', function() {
-            if (currentQuestStep > 1) {
+           if (currentQuestStep > 1) {
                 currentQuestStep--;
                 updateQuestStepUI();
             }
@@ -2077,8 +2116,20 @@ if (btnDashReportModal) {
         return supabaseClient;
     }
 
-    // 8. Questionnaire Submission Handler
+            // 8. Questionnaire Submission Handler
     async function handleQuestSubmit() {
+        if (isQuestReadOnly) return;
+
+        var c1 = document.getElementById('q1').checked;
+        var c2 = document.getElementById('q2').checked;
+        var c3 = document.getElementById('q3').checked;
+        if (!c1 || !c2 || !c3) {
+            alert("All three consent boxes in Step 1 must be ticked before submitting.");
+            currentQuestStep = 1;
+            updateQuestStepUI();
+            return;
+        }
+
         var signedName = document.getElementById('q51_name').value.trim();
         var isChecked = document.getElementById('q51_check').checked;
         if (!isChecked || !signedName) {
@@ -2170,7 +2221,8 @@ if (btnDashReportModal) {
             if (upsertRes.error) {
                 alert("Error saving questionnaire: " + upsertRes.error.message);
             } else {
-                alert("Thank you! Your Discovery Questionnaire has been saved.");
+                setQuestionnaireReadOnly(true);
+                alert("Thank you! Your Discovery Questionnaire has been submitted and locked as your baseline record.");
                 closeModal('questModal');
             }
         } catch (err) {
@@ -2225,7 +2277,10 @@ if (btnDashReportModal) {
                 populateQuestionnaireForm(res.data.responses);
             }
 
-            if (!res.data || !res.data.is_completed) {
+           if (res.data && res.data.is_completed) {
+                setQuestionnaireReadOnly(true);
+            } else {
+                setQuestionnaireReadOnly(false);
                 currentQuestStep = 1;
                 updateQuestStepUI();
                 openModal('questModal');
