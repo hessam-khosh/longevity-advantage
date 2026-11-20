@@ -337,8 +337,9 @@
                 THE LONGEVITY ADVANTAGE
             </span>
         </div>
-        <div>
-            <a href="#booking-form" class="btn-gold" style="padding: 0.55rem 1.1rem; font-size: 0.88rem;">Book Free Call</a>
+        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 0.45rem;">
+            <button type="button" onclick="openModal('loginModal')" class="btn-secondary" style="padding: 0.4rem 1.1rem; font-size: 0.85rem; border-color: var(--accent-teal); color: var(--accent-teal); text-align: center;">Client Login</button>
+            <a href="#booking-form" class="btn-gold" style="padding: 0.55rem 1.1rem; font-size: 0.88rem; text-align: center;">Book Free Call</a>
         </div>
     </header>
     <div id="mainView">
@@ -693,7 +694,7 @@
             </div>
         </section>
     </div>
-    <!-- CLIENT DASHBOARD VIEW (ACCESSED VIA FOOTER LOGIN) -->
+    <!-- CLIENT DASHBOARD VIEW (ACCESSED VIA HEADER OR FOOTER LOGIN) -->
     <div id="dashboardView" class="section" style="display: none; padding-top: 2rem;">
         <div class="card" style="max-width: 900px; margin: 0 auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
@@ -1919,7 +1920,7 @@
                 <span>·</span>
                 <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Contact</a>
                 <span>·</span>
-                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client login</a>
+                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client Login</a>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
                 &copy; 2026 The Longevity Advantage. All rights reserved.
