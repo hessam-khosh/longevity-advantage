@@ -337,9 +337,8 @@
                 THE LONGEVITY ADVANTAGE
             </span>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: stretch; gap: 0.45rem;">
+        <div>
             <a href="#booking-form" class="btn-gold" style="padding: 0.55rem 1.1rem; font-size: 0.88rem;">Book Free Call</a>
-            <button type="button" onclick="openModal('loginModal')" class="btn-secondary" style="padding: 0.4rem 1.1rem; font-size: 0.84rem; text-align: center;">Client Login</button>
         </div>
     </header>
     <div id="mainView">
@@ -576,12 +575,7 @@
                 <details class="faq-item">
                     <summary class="faq-question">What makes TLA different from using a health app?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 0.85rem;">
-                            We recognise that feeling better isn't just about physical health. Your motivation, mindset, personal circumstances and sense of purpose all influence how you feel and the progress you make. That's why your programme is built around you, your priorities and what you want from life.
-                        </p>
-                        <p style="margin: 0;">
-                            Most health apps track what happened. TLA is designed to help influence what happens next. Through a combination of personalised coach support, Atlas AI insights, structured accountability and regular review, the focus is not simply collecting data but helping you consistently follow through on the actions that matter most.
-                        </p>
+                        Most health apps track what happened. TLA is designed to help influence what happens next. Through a combination of personalised coach support, Atlas AI insights, structured accountability and regular review, the focus is not simply collecting data but helping you consistently follow through on the actions that matter most.
                     </div>
                 </details>
                 <details class="faq-item">
@@ -743,22 +737,195 @@
             </div>
 
             
-            <div style="margin-bottom: 2rem; text-align: center; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem;">
-                <button type="button" id="btnDashReportModal" class="btn-cyan-gradient" style="flex: 1; min-width: 250px;">
-                    📄 View Your Baseline Vitality Assessment &rarr;
+            <!-- PRIMARY CLIENT ACTION BUTTONS -->
+            <div style="margin-bottom: 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 1.5rem;">
+                <button type="button" id="btnDashActionPlanModal" class="btn-gold" style="padding: 0.85rem 1.2rem; font-size: 0.95rem;">
+                    🎯 Your 30-Day Vitality Plan &rarr;
                 </button>
-                <button type="button" id="btnOpenQuestModal" class="btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold); flex: 1; min-width: 250px;">
-                    📋 Review Your Discovery Questionnaire
+                <button type="button" id="btnDashReportModal" class="btn-cyan-gradient" style="padding: 0.85rem 1.2rem; font-size: 0.95rem;">
+                    📄 Baseline Vitality Assessment &rarr;
+                </button>
+                <button type="button" id="btnOpenQuestModal" class="btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold); padding: 0.85rem 1.2rem; font-size: 0.92rem;">
+                    📋 Discovery Questionnaire
+                </button>
+                <button type="button" onclick="openModal('resourcesVaultModal')" class="btn-secondary" style="border-color: var(--accent-teal); color: var(--accent-teal); padding: 0.85rem 1.2rem; font-size: 0.92rem;">
+                    🧰 Go to TLA Resources Vault &rarr;
                 </button>
             </div>
-            <h3 style="color: var(--text-light); font-size: 1.2rem; margin-bottom: 1rem;">Client Daily Resources</h3>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Morning Routine Module')">🌅 Morning Routine</div>
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Nutrition Guide')">🥗 Nutrition Guide</div>
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Breathing Module')">🫁 Breathing</div>
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Meditation Module')">🧘 Meditation</div>
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Exercise Module')">🏋️ Movement</div>
-                <div class="card" style="padding: 1rem; text-align: center; cursor: pointer;" onclick="alert('Accessing Evening Routine')">🌙 Evening Routine</div>
+
+            <!-- WEEKLY CORE PRACTICES LOGGING CARD -->
+            <div id="weeklyLoggingSection" style="background: rgba(4, 13, 26, 0.65); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.85rem; margin-bottom: 1rem;">
+                    <div>
+                        <span style="background: var(--accent-teal); color: #040d1a; font-weight: 800; font-size: 0.7rem; letter-spacing: 1px; padding: 0.2rem 0.55rem; border-radius: 4px; text-transform: uppercase;">Weekly Check-In Log</span>
+                        <h3 style="color: var(--text-light); font-size: 1.2rem; margin-top: 0.3rem;">Core Practices &amp; Weekly Reflection</h3>
+                        <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0;">Select at least <strong style="color: var(--accent-gold);">4 of your 5 Core Practices</strong> this week and jot down a brief note on how each went.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <label for="logWeekSelect" style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">Week:</label>
+                        <select id="logWeekSelect" class="form-input" style="padding: 0.4rem 0.7rem; font-size: 0.85rem; width: auto; margin-bottom: 0;">
+                            <option value="2026-11-19">Week 1 (19 Nov – 25 Nov)</option>
+                            <option value="2026-11-26">Week 2 (26 Nov – 02 Dec)</option>
+                            <option value="2026-12-03">Week 3 (03 Dec – 09 Dec)</option>
+                            <option value="2026-12-10">Week 4 (10 Dec – 16 Dec)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="practiceChecklistContainer" style="display: flex; flex-direction: column; gap: 0.85rem;">
+                    <!-- Practice 1 -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; margin-bottom: 0.5rem;">
+                            <input type="checkbox" class="practice-check" value="p1_aerobic" style="margin-top: 0.25rem; accent-color: var(--accent-teal);">
+                            <div>
+                                <strong style="color: var(--text-light); font-size: 0.95rem;">1. Improve Aerobic Fitness</strong>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">1–2x Zone 2 (25–30 mins conversational) + 1x HIIT Sprint Session (24 mins)</span>
+                            </div>
+                        </label>
+                        <input type="text" id="note_p1_aerobic" class="form-input" placeholder="Short summary (e.g. Did 2 Zone 2 walks + 1 HIIT session, felt easier by round 5)..." style="font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-bottom: 0;">
+                    </div>
+
+                    <!-- Practice 2 -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; margin-bottom: 0.5rem;">
+                            <input type="checkbox" class="practice-check" value="p2_strength" style="margin-top: 0.25rem; accent-color: var(--accent-teal);">
+                            <div>
+                                <strong style="color: var(--text-light); font-size: 0.95rem;">2. Strength &amp; Muscular Endurance</strong>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">1–2x Resistance Training (30–40 mins full-body)</span>
+                            </div>
+                        </label>
+                        <input type="text" id="note_p2_strength" class="form-input" placeholder="Short summary (e.g. Completed 2 gym sessions, legs felt strong)..." style="font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-bottom: 0;">
+                    </div>
+
+                    <!-- Practice 3 -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; margin-bottom: 0.5rem;">
+                            <input type="checkbox" class="practice-check" value="p3_breathing" style="margin-top: 0.25rem; accent-color: var(--accent-teal);">
+                            <div>
+                                <strong style="color: var(--text-light); font-size: 0.95rem;">3. Improve Breathing Efficiency</strong>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">5 mins daily nasal humming breathwork + nightly 4-7-8 in bed</span>
+                            </div>
+                        </label>
+                        <input type="text" id="note_p3_breathing" class="form-input" placeholder="Short summary (e.g. 4-7-8 helped me fall asleep faster 5 nights this week)..." style="font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-bottom: 0;">
+                    </div>
+
+                    <!-- Practice 4 -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; margin-bottom: 0.5rem;">
+                            <input type="checkbox" class="practice-check" value="p4_nutrition" style="margin-top: 0.25rem; accent-color: var(--accent-teal);">
+                            <div>
+                                <strong style="color: var(--text-light); font-size: 0.95rem;">4. Nutrition, Hydration &amp; Post-Meal Wall Sits</strong>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">Protein-first breakfast, ~2.5L water, 2–3 hr pre-bed fast + 3 rounds wall sits after 1–2 meals</span>
+                            </div>
+                        </label>
+                        <input type="text" id="note_p4_nutrition" class="form-input" placeholder="Short summary (e.g. Hit protein breakfast daily, wall sits up to 25s)..." style="font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-bottom: 0;">
+                    </div>
+
+                    <!-- Practice 5 -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; margin-bottom: 0.5rem;">
+                            <input type="checkbox" class="practice-check" value="p5_activity" style="margin-top: 0.25rem; accent-color: var(--accent-teal);">
+                            <div>
+                                <strong style="color: var(--text-light); font-size: 0.95rem;">5. Daily Activity Levels</strong>
+                                <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">Walking meetings, stairs, desk movement breaks &amp; post-meal walks</span>
+                            </div>
+                        </label>
+                        <input type="text" id="note_p5_activity" class="form-input" placeholder="Short summary (e.g. Took 3 walking calls and 10-min walk after lunch most days)..." style="font-size: 0.85rem; padding: 0.45rem 0.75rem; margin-bottom: 0;">
+                    </div>
+                </div>
+
+                <div style="margin-top: 1rem;">
+                    <label for="weeklyOverallReflection" style="display: block; font-size: 0.85rem; color: var(--text-light); font-weight: 600; margin-bottom: 0.35rem;">Overall Energy, Sleep &amp; Coach Discussion Notes (Optional)</label>
+                    <textarea id="weeklyOverallReflection" class="form-input" rows="2" placeholder="How were your energy levels, sleep refreshment, and stress this week? Anything you'd like to discuss on our check-in?" style="font-size: 0.85rem; margin-bottom: 0;"></textarea>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                    <span id="weeklyLogStatusMsg" style="font-size: 0.84rem; color: var(--accent-teal); font-weight: 600;"></span>
+                    <button type="button" id="saveWeeklyLogBtn" class="btn-cyan-gradient" style="padding: 0.65rem 1.4rem; font-size: 0.9rem;">
+                        💾 Save Weekly Progress Log
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 30-DAY VITALITY ACTION PLAN MODAL -->
+    <div id="actionPlanModal" class="modal">
+        <div class="modal-content" style="max-width: 820px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
+            <span class="close-btn" onclick="closeModal('actionPlanModal')">&times;</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+                <div>
+                    <span style="background: var(--accent-gold); color: #040d1a; font-weight: 800; font-size: 0.72rem; letter-spacing: 1.2px; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">Personalised Roadmap</span>
+                    <h2 style="color: var(--text-light); font-size: 1.5rem; margin-top: 0.3rem; font-weight: 800;">Your 30-Day Vitality Action Plan</h2>
+                </div>
+                <a href="nakul-30-day-plan-18-Nov-2026.pdf" target="_blank" class="btn-secondary" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-size: 0.85rem;">
+                    📥 Open Printable PDF
+                </a>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-offwhite); margin-bottom: 1.25rem;">
+                <strong>Objective:</strong> Not perfection—just building 4–5 repeatable weekly habits that lift daily energy, improve recovery, preserve your 40.5 kg skeletal muscle, and build aerobic &amp; breathing efficiency.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-cyan); padding: 1rem; border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);">1. Improve Aerobic Fitness (Baseline VO₂ Max: 36.1 ml/kg/min)</strong>
+                    <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.88rem; color: var(--text-offwhite);">
+                        <li><strong>Zone 2 Foundation (1–2x/wk):</strong> 25–30 mins brisk walking, cycling, or rowing at a conversational, nasal-breathing pace.</li>
+                        <li><strong>HIIT Sprint Protocol (1x/wk, ~24 mins):</strong> 5 min warm-up (6 km/h) + 8 × 30s sprints (from 12 km/h) with 2.5 min walk recovery (step safely onto side rails between sprints, or use bike/rower).</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-teal); padding: 1rem; border-radius: 6px;">
+                    <strong style="color: var(--accent-teal);">2. Strength &amp; Muscular Endurance (1–2x/wk, 30–40 mins)</strong>
+                    <p style="margin: 0.4rem 0 0; font-size: 0.88rem; color: var(--text-offwhite);">Full-body sessions covering leg press/squats, rowing, chest press, core, and functional patterns to preserve muscle mass during fat loss.</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-green); padding: 1rem; border-radius: 6px;">
+                    <strong style="color: var(--accent-green);">3. Breathing Efficiency (Baseline BOLT: 19s &rarr; Target: 25–30s)</strong>
+                    <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.88rem; color: var(--text-offwhite);">
+                        <li><strong>Daily (5 mins):</strong> Slow nasal breathing with gentle humming on the exhale (boosts nasal nitric oxide 15–20×).</li>
+                        <li><strong>Nightly in Bed:</strong> 4 cycles of 4-7-8 breathing (inhale 4s, hold 7s, pursed-lip exhale 8s) to activate calm recovery.</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-gold); padding: 1rem; border-radius: 6px;">
+                    <strong style="color: var(--accent-gold);">4. Nutrition, Hydration &amp; Post-Meal Wall Sits</strong>
+                    <ul style="margin: 0.4rem 0 0 1.2rem; font-size: 0.88rem; color: var(--text-offwhite);">
+                        <li><strong>Morning Anchor:</strong> 30–40g protein at breakfast + ~2.5L water across the day to eliminate mid-morning energy dips.</li>
+                        <li><strong>Evening Guideline:</strong> Finish eating 2–3 hours before bedtime for deeper sleep recovery.</li>
+                        <li><strong>Post-Meal Wall Sits:</strong> 3 rounds within 30 mins after 1–2 main meals (building up from 20s baseline).</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent-cyan); padding: 1rem; border-radius: 6px;">
+                    <strong style="color: var(--accent-cyan);">5. Daily Activity Levels (Consistency Over Duration)</strong>
+                    <p style="margin: 0.4rem 0 0; font-size: 0.88rem; color: var(--text-offwhite);">Walking calls, 2–3 min desk movement breaks, stairs over lifts, and brief 5–10 min post-meal walks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TLA RESOURCES VAULT POP-UP MODAL -->
+    <div id="resourcesVaultModal" class="modal">
+        <div class="modal-content" style="max-width: 780px; text-align: left; max-height: 90vh; overflow-y: auto; padding: 2.25rem;">
+            <span class="close-btn" onclick="closeModal('resourcesVaultModal')">&times;</span>
+            <span style="background: var(--accent-teal); color: #040d1a; font-weight: 800; font-size: 0.72rem; letter-spacing: 1.2px; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase;">Client Toolkit</span>
+            <h2 style="color: var(--text-light); font-size: 1.5rem; margin-top: 0.3rem; font-weight: 800;">TLA Resources Vault</h2>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">Select a category below to explore practical routines, protocols, and step-by-step guides.</p>
+
+            <!-- CATEGORY BUTTONS GRID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('breathing')" style="text-align: left; border-color: var(--accent-teal);">🫁 Breathing</button>
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('nutrition')" style="text-align: left;">🥗 Nutrition Guide</button>
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('morning')" style="text-align: left;">🌅 Morning Routine</button>
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('movement')" style="text-align: left;">🏋️ Movement</button>
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('meditation')" style="text-align: left;">🧘 Meditation</button>
+                <button type="button" class="btn-secondary vault-cat-btn" onclick="showVaultCategory('evening')" style="text-align: left;">🌙 Evening Routine</button>
+            </div>
+
+            <!-- DYNAMIC CONTENT PANEL INSIDE VAULT -->
+            <div id="vaultDetailPanel" style="background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; min-height: 150px;">
+                <h4 style="color: var(--accent-teal); margin-bottom: 0.6rem;">🫁 Breathing Protocols</h4>
+                <ul style="margin-left: 1.2rem; font-size: 0.9rem; color: var(--text-offwhite); line-height: 1.65;">
+                    <li><strong>Nasal Breathing &amp; Humming:</strong> Light, slow nasal inhales and exhales (optional gentle hum on exhale to increase nasal nitric oxide and CO₂ tolerance).</li>
+                    <li><strong>4-7-8 Wind-Down:</strong> Inhale quietly through the nose for 4s, hold gently for 7s, exhale slowly through pursed lips for 8s (4 cycles in bed).</li>
+                    <li><strong>Rapid Calming (Double Inhale, Long Exhale):</strong> Two quick inhales through the nose (deep breath + top-up sip) followed by an extended, slow exhale to rapidly lower heart rate and stress.</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -1752,7 +1919,7 @@
                 <span>·</span>
                 <a href="javascript:void(0)" id="contactBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Contact</a>
                 <span>·</span>
-                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client Login</a>
+                <a href="javascript:void(0)" id="loginBtn" style="color: var(--text-muted); text-decoration: none; cursor: pointer;">Client login</a>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">
                 &copy; 2026 The Longevity Advantage. All rights reserved.
@@ -2005,6 +2172,21 @@ if (btnDashReportModal) {
         }
     });
 }
+        var btnDashActionPlanModal = document.getElementById('btnDashActionPlanModal');
+        if (btnDashActionPlanModal) {
+            btnDashActionPlanModal.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal('actionPlanModal');
+            });
+        }
+        var saveWeeklyLogBtn = document.getElementById('saveWeeklyLogBtn');
+        if (saveWeeklyLogBtn) {
+            saveWeeklyLogBtn.addEventListener('click', saveWeeklyPracticeLog);
+        }
+        var logWeekSelect = document.getElementById('logWeekSelect');
+        if (logWeekSelect) {
+            logWeekSelect.addEventListener('change', loadWeeklyPracticeLog);
+        }
         var btnLoggingModal = document.getElementById('btnLoggingModal');
         if (btnLoggingModal) {
             btnLoggingModal.addEventListener('click', function(e) {
@@ -2263,6 +2445,18 @@ if (btnDashReportModal) {
             }
         }
 
+        var dashPlanBtn = document.getElementById('btnDashActionPlanModal');
+        if (dashPlanBtn) {
+            var isNakulPlan = (userEmail || '').toLowerCase().includes('nakul');
+            dashPlanBtn.disabled = !isNakulPlan;
+            dashPlanBtn.style.opacity = isNakulPlan ? '1' : '0.45';
+            dashPlanBtn.style.cursor = isNakulPlan ? 'pointer' : 'not-allowed';
+            dashPlanBtn.title = isNakulPlan
+                ? 'Open your 30-Day Vitality Action Plan'
+                : 'Your 30-Day Vitality Action Plan will be available here once completed';
+        }
+        loadWeeklyPracticeLog();
+
         // Show Admin Panel if logged-in email matches admin
         var adminPanel = document.getElementById('adminPanelSection');
         if (userEmail && userEmail.toLowerCase() === 'hessam@sky.com') {
@@ -2433,7 +2627,6 @@ if (btnDashReportModal) {
 
             if (res.error) {
                 console.error("Supabase Auth Error:", res.error);
-                // Displays exact error from Supabase (e.g. "Invalid login credentials", "Email not confirmed")
                 errorElement.innerText = res.error.message || "Invalid credentials. Please check your email and password.";
                 errorElement.style.display = 'block';
                 return;
@@ -2483,6 +2676,160 @@ if (btnDashReportModal) {
             }
         }
     }
+
+    // 11. TLA Resources Vault Content Switcher
+    const VAULT_TOPICS = {
+        breathing: {
+            title: '🫁 Breathing Protocols',
+            items: [
+                '<strong>Nasal Breathing &amp; Humming:</strong> Light, slow nasal inhales and exhales (optional gentle hum on exhale to increase nasal nitric oxide and CO₂ tolerance).',
+                '<strong>4-7-8 Wind-Down:</strong> Inhale quietly through the nose for 4s, hold gently for 7s, exhale slowly through pursed lips for 8s (4 cycles in bed).',
+                '<strong>Rapid Calming (Double Inhale, Long Exhale):</strong> Two quick inhales through the nose (deep breath + top-up sip) followed by an extended, slow exhale to rapidly lower heart rate and stress.'
+            ]
+        },
+        nutrition: {
+            title: '🥗 Nutrition & Hydration Foundations',
+            items: [
+                '<strong>Protein-First Breakfast (30–40g):</strong> Stabilises morning blood glucose, prevents mid-morning energy dips, and protects lean muscle mass.',
+                '<strong>Evening Kitchen Cutoff (2–3 hrs pre-bed):</strong> Supports overnight digestion, deeper sleep architecture, and metabolic recovery.',
+                '<strong>Daily Hydration (~2.5L):</strong> Front-load water intake earlier in the day to support cellular hydration and focus.'
+            ]
+        },
+        morning: {
+            title: '🌅 Morning Routine Anchors',
+            items: [
+                '<strong>Outdoor Daylight (Within 30 mins of waking):</strong> 5–10 minutes of natural light anchors your circadian rhythm for better daytime energy and night-time sleep.',
+                '<strong>Hydrate Before Caffeine:</strong> Start with 400–500ml water upon waking before your first tea or coffee.'
+            ]
+        },
+        movement: {
+            title: '🏋️ Movement & Conditioning Guides',
+            items: [
+                '<strong>Zone 2 Aerobic Pace:</strong> Steady effort where you can breathe strictly through your nose and speak in full sentences.',
+                '<strong>Post-Meal Wall Sits:</strong> 3 rounds within 30 minutes of main meals to support glucose uptake and lower-body muscular endurance.',
+                '<strong>Movement Snacks:</strong> 2–3 minutes of standing, stretching, or stair climbing every 60–90 minutes of desk work.'
+            ]
+        },
+        meditation: {
+            title: '🧘 Meditation & Mental Reset',
+            items: [
+                '<strong>2-Minute Physiological Reset:</strong> Close your eyes between meetings, drop your shoulders, and focus solely on lengthening each exhale.',
+                '<strong>Evening Brain Dump:</strong> Jot down tomorrow’s top 3 priorities before bed to offload mental tension.'
+            ]
+        },
+        evening: {
+            title: '🌙 Evening Wind-Down Routine',
+            items: [
+                '<strong>Digital Dimming (30–45 mins pre-bed):</strong> Reduce bright overhead lights and step away from work emails.',
+                '<strong>In-Bed 4-7-8 Breathing:</strong> 4 slow cycles once lights are out to transition smoothly into restorative sleep.'
+            ]
+        }
+    };
+
+    window.showVaultCategory = function(key) {
+        var topic = VAULT_TOPICS[key];
+        if (!topic) return;
+        var panel = document.getElementById('vaultDetailPanel');
+        panel.innerHTML = '<h4 style="color: var(--accent-teal); margin-bottom: 0.6rem;">' + topic.title + '</h4>' +
+            '<ul style="margin-left: 1.2rem; font-size: 0.9rem; color: var(--text-offwhite); line-height: 1.65;">' +
+            topic.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+    };
+
+    // 12. Weekly Core Practices Log (Save & Load via Supabase)
+    async function loadWeeklyPracticeLog() {
+        var client = getSupabase();
+        var weekSelect = document.getElementById('logWeekSelect');
+        if (!client || !weekSelect) return;
+
+        var sessionRes = await client.auth.getSession();
+        if (!sessionRes.data || !sessionRes.data.session) return;
+        var userId = sessionRes.data.session.user.id;
+        var weekStart = weekSelect.value;
+
+        document.querySelectorAll('.practice-check').forEach(function(cb) { cb.checked = false; });
+        ['p1_aerobic', 'p2_strength', 'p3_breathing', 'p4_nutrition', 'p5_activity'].forEach(function(k) {
+            var el = document.getElementById('note_' + k);
+            if (el) el.value = '';
+        });
+        var refEl = document.getElementById('weeklyOverallReflection');
+        if (refEl) refEl.value = '';
+        var statusEl = document.getElementById('weeklyLogStatusMsg');
+        if (statusEl) statusEl.innerText = '';
+
+        var res = await client
+            .from('weekly_practice_logs')
+            .select('selected_practices, practice_notes, overall_reflection')
+            .eq('user_id', userId)
+            .eq('week_start', weekStart)
+            .maybeSingle();
+
+        if (res.data) {
+            var selected = res.data.selected_practices || [];
+            document.querySelectorAll('.practice-check').forEach(function(cb) {
+                cb.checked = selected.includes(cb.value);
+            });
+            var notes = res.data.practice_notes || {};
+            Object.keys(notes).forEach(function(k) {
+                var el = document.getElementById('note_' + k);
+                if (el) el.value = notes[k];
+            });
+            if (refEl) refEl.value = res.data.overall_reflection || '';
+            if (statusEl) {
+                statusEl.style.color = 'var(--accent-teal)';
+                statusEl.innerText = '✓ Loaded saved log for this week (' + selected.length + '/5 selected)';
+            }
+        }
+    }
+
+    async function saveWeeklyPracticeLog() {
+        var client = getSupabase();
+        if (!client) return;
+        var sessionRes = await client.auth.getSession();
+        if (!sessionRes.data || !sessionRes.data.session) {
+            alert('Session expired. Please log in again.');
+            return;
+        }
+
+        var selected = [];
+        document.querySelectorAll('.practice-check:checked').forEach(function(cb) {
+            selected.push(cb.value);
+        });
+
+        var notes = {};
+        ['p1_aerobic', 'p2_strength', 'p3_breathing', 'p4_nutrition', 'p5_activity'].forEach(function(k) {
+            var el = document.getElementById('note_' + k);
+            if (el && el.value.trim()) notes[k] = el.value.trim();
+        });
+
+        var btn = document.getElementById('saveWeeklyLogBtn');
+        var statusEl = document.getElementById('weeklyLogStatusMsg');
+        btn.disabled = true;
+        btn.innerText = 'Saving...';
+
+        var upsertRes = await client
+            .from('weekly_practice_logs')
+            .upsert({
+                user_id: sessionRes.data.session.user.id,
+                week_start: document.getElementById('logWeekSelect').value,
+                selected_practices: selected,
+                practice_notes: notes,
+                overall_reflection: document.getElementById('weeklyOverallReflection').value.trim(),
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'user_id,week_start' });
+
+        btn.disabled = false;
+        btn.innerText = '💾 Save Weekly Progress Log';
+
+        if (upsertRes.error) {
+            statusEl.style.color = '#ef4444';
+            statusEl.innerText = 'Error saving log: ' + upsertRes.error.message;
+        } else {
+            statusEl.style.color = 'var(--accent-teal)';
+            statusEl.innerText = '✓ Saved (' + selected.length + ' of 5 practices logged for your coach check-in)';
+        }
+    }
 </script>
 </body>
 </html>
+
